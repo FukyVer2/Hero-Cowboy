@@ -2,9 +2,7 @@
 using System.Collections;
 
 public class Enemy : BaseGameObject
-{
-
-    
+{    
 
 	// Use this for initialization
 	void Start () {
