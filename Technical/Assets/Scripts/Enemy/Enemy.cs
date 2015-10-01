@@ -36,6 +36,7 @@ public class Enemy : BaseGameObject
     //chuyen sang trang thai danh
     public virtual void Attack()
     {
+        speed = 0;
         status = 1;
     }
     public void Damge()

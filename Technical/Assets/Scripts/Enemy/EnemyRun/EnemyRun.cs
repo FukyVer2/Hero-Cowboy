@@ -38,7 +38,7 @@ public class EnemyRun : Enemy {
     //chuyen sang trang thai danh
     public override void Attack()
     {
-        speed = 0;
+        base.Attack();
         animator.SetBool("isAttack", true);        
     }
     public override void Die()
