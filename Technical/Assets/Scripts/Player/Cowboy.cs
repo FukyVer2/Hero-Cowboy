@@ -89,6 +89,7 @@ public class Cowboy : MonoBehaviour{
             GameObject fireBallBullet = PoolObject.Instance.SpawnObject(fireBallBulletPrefabs, "Bullet");
             fireBallBullet.transform.localPosition = shootPosition.position;
             fireBallBullet.GetComponent<FireBallBullet>().ChangeDirection(isLeftDirection);
+            AudioController.Instance.PlaySound(AudioType.SHOT);
             //fireBallBullet.SetActive(true);
             //Tao ra mot vien dan
             //isShoot = false;

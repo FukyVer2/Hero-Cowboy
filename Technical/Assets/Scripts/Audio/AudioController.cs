@@ -25,10 +25,9 @@ public class AudioController : MonoSingleton<AudioController> {
     AudioSource audioSource;
 
     // Use this for initialization
-    void Start()
+    void Awake()
     {
         audioSource = GetComponent<AudioSource>();
-        audioResourceCofig = new List<AudioConfig>();
         audioReSources = new Dictionary<AudioType, AudioClip>();
         RevertDataToDictionary();
     }
@@ -64,7 +63,27 @@ public class AudioController : MonoSingleton<AudioController> {
         {
             if (isSoundGamePlay)
             {
+                audioSource.loop = false;
                 audioSource.PlayOneShot(_audioClip);
+            }
+        }
+        else
+        {
+            Debug.LogError("Chua co sound");
+        }
+
+    }
+
+    public void PlaySoundRepeat(AudioType audioType)
+    {
+        AudioClip _audioClip = GetAudioClip(audioType);
+        if (_audioClip != null)
+        {
+            if (isSoundBG)
+            {
+                audioSource.clip = _audioClip;
+                audioSource.loop = true;
+                audioSource.Play();
             }
         }
         else

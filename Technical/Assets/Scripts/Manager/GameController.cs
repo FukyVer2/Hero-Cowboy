@@ -7,7 +7,7 @@ public class GameController : MonoSingleton<GameController> {
     public Cowboy heroCowboy;
 
 	void Start () {
-	
+        AudioController.Instance.PlaySoundRepeat(AudioType.SOUND_BG_INGAME);
 	}
 	
 	// Update is called once per frame
