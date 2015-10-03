@@ -19,6 +19,7 @@ public class Enemy : BaseGameObject
         hp -= _damge;
         //TestPlayer.Instance.RenderNumber(_damge);
         ManagerObject.Instance.RenderNumber(ObjectType.NUMBER, posNumberHit.position, _damge);
+        
         health.HP(hp);        
         if(hp <=0 )
         {
@@ -49,6 +50,7 @@ public class Enemy : BaseGameObject
     }
     public virtual void Die()
     {
+        ManagerObject.Instance.RenderParticalEnemy(ObjectType.ENEMY_DIE, transform.position);
         Destroy(gameObject);
         //ManagerObject.Instance.RenderParticalEnemy(ObjectType.ENEMY_DIE, transform.position);
     }

@@ -26,29 +26,33 @@ public class ManagerObject : MonoSingleton<ManagerObject> {
 	void Update () {
 	
 	}
+    //render number hit
     public void RenderNumber(ObjectType objectType,Vector3 pos, float damge)
     {
-        GameObject numberObj = PoolObject.Instance.SpawnObject(listPrefabs[(int)objectType], "Number");
-        numberObj.transform.position = pos;
+        GameObject numberObj = PoolObject.Instance.SpawnObjectPos(listPrefabs[(int)objectType], "Number",pos);
+        //numberObj.transform.position = pos;
         Number number = numberObj.GetComponent<Number>();
         number.Init();
         number.Calculogic(damge);
     }
+    //render Particle
     public void RenderParticalEnemy(ObjectType objectType, Vector3 pos)
     {
-        GameObject numberObj = PoolObject.Instance.SpawnObject(listPrefabs[(int)objectType], "Partical");
+        GameObject p = PoolObject.Instance.SpawnObjectPos(listPrefabs[(int)objectType], "Particle", pos);
+        //Particle particle = p.GetComponent<Particle>();
+        //particle.Init();
     }
     Vector3 RandomPosition(Vector3 pos, float x)
     {
         Vector3 p = new Vector3(Random.Range(pos.x - x, pos.x + x), pos.y, pos.z);
-
         return p;
     }
     //render Enemy
     public void RenderEnemy(ObjectType objectType, Vector3 pos, string strPrefabs, int isRight)
     {
-        GameObject enemyObj = PoolObject.Instance.SpawnObject(listPrefabs[(int)objectType], "EnemyRun");
-        enemyObj.transform.position = RandomPosition(pos, 0.5f);
+        Vector3 p = RandomPosition(pos, 0.5f);
+        GameObject enemyObj = PoolObject.Instance.SpawnObjectPos(listPrefabs[(int)objectType], "EnemyRun",p);
+        //enemyObj.transform.position = RandomPosition(pos, 0.5f);
         Enemy enemy = enemyObj.GetComponent<Enemy>();
         enemy.SetSpeed(isRight);        
     }
