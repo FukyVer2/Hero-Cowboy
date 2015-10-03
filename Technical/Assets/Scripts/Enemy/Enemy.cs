@@ -48,6 +48,8 @@ public class Enemy : BaseGameObject
     }
     public virtual void Die()
     {
+        Destroy(gameObject);
+        //ManagerObject.Instance.RenderParticalEnemy(ObjectType.ENEMY_DIE, transform.position);
     }
     //xet va cham voi Enemy
     //khi toi gan Player no se dung lai

@@ -27,4 +27,8 @@ public class TestPlayer : MonoSingleton<TestPlayer> {
         number.Init();
         number.Calculogic(damge);
     }
+    void TestParticleSystem()
+    {
+        
+    }
 }

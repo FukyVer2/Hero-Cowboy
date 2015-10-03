@@ -9,7 +9,9 @@ public enum ObjectType
     ENEMY_TANK = 2,
     NUMBER = 3,
     BULLET_PLAYER_1 = 4,
-    BULLET_ENEMY_1 = 5
+    BULLET_ENEMY_1 = 5,
+    ENEMY_DIE = 6,
+    ENEMY_HIT = 7
 }
 
 public class ManagerObject : MonoSingleton<ManagerObject> {
@@ -31,6 +33,10 @@ public class ManagerObject : MonoSingleton<ManagerObject> {
         Number number = numberObj.GetComponent<Number>();
         number.Init();
         number.Calculogic(damge);
+    }
+    public void RenderParticalEnemy(ObjectType objectType, Vector3 pos)
+    {
+        GameObject numberObj = PoolObject.Instance.SpawnObject(listPrefabs[(int)objectType], "Partical");
     }
     Vector3 RandomPosition(Vector3 pos, float x)
     {

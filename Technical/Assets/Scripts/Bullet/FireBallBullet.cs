@@ -5,6 +5,7 @@ public class FireBallBullet : MonoBehaviour {
 
     public float speed = 40;
     public bool isLeftDirection = true;
+    public float damge = 100;
 
     public void Move()
     {
@@ -38,5 +39,14 @@ public class FireBallBullet : MonoBehaviour {
     {
         Move();
         Destroy();
+    }
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if(col.tag =="Enemy")
+        {
+            Enemy enemy = col.GetComponent<Enemy>();
+            enemy.Hit(damge);
+            PoolObject.Instance.DespawnObject(gameObject.transform, "Bullet");           
+        }
     }
 }

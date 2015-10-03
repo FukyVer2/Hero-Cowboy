@@ -20,6 +20,7 @@ public class EnemyRun : Enemy {
     //isRight = 0 ben trai, isRight = 1 ben phai
     public override void SetSpeed(int isRight)
     {
+        base.SetSpeed(isRight);
         speed = Random.Range(0.5f, 1.0f);
         if(isRight == 1)
         {
@@ -33,6 +34,7 @@ public class EnemyRun : Enemy {
     //ham di chuyen cua Enemy
     public override void Move()
     {
+        base.Move();
         gameObject.transform.position += new Vector3(speed,0,0) * Time.deltaTime;
     }
     //chuyen sang trang thai danh
@@ -43,7 +45,7 @@ public class EnemyRun : Enemy {
     }
     public override void Die()
     {
-        Destroy(gameObject);
+        base.Die();
     }
     [ContextMenu("Hit")]
     void TestHit()
