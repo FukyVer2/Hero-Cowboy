@@ -30,6 +30,7 @@ public class AudioController : MonoSingleton<AudioController> {
         audioSource = GetComponent<AudioSource>();
         audioResourceCofig = new List<AudioConfig>();
         audioReSources = new Dictionary<AudioType, AudioClip>();
+        RevertDataToDictionary();
     }
 
     // Update is called once per frame
