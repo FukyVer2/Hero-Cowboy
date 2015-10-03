@@ -63,8 +63,8 @@ public class AudioController : MonoSingleton<AudioController> {
         {
             if (isSoundGamePlay)
             {
-                audioSource.loop = false;
-                audioSource.PlayOneShot(_audioClip);
+                //audioSource.loop = false;
+                audioSource.PlayOneShot(_audioClip, 0.3f);
             }
         }
         else
