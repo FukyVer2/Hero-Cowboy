@@ -44,9 +44,11 @@ public class FireBallBullet : MonoBehaviour {
     {
         if(col.tag =="Enemy")
         {
+            ManagerObject.Instance.RenderParticalEnemy(ObjectType.ENEMY_HIT, transform.position);
             Enemy enemy = col.GetComponent<Enemy>();
             enemy.Hit(damge);
-            PoolObject.Instance.DespawnObject(gameObject.transform, "Bullet");           
+            PoolObject.Instance.DespawnObject(gameObject.transform, "Bullet");
+            
         }
     }
 }

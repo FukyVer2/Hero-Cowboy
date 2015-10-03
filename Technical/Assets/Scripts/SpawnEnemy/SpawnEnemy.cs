@@ -7,6 +7,7 @@ public class SpawnEnemy : MonoBehaviour {
     public float countEnemy = 4;//so luong Enemy xuat hien trong 1 luot choi
     public Transform transfLeft;//vi tri random Enemy
     public Transform transfRight;
+    
 	// Use this for initialization
 	void Start () {
 	
@@ -14,12 +15,15 @@ public class SpawnEnemy : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	    if(timeSpawn > 4)
+        if (!GameController.Instance.isStopSpawnEnemy)
         {
-            RenderEnemy();
-            
+            if (timeSpawn > 3)
+            {
+                RenderEnemy();
+
+            }
+            timeSpawn += Time.deltaTime;
         }
-        timeSpawn += Time.deltaTime;
 	}
     IEnumerator DelaySpawn(float time)
     {
