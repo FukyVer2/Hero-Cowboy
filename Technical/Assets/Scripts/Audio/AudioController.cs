@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public enum AudioType
 {
@@ -15,6 +16,8 @@ public enum AudioType
 public class AudioController : MonoSingleton<AudioController> {
 
     public AudioClip[] audioClip;
+    public List<AudioConfig> audioResourceCofig;
+    private Dictionary<AudioType, AudioClip> audioReSources;
 
     public bool isSoundBG;
     public bool isSoundGamePlay;
@@ -25,6 +28,8 @@ public class AudioController : MonoSingleton<AudioController> {
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        audioResourceCofig = new List<AudioConfig>();
+        audioReSources = new Dictionary<AudioType, AudioClip>();
     }
 
     // Update is called once per frame
@@ -33,11 +38,37 @@ public class AudioController : MonoSingleton<AudioController> {
 
     }
 
+    void RevertDataToDictionary()
+    {
+        foreach (var item in audioResourceCofig)
+        {
+            audioReSources.Add(item.audioType, item.audioClip);
+        }
+    }
+
+    public AudioClip GetAudioClip(AudioType audioType)
+    {
+        if (audioReSources.ContainsKey(audioType))
+        {
+            return audioReSources[audioType];
+        }
+        else
+            return null;
+    }
+
     public void PlaySound(AudioType audioType)
     {
-        if (isSoundGamePlay)
+        AudioClip _audioClip = GetAudioClip(audioType);
+        if (_audioClip != null)
         {
-            audioSource.PlayOneShot(audioClip[(int)audioType]);
+            if (isSoundGamePlay)
+            {
+                audioSource.PlayOneShot(_audioClip);
+            }
+        }
+        else
+        {
+            Debug.LogError("Chua co sound");
         }
 
     }
@@ -53,4 +84,12 @@ public class AudioController : MonoSingleton<AudioController> {
         isSoundBG = !isSoundBG;
         Debug.Log("Press Mute Sound BG = " + isSoundBG);
     }
+
+}
+
+[System.Serializable]
+public class AudioConfig
+{
+    public AudioType audioType;
+    public AudioClip audioClip;
 }
