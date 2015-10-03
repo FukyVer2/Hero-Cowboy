@@ -42,9 +42,10 @@ public class Enemy : BaseGameObject
     public void Damge()
     {        
         //player Mat mau o day
-        TestPlayer.Instance.Hit(damge);
+        //TestPlayer.Instance.Hit(damge);
         //TestPlayer.Instance.RenderNumber(damge);
-        ManagerObject.Instance.RenderNumber(ObjectType.NUMBER, posNumberHit.position, damge);
+        GameController.Instance.heroCowboy.Hit(damge);
+        ManagerObject.Instance.RenderNumber(ObjectType.NUMBER, GameController.Instance.heroCowboy.posNumberHit.position, damge);
     }
     public virtual void Die()
     {

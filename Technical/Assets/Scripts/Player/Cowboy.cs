@@ -24,6 +24,7 @@ public class Cowboy : MonoBehaviour{
 
     public GameObject fireBallBulletPrefabs;
     public Transform shootPosition;
+    public Transform posNumberHit;
     // Use this for initialization
 
     void Start()
