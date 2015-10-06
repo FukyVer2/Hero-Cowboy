@@ -20,16 +20,10 @@ public class EnemyRun : Enemy {
     //isRight = 0 ben trai, isRight = 1 ben phai
     public override void SetSpeed(int isRight)
     {
-        base.SetSpeed(isRight);
+        health.SetHpDefault(hp);
         speed = Random.Range(0.5f, 1.0f);
-        if(isRight == 1)
-        {
-            speed *= -1;
-            gameObject.transform.localScale = new Vector3(-1, 1, 1);
-        }else
-        {
+        base.SetSpeed(isRight);
             
-        }
     }
     //ham di chuyen cua Enemy
     public override void Move()

@@ -4,19 +4,23 @@ using System.Collections.Generic;
 
 public enum ObjectType
 {
-    PLAYER = 0,
-    ENEMY_RUN = 1,
-    ENEMY_TANK = 2,
-    NUMBER = 3,
-    BULLET_PLAYER_1 = 4,
-    BULLET_ENEMY_1 = 5,
-    ENEMY_DIE = 6,
-    ENEMY_HIT = 7
+    PLAYER = 0,    
+    NUMBER = 1,
+    BULLET_PLAYER_1 = 2,
+    BULLET_ENEMY_1 = 3,
+    ENEMY_DIE = 4,
+    ENEMY_HIT = 5
+}
+public enum EnemyType
+{
+    ENEMY_RUN = 0,
+    ENEMY_TANK = 1,
 }
 
 public class ManagerObject : MonoSingleton<ManagerObject> {
 
     public List<GameObject> listPrefabs;
+    public List<GameObject> listEnemy;
 	// Use this for initialization
 	void Start () {
 	
@@ -48,12 +52,14 @@ public class ManagerObject : MonoSingleton<ManagerObject> {
         return p;
     }
     //render Enemy
-    public void RenderEnemy(ObjectType objectType, Vector3 pos, string strPrefabs, int isRight)
+    public void RenderEnemy(EnemyType objectType, Vector3 pos, string strPrefabs, int isRight, ref List<Enemy> l)
     {
         Vector3 p = RandomPosition(pos, 0.5f);
-        GameObject enemyObj = PoolObject.Instance.SpawnObjectPos(listPrefabs[(int)objectType], "EnemyRun",p);
+        GameObject enemyObj = PoolObject.Instance.SpawnObjectPos(listEnemy[(int)objectType], "Enemy", p);
         //enemyObj.transform.position = RandomPosition(pos, 0.5f);
         Enemy enemy = enemyObj.GetComponent<Enemy>();
-        enemy.SetSpeed(isRight);        
-    }
+        enemy.SetSpeed(isRight);
+        if (!l.Contains(enemy))
+            l.Add(enemy);
+    }    
 }

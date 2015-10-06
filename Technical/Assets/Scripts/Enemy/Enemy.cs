@@ -28,7 +28,16 @@ public class Enemy : BaseGameObject
     }
     public virtual void SetSpeed(int isRight)
     {
-
+        speed = Mathf.Abs(speed);
+        if (isRight == 1)
+        {
+            speed *= -1;
+            gameObject.transform.localScale = new Vector3(-1, 1, 1);
+        }
+        else
+        {
+            gameObject.transform.localScale = new Vector3(1, 1, 1);
+        }
     }
     public virtual void Move()
     {
@@ -50,9 +59,15 @@ public class Enemy : BaseGameObject
     }
     public virtual void Die()
     {
+        
         ManagerObject.Instance.RenderParticalEnemy(ObjectType.ENEMY_DIE, transform.position);
-        Destroy(gameObject);
-        //ManagerObject.Instance.RenderParticalEnemy(ObjectType.ENEMY_DIE, transform.position);
+        //remove Enemy ra khoi List Spawn
+        Enemy e = gameObject.GetComponent<Enemy>();
+        SpawnEnemy.Instance.RemoveListEnemy(e);
+
+        PoolObject.Instance.DespawnObject(transform, "Enemy");
+       
+        //PoolObject.Instance.DespawnEnemy(transform, "Enemy", ref SpawnEnemy.Instance.listEnemy);
     }
     //xet va cham voi Enemy
     //khi toi gan Player no se dung lai

@@ -21,17 +21,21 @@ public class UIController : MonoBehaviour {
         gameStartPanel.SetActive(false);
         gamePlayPanel.SetActive(true);
         playObject.SetActive(true);
+        GameController.Instance.isStopSpawnEnemy = false;
     }
     public void GameOver()
     {
+        
         gamePlayPanel.SetActive(false);
         gameOverPanel.SetActive(true);
+        playObject.SetActive(false);
     }
     public void GameRelay()
     {
-        Application.LoadLevel(Application.loadedLevel);
-        //gameOverPanel.SetActive(false);
-        //gamePlayPanel.SetActive(true);
+        gameStartPanel.SetActive(true);
+        gameOverPanel.SetActive(false);        
+        //Application.LoadLevel(Application.loadedLevel);
+       
     }
     public void GameMenu()
     {

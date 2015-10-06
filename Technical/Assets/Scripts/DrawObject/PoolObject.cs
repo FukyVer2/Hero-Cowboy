@@ -38,11 +38,33 @@ public class PoolObject : MonoSingleton<PoolObject>
         objectPool.transform.localPosition = Vector3.zero;
         objectPool.Despawn(transf);
     }
+    public void DespawnEnemy(Transform transf, string nameSpawnPool, ref List<Enemy> l)
+    {
+        SpawnPool objectPool = PoolManager.Pools[nameSpawnPool];
+        objectPool.transform.localPosition = Vector3.zero;
+        Enemy enemy = objectPool.gameObject.GetComponent<Enemy>();
+        if(enemy == null)
+        {
+            Debug.Log("khong co Enemy");
+        }
+        //Debug.Log("Enemy = " + enemy);
+        //if(l.Contains(enemy))
+        //{
+        //    l.Remove(enemy);
+        //}
+        l.Remove(enemy);
+        objectPool.Despawn(transf);
+    }
     //Despawn Object sau 1 khoang thoi gian
     public void DespawnObjectTime(Transform transf, string nameSpawnPool, float time)
     {
         SpawnPool objectPool = PoolManager.Pools[nameSpawnPool];
         objectPool.transform.localPosition = Vector3.zero;
         objectPool.Despawn(transf, time);
+    }
+    public void DeActivePool(string nameSpawnPool)
+    {
+        SpawnPool objectPool = PoolManager.Pools[nameSpawnPool];
+        objectPool.DespawnAll();
     }
 }
