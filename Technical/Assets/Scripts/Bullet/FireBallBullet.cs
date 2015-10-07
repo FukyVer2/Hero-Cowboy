@@ -76,7 +76,8 @@ public class FireBallBullet : Bullet {
         {
             ManagerObject.Instance.RenderParticalEnemy(ObjectType.ENEMY_HIT, transform.position);
             Enemy enemy = col.GetComponent<Enemy>();
-            enemy.Hit(damge);
+            if (enemy != null)
+                enemy.Hit(damge);
             PoolObject.Instance.DespawnObject(gameObject.transform, "Bullet");
             
         }

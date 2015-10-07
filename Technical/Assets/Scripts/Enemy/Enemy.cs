@@ -15,13 +15,12 @@ public class Enemy : BaseGameObject
 	void Update () {
         
 	}
-   
-    public void Hit(float _damge)
+
+    public virtual void Hit(float _damge)
     {        
         hp -= _damge;
         //TestPlayer.Instance.RenderNumber(_damge);
-        ManagerObject.Instance.RenderNumber(ObjectType.NUMBER, posNumberHit.position, _damge);
-        
+        ManagerObject.Instance.RenderNumber(ObjectType.NUMBER, posNumberHit.position, _damge);        
         health.HP(hp);        
         if(hp <=0 )
         {

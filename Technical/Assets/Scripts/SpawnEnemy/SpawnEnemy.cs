@@ -7,18 +7,18 @@ using System.Collections.Generic;
 public class SpawnEnemy : MonoSingleton<SpawnEnemy> {
 
 
-    public float timeSpawnEnemy = 4;//thoi gian giua cac luot Random
+    public float timeSpawnEnemy = 3;//thoi gian giua cac luot Random
     public float countEnemy = 3;//so luong Enemy xuat hien trong 1 luot choi
     public Transform transfLeft;//vi tri random Enemy
     public Transform transfRight;
 
     public Slider slider;
-    private float timeSpawn = 0;
+    //private float timeSpawn = 0;
     private float timeLevel = 0;
-    public int timeGame = 0;
+    public float timeSpawn = 0;
     public List<Enemy> listEnemy = new List<Enemy>();
     public Alternate[] luot = new Alternate[10];
-    public bool isSpawn = false;
+    public bool isSpawn = true;
 	// Use this for initialization
 	void Start () {
 	
@@ -28,7 +28,13 @@ public class SpawnEnemy : MonoSingleton<SpawnEnemy> {
 	void Update () {
         //if (Input.GetKeyDown(KeyCode.A))
         if(isSpawn)
-          RenderEnemyver2();
+        {
+            if (timeSpawn >= timeSpawnEnemy)
+            {
+                RenderEnemyver2();                
+            }
+            timeSpawn += Time.deltaTime;
+        }
         //SpawnEnemyAlternate();
         //if (!GameController.Instance.isStopSpawnEnemy)
         //{
@@ -104,7 +110,6 @@ public class SpawnEnemy : MonoSingleton<SpawnEnemy> {
         }
         else
         {
-            timeSpawn = 0;
             i = 0;
         }
     }
@@ -117,27 +122,17 @@ public class SpawnEnemy : MonoSingleton<SpawnEnemy> {
         if (listEnemy.Contains(e))
             listEnemy.Remove(e);
     }
-    [ContextMenu("Test Count Enemy")]
-    void CountEnemy()
-    {
-        Debug.Log("Count Enemy  =" + listEnemy.Count);
-    }
+    //
     public void SpawnEnemyAlternate()
     {
-        Debug.Log("SpawnEnemyAlternate");
-        Debug.Log("Count Enemy  =" + listEnemy.Count);
         if(listEnemy.Count <= 0)
-        {
-           
-            UpdateLuot();
-            //RenderEnemy(typeEnemy, luot[soluot].countEnemyRun);
-            
+        {           
+            UpdateLuot();            
         }
-        Debug.Log("SpawnEnemyAlternate " + isSpawn);
     }
     public void Reset()
     {
-        timeGame = 0;
+
         timeSpawnEnemy = 4;
         countEnemy = 3;
         slider.value = 1;
@@ -153,10 +148,13 @@ public class SpawnEnemy : MonoSingleton<SpawnEnemy> {
     int typeEnemy = 0;//loai Enemy
     int soluot = 0;//so luot 
     int n = 0;//loai Enemy sinh ra trong 1 luot
+    
+    //render Enemy theo luot
     void RenderEnemy(int type, int countE)
     {
         if (count >= luot[soluot].CountEnemy())
         {
+            timeSpawn = 0;
             isSpawn = false;
             return;
         }       
@@ -191,15 +189,14 @@ public class SpawnEnemy : MonoSingleton<SpawnEnemy> {
         }
     }
     [ContextMenu("Update Luot")]
+    //update thong so cua cac luot    
     void UpdateLuot()
-    {
-        isSpawn = true;
+    {        
         typeEnemy = 0;
         soluot++;
         n = 0;
         count = 0;
-
-        //RenderEnemy(typeEnemy, luot[soluot].countEnemyRun);
+        isSpawn = true;
     }
 
 }

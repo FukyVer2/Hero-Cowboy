@@ -37,6 +37,14 @@ public class EnemyWear : Enemy {
         base.Attack();
         animator.SetBool("isAttack", true);
     }
+    public override void Hit(float _damge)
+    {
+        //base.Hit(_damge);
+        if(!isGiap)
+        {
+            base.Hit(_damge);
+        }
+    }
     public override void Die()
     {
         base.Die();
