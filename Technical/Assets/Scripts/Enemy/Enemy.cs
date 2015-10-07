@@ -2,8 +2,10 @@
 using System.Collections;
 
 public class Enemy : BaseGameObject
-{    
-
+{
+    //di chuyen
+    public float speed;
+    public float timeDelayAttack;
 	// Use this for initialization
 	void Start () {
         animator = GetComponent<Animator>();
@@ -61,11 +63,16 @@ public class Enemy : BaseGameObject
     {
         
         ManagerObject.Instance.RenderParticalEnemy(ObjectType.ENEMY_DIE, transform.position);
+        //kiem tra xe co Respawn ENmey lan tiep theo k
+        
+
         //remove Enemy ra khoi List Spawn
-        Enemy e = gameObject.GetComponent<Enemy>();
+        Enemy e = gameObject.GetComponent<Enemy>();        
         SpawnEnemy.Instance.RemoveListEnemy(e);
+        SpawnEnemy.Instance.SpawnEnemyAlternate();
 
         PoolObject.Instance.DespawnObject(transform, "Enemy");
+        
        
         //PoolObject.Instance.DespawnEnemy(transform, "Enemy", ref SpawnEnemy.Instance.listEnemy);
     }

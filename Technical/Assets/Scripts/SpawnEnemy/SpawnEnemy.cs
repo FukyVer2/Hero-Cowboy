@@ -18,7 +18,7 @@ public class SpawnEnemy : MonoSingleton<SpawnEnemy> {
     public int timeGame = 0;
     public List<Enemy> listEnemy = new List<Enemy>();
     public Alternate[] luot = new Alternate[10];
-    
+    public bool isSpawn = false;
 	// Use this for initialization
 	void Start () {
 	
@@ -27,7 +27,9 @@ public class SpawnEnemy : MonoSingleton<SpawnEnemy> {
 	// Update is called once per frame
 	void Update () {
         //if (Input.GetKeyDown(KeyCode.A))
-            //RenderEnemyver2();
+        if(isSpawn)
+          RenderEnemyver2();
+        //SpawnEnemyAlternate();
         //if (!GameController.Instance.isStopSpawnEnemy)
         //{
         //    if (timeSpawn > timeSpawnEnemy)
@@ -76,9 +78,8 @@ public class SpawnEnemy : MonoSingleton<SpawnEnemy> {
                 //Debug.Log("Count Enemy = " + countEnemy + "----Time = " + timeSpawnEnemy);
                 break;
         }
-    }    
-    float t = 0;//thoi gian giua 2 lan random Enemy trong 1 luot
-    int i = 0;//so enemy xuat hien trong 1 luot
+    }
+    int i = 0;
     void RenderEnemyTime()
     {
         if (i < countEnemy)
@@ -107,12 +108,32 @@ public class SpawnEnemy : MonoSingleton<SpawnEnemy> {
             i = 0;
         }
     }
+
+
     //remove Enemy ra khoi list
     //de kiem tra xem luot do da Finish chua
     public void RemoveListEnemy(Enemy e)
     {
         if (listEnemy.Contains(e))
             listEnemy.Remove(e);
+    }
+    [ContextMenu("Test Count Enemy")]
+    void CountEnemy()
+    {
+        Debug.Log("Count Enemy  =" + listEnemy.Count);
+    }
+    public void SpawnEnemyAlternate()
+    {
+        Debug.Log("SpawnEnemyAlternate");
+        Debug.Log("Count Enemy  =" + listEnemy.Count);
+        if(listEnemy.Count <= 0)
+        {
+           
+            UpdateLuot();
+            //RenderEnemy(typeEnemy, luot[soluot].countEnemyRun);
+            
+        }
+        Debug.Log("SpawnEnemyAlternate " + isSpawn);
     }
     public void Reset()
     {
@@ -126,6 +147,7 @@ public class SpawnEnemy : MonoSingleton<SpawnEnemy> {
     {
         RenderEnemy(typeEnemy, luot[soluot].countEnemyRun);
     }
+    float t = 0;//thoi gian giua 2 lan random Enemy trong 1 luot
     int count = 0;//so luong Enemy loai nao trong 1 luot Render
     int countAll = 0;//tong so Enemy trong Man choi
     int typeEnemy = 0;//loai Enemy
@@ -133,18 +155,33 @@ public class SpawnEnemy : MonoSingleton<SpawnEnemy> {
     int n = 0;//loai Enemy sinh ra trong 1 luot
     void RenderEnemy(int type, int countE)
     {
-        if (count > luot[soluot].CountEnemy())
+        if (count >= luot[soluot].CountEnemy())
         {
+            isSpawn = false;
             return;
         }       
         type = typeEnemy;
-
         if(n < countE)
         {
-            count++;
-            countAll++;
-            n++;
-            RenderEnemy(type, countE);
+            if (t > 0.5f)
+            {
+                Debug.Log("Enemy = " + (EnemyType)typeEnemy);
+                int isRight = Random.Range(0, 2);                
+                if (isRight == 0)
+                {
+                    ManagerObject.Instance.RenderEnemy((EnemyType)typeEnemy, transfLeft.position, "Enemy", isRight, ref listEnemy);
+                }
+                else
+                {
+                    ManagerObject.Instance.RenderEnemy((EnemyType)typeEnemy, transfRight.position, "Enemy", isRight, ref listEnemy);
+                }
+                count++;
+                countAll++;
+                n++;
+                t = 0;
+                RenderEnemy(type, countE);
+            }
+            t += Time.deltaTime;
         }
         else
         {
@@ -156,11 +193,13 @@ public class SpawnEnemy : MonoSingleton<SpawnEnemy> {
     [ContextMenu("Update Luot")]
     void UpdateLuot()
     {
+        isSpawn = true;
         typeEnemy = 0;
         soluot++;
         n = 0;
         count = 0;
-        RenderEnemy(typeEnemy, luot[soluot].countEnemyRun);
+
+        //RenderEnemy(typeEnemy, luot[soluot].countEnemyRun);
     }
 
 }

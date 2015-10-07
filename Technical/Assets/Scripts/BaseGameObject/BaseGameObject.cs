@@ -8,10 +8,6 @@ public class BaseGameObject : MonoBehaviour {
     public float hp = 300;
     public float damge = 0;
 
-    //di chuyen
-    public float speed;
-    public float timeDelayAttack;
-
     public bool pause = false;
 
     public Animator animator;
@@ -26,13 +22,7 @@ public class BaseGameObject : MonoBehaviour {
 	void Update () {
 	
 	}
-    public virtual void Move()
-    {
-
-    }
-    public virtual void Attack()
-    {     
-    }
+   
     public virtual void Die()
     {
     }
