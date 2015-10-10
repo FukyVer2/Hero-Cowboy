@@ -25,16 +25,37 @@ public class Cowboy : MonoBehaviour{
     public GameObject fireBallBulletPrefabs;
     public Transform shootPosition;
     public Transform posNumberHit;
+
+    public GunType gunType;
     // Use this for initialization
 
     void Start()
     {
         MakeState();
         Rotation(true);
+        //gunType = GunType.SHOOT_GUN;
+        GunController.Instance.SetGun(gunType);
+    }
+
+    [ContextMenu("GunShoot")]
+    public void GunShoot()
+    {
+        GunController.Instance.SetGun(gunType);
+        GunController.Instance.ShootSpawn(shootPosition.position,
+            (isLeftDirection) ? BulletDirection.LEFT : BulletDirection.RIGHT);
+        isShoot = false;
+        ChangeState(CowboyState.IDLE_STATE);
+        AudioController.Instance.PlaySound(AudioType.SHOT);
     }
 
     void Update()
     {
+        if (GunController.Instance.CheckGun())
+        {
+            //Sung da het dan, hoac khong co cay sung nay
+            gunType = GunType.SHOOT_GUN;
+        }
+        /*
         if (isShoot)
         {
             timeAttackCurrent += Time.deltaTime;
@@ -45,6 +66,7 @@ public class Cowboy : MonoBehaviour{
                 timeAttackCurrent = 0.0f;
             }
         }
+         * */
     }
 
     public void AttackState()
@@ -86,16 +108,19 @@ public class Cowboy : MonoBehaviour{
     {
         if (isShoot)
         {
+            /*
             GameObject fireBallBullet = PoolObject.Instance.SpawnObject(fireBallBulletPrefabs, "Bullet");
-            FireBallBullet fireBallBulletConfig =  fireBallBullet.GetComponent<FireBallBullet>();
+            Bullet bulletConfig =  fireBallBullet.GetComponent<Bullet>();
             //fireBallBullet.transform.localPosition = shootPosition.position;
             if (isLeftDirection)
             {
-                fireBallBulletConfig.InitBullet(shootPosition.position, BulletDirection.LEFT);
+                bulletConfig.InitBullet(shootPosition.position, BulletDirection.LEFT);
+                bulletConfig.ResetProperties();
             }
             else
             {
-                fireBallBulletConfig.InitBullet(shootPosition.position, BulletDirection.RIGHT);
+                bulletConfig.InitBullet(shootPosition.position, BulletDirection.RIGHT);
+                bulletConfig.ResetProperties();
             }
             
             //fireBallBullet.GetComponent<FireBallBullet>().ChangeDirection(isLeftDirection);
@@ -103,6 +128,8 @@ public class Cowboy : MonoBehaviour{
             //fireBallBullet.SetActive(true);
             //Tao ra mot vien dan
             //isShoot = false;
+             * */
+            GunShoot();
         }
     }
 
@@ -147,5 +174,14 @@ public class Cowboy : MonoBehaviour{
     {
         this.stateCurrent = state;
         MakeState();
+    }
+
+    public void AllowCowboyShoot()
+    {
+        if(GunController.Instance.AllowShoot())
+        {
+            GameController.Instance.heroCowboy.isShoot = true;
+            GameController.Instance.heroCowboy.ChangeState(CowboyState.ATTACK_STATE);
+        }
     }
 }

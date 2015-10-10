@@ -5,6 +5,10 @@ public abstract class Bullet : MonoBehaviour {
 
     public float speed; //Tốc độ di chuyển thực
     public float speedCurrent; // Tốc độ di chuyển hiện tại
+    public float velocityX; // Vận tốc theo chiều x
+    public float velocityY; //Vận tốc theo chiều y
+    public float accelerationX; //gia tốc của đạn
+    public float accelerationY; //gia tốc của đạn
     public float damge; //Dagme
     public Vector2 range; // Vùng ảnh hưởng của đạn
     //public float respawn; // Thời gian bắn ra một viên đạn
@@ -25,13 +29,13 @@ public abstract class Bullet : MonoBehaviour {
         {
             case BulletDirection.LEFT:
                 {
-                    speedCurrent = speed;
+                    speedCurrent = -speed;
                     FlipHorizontal(0);
                     break;
                 }
             case BulletDirection.RIGHT:
                 {
-                    speedCurrent = -speed;
+                    speedCurrent = speed;
                     FlipHorizontal(-180);
                     break;
                 }
@@ -75,6 +79,16 @@ public abstract class Bullet : MonoBehaviour {
         }
     }
 
+    public virtual void ResetProperties()
+    {
+        //dothing
+    }
+
+    public void SetDamge(float _damge)
+    {
+        this.damge = _damge;
+    }
+
     public virtual void Move()
     {
         //Tùy đối tượng bullet mà kiểu di chuyển là khác nhau
@@ -90,24 +104,36 @@ public abstract class Bullet : MonoBehaviour {
     {
         //Tao hiệu ưng nổ của đạn tại đây
         //Khi đạn bị nổ thì đưa vào lại trong stack
-        Destroy(gameObject);
+        if (gameObject.transform.position.x >= Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0, 0)).x ||
+           gameObject.transform.position.x <= -Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0, 0)).x)
+            PoolObject.Instance.DespawnObject(gameObject.transform, "Bullet");
+    }
+
+    void Update()
+    {
+        BulletUpdate();
+    }
+
+    public virtual void BulletUpdate()
+    {
+        //Update bullet tại đây
     }
 
     public virtual void Rotate(float angle) //quay theo chiều z
     {
-        gameObject.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, angle));
+        gameObject.transform.localRotation = Quaternion.Euler(new Vector3(gameObject.transform.rotation.x, gameObject.transform.rotation.y, angle));
     }
 
     public virtual void FlipHorizontal(float angle)
     {
         //lat theo chieu ngang
-        gameObject.transform.localRotation = Quaternion.Euler(new Vector3(0, angle, 0));
+        gameObject.transform.localRotation = Quaternion.Euler(new Vector3(gameObject.transform.rotation.x, angle, gameObject.transform.rotation.z));
     }
 
     public virtual void FlipVertical(float angle)
     {
         //Lat theo chieu doc
-        gameObject.transform.localRotation = Quaternion.Euler(new Vector3(angle, 0, 0));
+        gameObject.transform.localRotation = Quaternion.Euler(new Vector3(angle, gameObject.transform.rotation.y, gameObject.transform.rotation.z));
     }
 }
 
