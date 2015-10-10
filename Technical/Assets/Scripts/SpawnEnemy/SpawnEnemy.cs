@@ -140,7 +140,12 @@ public class SpawnEnemy : MonoSingleton<SpawnEnemy> {
     [ContextMenu("Test")]
     void RenderEnemyver2()
     {
-        RenderEnemy(typeEnemy, luot[soluot].countEnemyRun);
+        if (soluot < 10)
+            RenderEnemy(typeEnemy, luot[soluot].countEnemyRun);
+        else
+        {
+            Debug.Log("WIN CMNR");
+        }
     }
     float t = 0;//thoi gian giua 2 lan random Enemy trong 1 luot
     int count = 0;//so luong Enemy loai nao trong 1 luot Render
@@ -163,7 +168,6 @@ public class SpawnEnemy : MonoSingleton<SpawnEnemy> {
         {
             if (t > 0.5f)
             {
-                Debug.Log("Enemy = " + (EnemyType)typeEnemy);
                 int isRight = Random.Range(0, 2);                
                 if (isRight == 0)
                 {

@@ -3,24 +3,32 @@ using System.Collections;
 using System.Collections.Generic;
 
 public enum ObjectType
-{
-    PLAYER = 0,    
-    NUMBER = 1,
-    BULLET_PLAYER_1 = 2,
-    BULLET_ENEMY_1 = 3,
-    ENEMY_DIE = 4,
-    ENEMY_HIT = 5
+{  
+    NUMBER = 0,
+    ENEMY_DIE = 1,
+    ENEMY_HIT = 2
 }
 public enum EnemyType
 {
     ENEMY_RUN = 0,
     ENEMY_TANK = 1,
 }
-
+[System.Serializable]
+public class EnemyObject
+{
+    public EnemyType typeEnemy;
+    public GameObject prefabs;
+}
+[System.Serializable]
+public class Effect
+{
+    public ObjectType objectType;
+    public GameObject prefabs;
+}
 public class ManagerObject : MonoSingleton<ManagerObject> {
 
-    public List<GameObject> listPrefabs;
-    public List<GameObject> listEnemy;
+    public List<EnemyObject> listEnemy;
+    public List<Effect> listEffect;
 	// Use this for initialization
 	void Start () {
 	
@@ -33,7 +41,7 @@ public class ManagerObject : MonoSingleton<ManagerObject> {
     //render number hit
     public void RenderNumber(ObjectType objectType,Vector3 pos, float damge)
     {
-        GameObject numberObj = PoolObject.Instance.SpawnObjectPos(listPrefabs[(int)objectType], "Number",pos);
+        GameObject numberObj = PoolObject.Instance.SpawnObjectPos(listEffect[(int)objectType].prefabs, "Number", pos);
         //numberObj.transform.position = pos;
         Number number = numberObj.GetComponent<Number>();
         number.Init();
@@ -42,7 +50,7 @@ public class ManagerObject : MonoSingleton<ManagerObject> {
     //render Particle
     public void RenderParticalEnemy(ObjectType objectType, Vector3 pos)
     {
-        GameObject p = PoolObject.Instance.SpawnObjectPos(listPrefabs[(int)objectType], "Particle", pos);
+        GameObject p = PoolObject.Instance.SpawnObjectPos(listEffect[(int)objectType].prefabs, "Particle", pos);
         //Particle particle = p.GetComponent<Particle>();
         //particle.Init();
     }
@@ -55,7 +63,8 @@ public class ManagerObject : MonoSingleton<ManagerObject> {
     public void RenderEnemy(EnemyType objectType, Vector3 pos, string strPrefabs, int isRight, ref List<Enemy> l)
     {
         Vector3 p = RandomPosition(pos, 0.5f);
-        GameObject enemyObj = PoolObject.Instance.SpawnObjectPos(listEnemy[(int)objectType], "Enemy", p);
+        //GameObject enemyObj = PoolObject.Instance.SpawnObjectPos(listEnemy[(int)objectType], "Enemy", p);
+        GameObject enemyObj = PoolObject.Instance.SpawnObjectPos(listEnemy[(int)objectType].prefabs, "Enemy", p);
         //enemyObj.transform.position = RandomPosition(pos, 0.5f);
         Enemy enemy = enemyObj.GetComponent<Enemy>();
         enemy.SetSpeed(isRight);
