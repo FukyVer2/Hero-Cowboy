@@ -83,6 +83,17 @@ public class Enemy : BaseGameObject
         {
             Attack();
         }
+        if(col.tag == "Bullet")
+        {
+            Bullet bullet = col.GetComponent<Bullet>();
+            if(bullet != null)
+            {
+                if(bullet.bulletOfObject == BulletOfObjectType.PLAYER)
+                {
+                    Hit(bullet.damge);
+                }
+            }
+        }
     }
     
 }

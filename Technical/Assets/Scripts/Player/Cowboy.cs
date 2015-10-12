@@ -184,4 +184,18 @@ public class Cowboy : MonoBehaviour{
             GameController.Instance.heroCowboy.ChangeState(CowboyState.ATTACK_STATE);
         }
     }
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if(col.tag == "Bullet")
+        {
+            Bullet bullet = col.gameObject.GetComponent<Bullet>();
+            if(bullet != null)
+            {
+                if(bullet.bulletOfObject == BulletOfObjectType.ENEMIES)
+                {
+                    Hit(bullet.damge);
+                }
+            }
+        }
+    }
 }

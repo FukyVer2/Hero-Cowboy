@@ -30,11 +30,11 @@ public class EnemyWear : Enemy {
         base.SetSpeed(isRight);
         if(isRight == 1)
         {
-            bulletDirection = BulletDirection.LEFT;
+            bulletDirection = BulletDirection.RIGHT;
         }
         else
         {
-            bulletDirection = BulletDirection.RIGHT;
+            bulletDirection = BulletDirection.LEFT;
         }
     }
     public override void Move()
@@ -82,7 +82,7 @@ public class EnemyWear : Enemy {
         {
             
             animator.SetBool("isAttack", true);
-            isGiap = false;
+            isGiap = false;            
             StartCoroutine(ShotSpawn());
             StartCoroutine(Move2());
         }
