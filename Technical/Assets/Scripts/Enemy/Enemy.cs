@@ -15,7 +15,9 @@ public class Enemy : BaseGameObject
 	void Update () {
         
 	}
-
+    public virtual void Init()
+    {
+    }
     public virtual void Hit(float _damge)
     {        
         hp -= _damge;

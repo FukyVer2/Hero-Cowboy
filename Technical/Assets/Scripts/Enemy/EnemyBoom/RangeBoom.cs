@@ -14,6 +14,13 @@ public class RangeBoom : MonoBehaviour {
 	void Update () {
 	
 	}
+    public void Attack(float damge)
+    {
+        for(int i = 0; i < listTaget.Count; i++)
+        {
+            listTaget[i].Hit(damge);
+        }
+    }
     void OnTriggerEnter2D(Collider2D col)
     {
         BaseGameObject target = col.GetComponent<BaseGameObject>();

@@ -8,6 +8,8 @@ public class Alternate  {
     public int countEnemyRun = 0;
     public int countEnemyTank = 0;
     public int countEnemyBoom = 0;
+    public int countEnemyWeak = 0;
+    public int countEnemyFly = 0;
 
     public Alternate()
     {

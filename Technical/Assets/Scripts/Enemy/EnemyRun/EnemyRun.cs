@@ -16,6 +16,14 @@ public class EnemyRun : Enemy {
             Move();
         }
 	}
+    public override void Init()
+    {
+        base.Init();
+    }
+    public override void Hit(float _damge)
+    {
+        base.Hit(_damge);
+    }
     //set ben huong quay
     //isRight = 0 ben trai, isRight = 1 ben phai
     public override void SetSpeed(int isRight)
