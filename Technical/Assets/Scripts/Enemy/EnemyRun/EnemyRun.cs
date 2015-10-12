@@ -6,7 +6,7 @@ public class EnemyRun : Enemy {
 	// Use this for initialization
 	void Start () {
         animator = GetComponent<Animator>();
-        health.SetHpDefault(hp);
+
 	}
 	
 	// Update is called once per frame

@@ -90,7 +90,7 @@ public class TowerBullet : Bullet
         transform.localScale = new Vector3(transform.localScale.x, distance * scaleUnit , transform.localScale.z);
         iTween.ScaleTo(gameObject, iTween.Hash("isLocal",true,
                                                 "scale",new Vector3(0.4f, 0.5f, 0.5f), 
-                                                iT.ScaleTo.time, 0.7f,
+                                                iT.ScaleTo.time, 0.35f,
                                                 //iT.ScaleTo.easetype, iTween.EaseType.easeInSine,
                                                 iT.ScaleTo.oncomplete, "Complete"));
         Rotate(-270 + angle);
@@ -178,14 +178,14 @@ public class TowerBullet : Bullet
     }
     void OnTriggerEnter2D(Collider2D col)
     {
-        //if(col.tag =="Enemy")
-        //{
-        //    ManagerObject.Instance.RenderParticalEnemy(ObjectType.ENEMY_HIT, transform.position);
-        //    Enemy enemy = col.GetComponent<Enemy>();
-        //    if (enemy != null)
-        //        enemy.Hit(damge);
-        //    PoolObject.Instance.DespawnObject(gameObject.transform, "Bullet");
+        if (col.tag == "Enemy")
+        {
+            ManagerObject.Instance.RenderParticalEnemy(ObjectType.ENEMY_HIT, transform.position);
+            Enemy enemy = col.GetComponent<Enemy>();
+            if (enemy != null)
+                enemy.Hit(damge);
+            //PoolObject.Instance.DespawnObject(gameObject.transform, "Bullet");
 
-        //}
+        }
     }
 }
