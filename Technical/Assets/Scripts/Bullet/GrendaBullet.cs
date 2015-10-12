@@ -21,6 +21,40 @@ public class GrendaBullet : Bullet
         vy = velocityY;
     }
 
+    public override void InitBullet(Vector3 _positionStart, BulletDirection _direction)
+    {
+        //Khởi tạo ban đầu của đạn gồm một số thông số:
+        // + Hướng di chuyển của đạn
+        // + Rotate hình
+        // + Thay đổi giá trị tốc độ di chuyển của đạn
+        gameObject.transform.parent.localPosition = _positionStart;
+        direction = _direction;
+        //Rotate(90);
+        switch (direction)
+        {
+            case BulletDirection.LEFT:
+                {
+                    speedCurrent = -speed;
+                    FlipHorizontal(180);
+                    break;
+                }
+            case BulletDirection.RIGHT:
+                {
+                    speedCurrent = speed;
+                    FlipHorizontal(0);
+                    break;
+                }
+            case BulletDirection.NONE:
+                {
+                    speedCurrent = 0;
+                    FlipHorizontal(0);
+                    break;
+                }
+        }
+        // Rotate(-90);
+    }
+
+
     public override void ResetProperties()
     {
         posX = gameObject.transform.parent.position.x;

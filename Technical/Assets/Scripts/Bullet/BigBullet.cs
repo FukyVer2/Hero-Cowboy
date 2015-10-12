@@ -33,7 +33,7 @@ public class BigBullet : Bullet {
         // + Hướng di chuyển của đạn
         // + Rotate hình
         // + Thay đổi giá trị tốc độ di chuyển của đạn
-        gameObject.transform.localPosition = _positionStart;
+        gameObject.transform.parent.localPosition = _positionStart;
         direction = _direction;
         //Rotate(90);
         switch (direction)
