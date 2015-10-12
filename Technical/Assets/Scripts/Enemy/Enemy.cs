@@ -80,21 +80,21 @@ public class Enemy : BaseGameObject
     //xet va cham voi Enemy
     //khi toi gan Player no se dung lai
     void OnTriggerEnter2D(Collider2D col)
-    {       
+    {
         if(col.tag == "Player")
         {
             Attack();
         }
         if(col.tag == "Bullet")
         {
-            Bullet bullet = col.GetComponent<Bullet>();
+            
+            Bullet bullet = col.GetComponentInChildren<Bullet>();
             if(bullet != null)
             {
                 if(bullet.bulletOfObject == BulletOfObjectType.PLAYER)
                 {
                     bullet.KillEnemies();                    
-                    Hit(bullet.damge);
-                    PoolObject.Instance.DespawnObject(bullet.gameObject.transform, "Bullet");
+                    //Hit(bullet.damge);                    
                 }
             }
         }

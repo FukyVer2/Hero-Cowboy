@@ -58,6 +58,7 @@ public class BigBullet : Bullet {
                 }
         }
         // Rotate(-90);
+        rangeBullet.enemyInBoxs.Clear();
     }
 
     public override void Move()
@@ -81,16 +82,21 @@ public class BigBullet : Bullet {
         gameObject.transform.parent.position = new Vector3(posX, posY, 0);
     }
 
-    public virtual void KillEnemies()
+    public override void KillEnemies()
     {
+        
         //Nếu là enemy thì tiêu diệt player
         //Ngược lại thì tiêu diệt enemies
         int enemyCount = (enemyCountWasAffect < rangeBullet.enemyInBoxs.Count) ? enemyCountWasAffect : rangeBullet.enemyInBoxs.Count;
+        Debug.Log("Count Enemy =" + enemyCount);
         for (int i = 0; i < enemyCount; ++i)
         {
+            
             rangeBullet.enemyInBoxs[i].Hit(damge);
-            rangeBullet.enemyInBoxs.Remove(rangeBullet.enemyInBoxs[i]);
+            
         }
+        
+        PoolObject.Instance.DespawnObject(gameObject.transform.parent, "Bullet");
     }
     /*
     public void ChangeDirection(bool direction)
@@ -146,14 +152,14 @@ public class BigBullet : Bullet {
     }
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.tag == "Enemy")
-        {
-            ManagerObject.Instance.RenderParticalEnemy(ObjectType.ENEMY_HIT, transform.position);
-            Enemy enemy = col.GetComponent<Enemy>();
-            if (enemy != null)
-                enemy.Hit(damge);
-            PoolObject.Instance.DespawnObject(gameObject.transform, "Bullet");
+        //if (col.tag == "Enemy")
+        //{
+        //    ManagerObject.Instance.RenderParticalEnemy(ObjectType.ENEMY_HIT, transform.position);
+        //    Enemy enemy = col.GetComponent<Enemy>();
+        //    if (enemy != null)
+        //        enemy.Hit(damge);
+        //    PoolObject.Instance.DespawnObject(gameObject.transform, "Bullet");
 
-        }
+        //}
     }
 }

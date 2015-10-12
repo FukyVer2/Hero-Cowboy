@@ -101,6 +101,7 @@ public abstract class Bullet : MonoBehaviour {
 
     public virtual void KillEnemies()
     {
+
         //Nếu là enemy thì tiêu diệt player
         //Ngược lại thì tiêu diệt enemies
     }

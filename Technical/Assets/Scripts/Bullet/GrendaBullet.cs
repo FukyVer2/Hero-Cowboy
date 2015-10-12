@@ -52,6 +52,7 @@ public class GrendaBullet : Bullet
                 }
         }
         // Rotate(-90);
+        rangeBullet.enemyInBoxs.Clear(); 
     }
 
 
@@ -78,13 +79,15 @@ public class GrendaBullet : Bullet
         gameObject.transform.parent.position = new Vector3(posX, posY, 0);
     }
 
-    public virtual void KillEnemies()
+    public override void KillEnemies()
     {
+
         foreach (var enemyObj in rangeBullet.enemyInBoxs)
         {
             enemyObj.Hit(damge);
-            rangeBullet.enemyInBoxs.Remove(enemyObj);
+            //rangeBullet.enemyInBoxs.Remove(enemyObj);            
         }
+        PoolObject.Instance.DespawnObject(gameObject.transform.parent, "Bullet");
         //Nếu là enemy thì tiêu diệt player
         //Ngược lại thì tiêu diệt enemies
     }
@@ -139,22 +142,28 @@ public class GrendaBullet : Bullet
     {
         Move();
         Die();
-    }
+    }   
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.tag == "Enemy")
         {
-            ManagerObject.Instance.RenderParticalEnemy(ObjectType.ENEMY_HIT, transform.position);
-            Enemy enemy = col.GetComponent<Enemy>();
-            if (enemy != null)
-                enemy.Hit(damge);
-            PoolObject.Instance.DespawnObject(gameObject.transform.parent, "Bullet");
+            Enemy enemy = col.gameObject.GetComponent<Enemy>();
+            if (!rangeBullet.enemyInBoxs.Contains(enemy))
+            {
+                rangeBullet.enemyInBoxs.Add(enemy);
+            }
+            //ManagerObject.Instance.RenderParticalEnemy(ObjectType.ENEMY_HIT, transform.position);
+            //Enemy enemy = col.GetComponent<Enemy>();
+            //if (enemy != null)
+            //    enemy.Hit(damge);
+            //PoolObject.Instance.DespawnObject(gameObject.transform.parent, "Bullet");
 
         }
         else if (col.tag == "Ground")
         {
+            KillEnemies();
             //ManagerObject.Instance.RenderParticalEnemy(ObjectType.ENEMY_HIT, transform.position);
-            PoolObject.Instance.DespawnObject(gameObject.transform.parent, "Bullet");
+            //PoolObject.Instance.DespawnObject(gameObject.transform.parent, "Bullet");
         }
     }
 }

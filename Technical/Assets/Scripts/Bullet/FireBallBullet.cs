@@ -79,8 +79,9 @@ public class FireBallBullet : Bullet {
         gameObject.transform.position = new Vector3(posX, posY, 0);
     }
 
-    public virtual void KillEnemies()
+    public override void KillEnemies()
     {
+        
         //Nếu là enemy thì tiêu diệt player
         //Ngược lại thì tiêu diệt enemies
     }
@@ -136,14 +137,14 @@ public class FireBallBullet : Bullet {
     }
     void OnTriggerEnter2D(Collider2D col)
     {
-        //if(col.tag =="Enemy")
-        //{
-        //    ManagerObject.Instance.RenderParticalEnemy(ObjectType.ENEMY_HIT, transform.position);
-        //    Enemy enemy = col.GetComponent<Enemy>();
-        //    if (enemy != null)
-        //        enemy.Hit(damge);
-        //    PoolObject.Instance.DespawnObject(gameObject.transform, "Bullet");
-            
-        //}
+        if (col.tag == "Enemy")
+        {
+            ManagerObject.Instance.RenderParticalEnemy(ObjectType.ENEMY_HIT, transform.position);
+            Enemy enemy = col.GetComponent<Enemy>();
+            if (enemy != null)
+                enemy.Hit(damge);
+            PoolObject.Instance.DespawnObject(gameObject.transform, "Bullet");
+
+        }
     }
 }

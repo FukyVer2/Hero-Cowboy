@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 public class RangeBullet : MonoBehaviour {
 
-    public BoxCollider2D boxCollider;
     public List<Enemy> enemyInBoxs;
 
     void Start()
@@ -16,7 +15,33 @@ public class RangeBullet : MonoBehaviour {
     {
         if (col.tag == "Enemy")
         {
-            enemyInBoxs.Add(col.gameObject.GetComponent<Enemy>());
+            Enemy enemy = col.gameObject.GetComponent<Enemy>();
+            if (!enemyInBoxs.Contains(enemy))
+            {
+                enemyInBoxs.Add(enemy);
+            }
+        }
+    }
+    void OnTriggerStay2D(Collider2D col)
+    {
+        if (col.tag == "Enemy")
+        {
+            Enemy enemy = col.gameObject.GetComponent<Enemy>();
+            if (!enemyInBoxs.Contains(enemy))
+            {
+                enemyInBoxs.Add(enemy);
+            }
+        }
+    }
+    void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.tag == "Enemy")
+        {
+            Enemy enemy = col.gameObject.GetComponent<Enemy>();
+            if (enemyInBoxs.Contains(enemy))
+            {
+                enemyInBoxs.Remove(enemy);
+            }
         }
     }
 }
