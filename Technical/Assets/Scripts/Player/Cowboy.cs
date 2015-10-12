@@ -40,7 +40,7 @@ public class Cowboy : MonoBehaviour{
     [ContextMenu("GunShoot")]
     public void GunShoot()
     {
-        GunController.Instance.SetGun(gunType);
+        //GunController.Instance.SetGun(gunType);
         GunController.Instance.ShootSpawn(shootPosition.position,
             (isLeftDirection) ? BulletDirection.LEFT : BulletDirection.RIGHT);
         isShoot = false;
@@ -197,5 +197,11 @@ public class Cowboy : MonoBehaviour{
                 }
             }
         }
+    }
+
+    public void GunChange(GunType _gunType)
+    {
+        gunType = _gunType;
+        GunController.Instance.SetGun(gunType);
     }
 }
