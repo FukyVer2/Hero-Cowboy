@@ -87,9 +87,9 @@ public class TowerBullet : Bullet
     {
         float angle = CalAngleWithTarget();
         float distance = CalDistanceWithTarget();
-        transform.localScale = new Vector3(transform.localScale.x, distance * scaleUnit , transform.localScale.z);
+        //transform.localScale = new Vector3(transform.localScale.x, distance * scaleUnit , transform.localScale.z);
         iTween.ScaleTo(gameObject, iTween.Hash("isLocal",true,
-                                                "scale",new Vector3(0.4f, 0.5f, 0.5f), 
+                                                "scale", new Vector3(0.4f, distance * scaleUnit, 1.0f), 
                                                 iT.ScaleTo.time, 0.35f,
                                                 //iT.ScaleTo.easetype, iTween.EaseType.easeInSine,
                                                 iT.ScaleTo.oncomplete, "Complete"));
@@ -180,11 +180,11 @@ public class TowerBullet : Bullet
     {
         if (col.tag == "Enemy")
         {
-            ManagerObject.Instance.RenderParticalEnemy(ObjectType.ENEMY_HIT, transform.position);
+            ManagerObject.Instance.RenderParticalEnemy(ObjectType.ENEMY_HIT, col.gameObject.transform.position);
             Enemy enemy = col.GetComponent<Enemy>();
             if (enemy != null)
                 enemy.Hit(damge);
-            //PoolObject.Instance.DespawnObject(gameObject.transform, "Bullet");
+            PoolObject.Instance.DespawnObject(gameObject.transform, "Bullet");
 
         }
     }
