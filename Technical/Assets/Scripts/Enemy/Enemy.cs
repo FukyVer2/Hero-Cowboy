@@ -90,7 +90,9 @@ public class Enemy : BaseGameObject
             {
                 if(bullet.bulletOfObject == BulletOfObjectType.PLAYER)
                 {
+                    bullet.KillEnemies();                    
                     Hit(bullet.damge);
+                    PoolObject.Instance.DespawnObject(bullet.gameObject.transform, "Bullet");
                 }
             }
         }
