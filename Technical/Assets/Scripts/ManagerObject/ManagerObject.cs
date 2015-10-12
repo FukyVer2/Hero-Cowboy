@@ -70,8 +70,12 @@ public class ManagerObject : MonoSingleton<ManagerObject> {
         GameObject enemyObj = PoolObject.Instance.SpawnObjectPos(listEnemy[(int)objectType].prefabs, "Enemy", p);
         //enemyObj.transform.position = RandomPosition(pos, 0.5f);
         Enemy enemy = enemyObj.GetComponent<Enemy>();
-        enemy.SetSpeed(isRight);
-        if (!l.Contains(enemy))
-            l.Add(enemy);
+        if (enemy != null)
+        {
+            enemy.SetSpeed(isRight);
+            enemy.Init();
+            if (!l.Contains(enemy))
+                l.Add(enemy);
+        }
     }    
 }

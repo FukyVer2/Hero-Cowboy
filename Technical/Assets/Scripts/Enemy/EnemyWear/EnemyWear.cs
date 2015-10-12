@@ -92,7 +92,7 @@ public class EnemyWear : Enemy {
         }
         if (col.tag == "Player")
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
             //Attack();
         }
         if (col.tag == "Bullet")

@@ -12,7 +12,7 @@ public class EnemyBoom : Enemy {
 	
 	// Update is called once per frame
 	void Update () {
-	    if(!pause)
+	    if(!pause && status != 1)
         {
             Move();
         }
@@ -45,8 +45,11 @@ public class EnemyBoom : Enemy {
     {
         GameController.Instance.heroCowboy.Hit(damge);
         ManagerObject.Instance.RenderNumber(ObjectType.NUMBER, GameController.Instance.heroCowboy.posNumberHit.position, damge);
-        Destroy(gameObject);
-        //PoolObject.Instance.DespawnObject(transform, "Enemy");
+        Enemy e = gameObject.GetComponent<Enemy>();
+        SpawnEnemy.Instance.RemoveListEnemy(e);
+        SpawnEnemy.Instance.SpawnEnemyAlternate();
+
+        PoolObject.Instance.DespawnObject(transform, "Enemy");
     }
     void OnTriggerEnter2D(Collider2D col)
     {

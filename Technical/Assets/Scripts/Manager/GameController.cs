@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class GameController : MonoSingleton<GameController> {
 
@@ -7,6 +8,7 @@ public class GameController : MonoSingleton<GameController> {
     public Cowboy heroCowboy;
     public bool isStopSpawnEnemy;
     public UIController uiController;
+    public Text txtLuot;
     public SpawnEnemy spaenEnemy;
 
 	void Start () {
@@ -15,7 +17,7 @@ public class GameController : MonoSingleton<GameController> {
 	
 	// Update is called once per frame
 	void Update () {
-	
+        SetText();
 	}
     void StopSpawnEnemy()
     {
@@ -30,5 +32,13 @@ public class GameController : MonoSingleton<GameController> {
         spaenEnemy.Reset();
         StopSpawnEnemy();
         uiController.GameOver();
+    }
+    void SetText()
+    {
+        if (spaenEnemy != null && spaenEnemy.active == true)
+        {
+            string luot = spaenEnemy.GetSoLuot().ToString();
+            txtLuot.text = luot + "/10";
+        }
     }
 }

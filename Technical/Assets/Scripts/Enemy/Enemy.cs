@@ -17,6 +17,8 @@ public class Enemy : BaseGameObject
 	}
     public virtual void Init()
     {
+        health.Reset();
+        health.SetHpDefault(hp);
     }
     public virtual void Hit(float _damge)
     {        

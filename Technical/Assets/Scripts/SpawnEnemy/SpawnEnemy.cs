@@ -132,10 +132,15 @@ public class SpawnEnemy : MonoSingleton<SpawnEnemy> {
     }
     public void Reset()
     {
-
-        timeSpawnEnemy = 4;
-        countEnemy = 3;
-        slider.value = 1;
+        t = 0;
+        count = 0;
+        countAll = 0;
+        typeEnemy = 0;
+        soluot = 0;
+        n = 0;
+        //timeSpawnEnemy = 4;
+        //countEnemy = 3;
+        //slider.value = 1;
     }
     [ContextMenu("Test")]
     void RenderEnemyver2()
@@ -144,7 +149,11 @@ public class SpawnEnemy : MonoSingleton<SpawnEnemy> {
             RenderEnemy(typeEnemy, luot[soluot].countEnemyRun);
         else
         {
-            Debug.Log("WIN CMNR");
+            if (listEnemy.Count == 0)
+            {
+                Debug.Log("WIN CMNR");
+                GameController.Instance.GameWin();
+            }
         }
     }
     float t = 0;//thoi gian giua 2 lan random Enemy trong 1 luot
@@ -219,5 +228,8 @@ public class SpawnEnemy : MonoSingleton<SpawnEnemy> {
         count = 0;
         isSpawn = true;
     }
-
+    public int GetSoLuot()
+    {
+        return soluot;
+    }
 }

@@ -33,6 +33,7 @@ public class EnemyFly : Enemy {
     public override void Attack()
     {
         base.Attack();
+
         //Destroy(gameObject);
     }
     public override void Die()

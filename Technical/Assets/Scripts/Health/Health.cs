@@ -10,7 +10,10 @@ public class Health : MonoBehaviour {
 	void Start () {
         scaleXDefault = gameObject.transform.localScale.x;
 	}
-	
+    public void Reset()
+    {
+        scaleXDefault = gameObject.transform.localScale.x;
+    }
 	// Update is called once per frame
 	void Update () {
 	
@@ -29,4 +32,5 @@ public class Health : MonoBehaviour {
         float scale = _hp * scaleXDefault / hpDefault;
         gameObject.transform.localScale = new Vector3(scale, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
     }
+    
 }
