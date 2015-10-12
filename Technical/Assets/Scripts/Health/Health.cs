@@ -20,6 +20,10 @@ public class Health : MonoBehaviour {
         hpDefault = _hpDefault;
     }
     [ContextMenu("HP")]
+    void test()
+    {
+        HP(100);
+    }
     public void HP(float _hp)
     {
         float scale = _hp * scaleXDefault / hpDefault;

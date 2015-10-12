@@ -139,12 +139,24 @@ public class FireBallBullet : Bullet {
     {
         if (col.tag == "Enemy")
         {
-            ManagerObject.Instance.RenderParticalEnemy(ObjectType.ENEMY_HIT, transform.position);
-            Enemy enemy = col.GetComponent<Enemy>();
-            if (enemy != null)
-                enemy.Hit(damge);
-            PoolObject.Instance.DespawnObject(gameObject.transform, "Bullet");
-
+            if (bulletOfObject == BulletOfObjectType.PLAYER)
+            {
+                ManagerObject.Instance.RenderParticalEnemy(ObjectType.ENEMY_HIT, transform.position);
+                Enemy enemy = col.GetComponent<Enemy>();
+                if (enemy != null)
+                    enemy.Hit(damge);
+                PoolObject.Instance.DespawnObject(gameObject.transform, "Bullet");
+            }
         }
+        else
+            if(col.tag == "Player")
+            {
+                if (bulletOfObject == BulletOfObjectType.ENEMIES)
+                {
+                    GameController.Instance.heroCowboy.Hit(damge);
+                    ManagerObject.Instance.RenderNumber(ObjectType.NUMBER, GameController.Instance.heroCowboy.posNumberHit.position, damge);
+                    PoolObject.Instance.DespawnObject(gameObject.transform, "Bullet");
+                }
+            }
     }
 }

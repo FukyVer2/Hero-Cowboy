@@ -9,9 +9,11 @@ public class EnemyFly : Enemy {
     private float x = 0;
     private float y = 0;
 	// Use this for initialization
-	void Start () {
-        x = transform.position.x;
-        y = transform.position.y;
+	void Start () {        
+        //x = transform.position.x;
+        //y = transform.position.y;
+        animator = GetComponent<Animator>();
+        health.SetHpDefault(hp);
 	}
 	
 	// Update is called once per frame
@@ -19,17 +21,19 @@ public class EnemyFly : Enemy {
         if(!pause && status != 1)
         {
             Move();
+            
         }
 	}
     public override void Init()
     {
         base.Init();
-        x = transform.position.x;
-        y = transform.position.y;
+        //x = transform.position.x;
+        //y = transform.position.y;
     }
     public override void Attack()
     {
         base.Attack();
+        //Destroy(gameObject);
     }
     public override void Die()
     {
@@ -47,10 +51,7 @@ public class EnemyFly : Enemy {
 
     void MoveFly()
     {
-        x += speedX * Time.deltaTime;
-        y = Mathf.Cos(x) * biendo;
-
-        transform.position = new Vector3(x, y, 0);
+        transform.position += new Vector3(speedX, Mathf.Cos(transform.position.x) * biendo, 0) * Time.deltaTime;        
     }    
     
 }

@@ -47,6 +47,7 @@ public class MachineGunBullet : Bullet
     {
         //Nếu là enemy thì tiêu diệt player
         //Ngược lại thì tiêu diệt enemies
+        
     }
     /*
     public void ChangeDirection(bool direction)

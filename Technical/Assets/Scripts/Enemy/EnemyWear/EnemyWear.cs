@@ -92,7 +92,8 @@ public class EnemyWear : Enemy {
         }
         if (col.tag == "Player")
         {
-            Attack();
+            Destroy(gameObject);
+            //Attack();
         }
         if (col.tag == "Bullet")
         {
@@ -102,8 +103,8 @@ public class EnemyWear : Enemy {
                 if (bullet.bulletOfObject == BulletOfObjectType.PLAYER)
                 {
                     bullet.KillEnemies();
-                    Hit(bullet.damge);
-                    PoolObject.Instance.DespawnObject(bullet.gameObject.transform, "Bullet");
+                    //Hit(bullet.damge);
+                    //PoolObject.Instance.DespawnObject(bullet.gameObject.transform, "Bullet");
                 }
             }
         }

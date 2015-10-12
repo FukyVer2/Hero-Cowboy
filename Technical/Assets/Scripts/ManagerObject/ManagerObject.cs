@@ -12,6 +12,9 @@ public enum EnemyType
 {
     ENEMY_RUN = 0,
     ENEMY_TANK = 1,
+    ENEMY_BOOM = 2,
+    ENEMY_WEAK = 3,
+    ENEMY_FLY = 4
 }
 [System.Serializable]
 public class EnemyObject

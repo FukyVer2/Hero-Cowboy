@@ -34,8 +34,7 @@ public class EnemyBoom : Enemy {
     public override void Die()
     {
         range.Attack(damge);
-        base.Die();
-        
+        base.Die();        
     }
     public override void Move()
     {
@@ -44,6 +43,8 @@ public class EnemyBoom : Enemy {
     }
     public void FinisAnimation()
     {
+        GameController.Instance.heroCowboy.Hit(damge);
+        ManagerObject.Instance.RenderNumber(ObjectType.NUMBER, GameController.Instance.heroCowboy.posNumberHit.position, damge);
         Destroy(gameObject);
         //PoolObject.Instance.DespawnObject(transform, "Enemy");
     }
@@ -51,7 +52,8 @@ public class EnemyBoom : Enemy {
     {
         if(col.tag == "Player")
         {
-            range.Attack(damge);
+            Attack();
+           
         }
     }
 }

@@ -189,7 +189,24 @@ public class SpawnEnemy : MonoSingleton<SpawnEnemy> {
         {
             typeEnemy++;
             n = 0;
-            RenderEnemy(type, luot[soluot].countEnemyTank);
+            switch(typeEnemy)
+            {
+                case 1:
+                    RenderEnemy(type, luot[soluot].countEnemyTank);
+                    break;
+                case 2:
+                    Debug.Log("Type Boom = " + typeEnemy);
+                    RenderEnemy(type, luot[soluot].countEnemyBoom);
+                    break;
+                case 3:
+                    Debug.Log("Type Weak = " + typeEnemy);
+                    RenderEnemy(type, luot[soluot].countEnemyWeak);
+                    break;
+                case 4:
+                    Debug.Log("Type Fly = " + typeEnemy);
+                    RenderEnemy(type, luot[soluot].countEnemyFly);
+                    break;
+            }                
         }
     }
     [ContextMenu("Update Luot")]

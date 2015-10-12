@@ -21,6 +21,6 @@ public class Alternate  {
     }
     public int CountEnemy()
     {
-        return countEnemyRun + countEnemyTank + countEnemyBoom;
+        return countEnemyRun + countEnemyTank + countEnemyBoom + countEnemyWeak + countEnemyFly;
     }
 }
