@@ -101,6 +101,7 @@ public class Gun : MonoBehaviour
             GameObject bulletObject = PoolObject.Instance.SpawnObject(bulletPrefab, "Bullet");
             Bullet bullet = bulletObject.GetComponentInChildren<Bullet>();
             bullet.InitBullet(_positionStart, _direction);
+            bullet.ResetProperties();
             bullet.SetDamge(this.damge);
             switch (gunOfObjectType)
             {
