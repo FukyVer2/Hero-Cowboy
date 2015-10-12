@@ -95,13 +95,32 @@ public class Gun : MonoBehaviour
             return 1;
         }
         else */
-        if(this.isShoot)
+        if(this.isShoot && this.enableGun)
         {
             Debug.Log("ban - ban - ban");
             GameObject bulletObject = PoolObject.Instance.SpawnObject(bulletPrefab, "Bullet");
             Bullet bullet = bulletObject.GetComponentInChildren<Bullet>();
             bullet.InitBullet(_positionStart, _direction);
             bullet.SetDamge(this.damge);
+            switch (gunOfObjectType)
+            {
+                case GunOfObjectType.PLAYER:
+                    bullet.SetBulletOfObjectType(BulletOfObjectType.PLAYER);
+                    break;
+                case GunOfObjectType.ENEMIES:
+                    bullet.SetBulletOfObjectType(BulletOfObjectType.ENEMIES);
+                    break;
+                case GunOfObjectType.TOWER:
+                    bullet.SetBulletOfObjectType(BulletOfObjectType.TOWER);
+                    break;
+                case GunOfObjectType.BOSS:
+                    break;
+                case GunOfObjectType.OTHER:
+                    break;
+                default:
+                    break;
+            }
+            
             this.isShoot = false;
             this.numberBulletCurrent -= 1;
             Invoke("AllowShoot", timeRespawnShoot);
@@ -145,8 +164,9 @@ public enum GunOfObjectType
 {
     PLAYER = 0,
     TOWER = 1,
-    BOSS = 2,
-    OTHER = 3
+    ENEMIES = 2,
+    BOSS = 3,
+    OTHER = 4
 }
 
 public enum GunType

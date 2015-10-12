@@ -5,6 +5,26 @@ public class FireBallBullet : Bullet {
 
     //public float speed = 40;
     //public float damge = 100;
+    private float posX;
+    private float posY;
+    private float vx;
+    private float vy;
+
+    void Start()
+    {
+        posX = gameObject.transform.position.x;
+        posY = gameObject.transform.position.y;
+        vx = velocityX;
+        vy = velocityY;
+    }
+
+    public override void ResetProperties()
+    {
+        posX = gameObject.transform.position.x;
+        posY = gameObject.transform.position.y;
+        vx = velocityX;
+        vy = velocityY;
+    }
 
     public override void InitBullet(Vector3 _positionStart, BulletDirection _direction)
     {
@@ -41,9 +61,22 @@ public class FireBallBullet : Bullet {
 
     public override void Move()
     {
+        /*
         float posX = gameObject.transform.position.x;
         posX += speedCurrent * Time.deltaTime;
         gameObject.transform.position = new Vector3(posX, gameObject.transform.position.y, 0);
+        */
+        vx += accelerationX * Time.deltaTime;
+        vy += accelerationY * Time.deltaTime;
+
+        if (direction == BulletDirection.LEFT)
+            posX -= vx * Time.deltaTime;
+        else if (direction == BulletDirection.RIGHT)
+            posX += vx * Time.deltaTime;
+
+        posY += vy * Time.deltaTime;
+
+        gameObject.transform.position = new Vector3(posX, posY, 0);
     }
 
     public virtual void KillEnemies()

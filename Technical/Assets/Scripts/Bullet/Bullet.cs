@@ -89,6 +89,11 @@ public abstract class Bullet : MonoBehaviour {
         this.damge = _damge;
     }
 
+    public void SetBulletOfObjectType(BulletOfObjectType _bulletOfObjectType)
+    {
+        this.bulletOfObject = _bulletOfObjectType;
+    }
+
     public virtual void Move()
     {
         //Tùy đối tượng bullet mà kiểu di chuyển là khác nhau

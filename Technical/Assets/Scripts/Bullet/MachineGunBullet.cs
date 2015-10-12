@@ -35,12 +35,12 @@ public class MachineGunBullet : Bullet
 
         if (direction == BulletDirection.LEFT)
             posX -= vx * Time.deltaTime;
-        else
+        else if (direction == BulletDirection.RIGHT)
             posX += vx * Time.deltaTime;
 
         posY += vy * Time.deltaTime;
 
-        gameObject.transform.position = new Vector3(posX, posY, 0);
+        gameObject.transform.parent.position = new Vector3(posX, posY, 0);
     }
 
     public virtual void KillEnemies()

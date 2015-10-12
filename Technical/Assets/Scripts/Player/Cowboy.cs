@@ -50,7 +50,7 @@ public class Cowboy : MonoBehaviour{
 
     void Update()
     {
-        if (GunController.Instance.CheckGun())
+        if (!GunController.Instance.CheckGun())
         {
             //Sung da het dan, hoac khong co cay sung nay
             gunType = GunType.SHOOT_GUN;

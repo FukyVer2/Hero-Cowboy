@@ -96,7 +96,9 @@ public class GrendaBullet : Bullet
     */
     public override void Die()
     {
-        base.Die();
+        if (gameObject.transform.position.x >= Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0, 0)).x ||
+          gameObject.transform.position.x <= -Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0, 0)).x)
+            PoolObject.Instance.DespawnObject(gameObject.transform.parent, "Bullet");
     }
 
     public override void BulletUpdate()
