@@ -9,7 +9,8 @@ public enum ObjectType
     ENEMY_HIT = 2,
     ENEMY_HIT_2 = 3,
     ENEMY_HIT_3 = 4,
-    ENEMY_STUN = 5
+    ENEMY_STUN = 5,
+    COIN = 6
 }
 public enum EnemyType
 {
@@ -46,9 +47,10 @@ public class ManagerObject : MonoSingleton<ManagerObject> {
 	
 	}
     //render number hit
-    public void RenderNumber(ObjectType objectType,Vector3 pos, float damge)
+    public void RenderNumber(ObjectType objectType, Vector3 pos, float damge)
     {
-        GameObject numberObj = PoolObject.Instance.SpawnObjectPos(listEffect[(int)objectType].prefabs, "Number", pos);
+        Vector3 p = new Vector3(Random.Range(pos.x - 0.2f, pos.x + 0.5f), pos.y, 0);
+        GameObject numberObj = PoolObject.Instance.SpawnObjectPos(listEffect[(int)objectType].prefabs, "Number", p);
         //numberObj.transform.position = pos;
         Number number = numberObj.GetComponent<Number>();
         number.Init();
@@ -82,5 +84,34 @@ public class ManagerObject : MonoSingleton<ManagerObject> {
             if (!l.Contains(enemy))
                 l.Add(enemy);
         }
-    }    
+    }
+    public void RenderCoin(ObjectType objectType, Vector3 pos, int countCoin, bool isDie)
+    {
+        for (int i = 0; i < countCoin; i++)
+        {
+            //GameObject coinObject = Instantiate(coinPrefabs, Vector3.zero, Quaternion.identity) as GameObject;
+            GameObject coinObject = PoolObject.Instance.SpawnObjectPos(listEffect[(int)objectType].prefabs, "Coin", pos);
+            Coin coin = coinObject.GetComponent<Coin>();
+            if (coin != null)
+            {
+                Vector2 _force = Vector2.zero;
+                if (isDie)
+                {
+                    _force = new Vector2(Random.Range(-200, 200), Random.Range(200, 350));
+                }
+                else
+                {
+                    _force = new Vector2(Random.Range(-50, 50), Random.Range(100, 200));
+                }
+                coin.AddForce(_force);
+                //listCoin.Add(coin);
+            }
+        }
+    }
+    [ContextMenu("TestCoin")]
+    void TestCoin()
+    {
+        RenderCoin(ObjectType.COIN, Vector3.zero, 10, false);
+
+    }
 }

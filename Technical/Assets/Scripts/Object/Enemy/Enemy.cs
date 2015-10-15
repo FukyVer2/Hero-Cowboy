@@ -104,8 +104,10 @@ public class Enemy : BaseGameObject
         {
             ManagerObject.Instance.RenderParticalEnemy(ObjectType.ENEMY_HIT_2, transform.position);
         }
-        //kiem tra xe co Respawn ENmey lan tiep theo k
-        
+        //render ra Coin
+        ManagerObject.Instance.RenderCoin(ObjectType.COIN, transform.position, 4, false);
+
+        //kiem tra xe co Respawn ENmey lan tiep theo k     
 
         //remove Enemy ra khoi List Spawn
         Enemy e = gameObject.GetComponent<Enemy>();        
