@@ -56,7 +56,7 @@ public class FireBallBullet : Bullet {
                     break;
                 }
         }
-       // Rotate(-90);
+        // Rotate(-90);
     }
 
     public override void Move()
@@ -141,7 +141,8 @@ public class FireBallBullet : Bullet {
         {
             if (bulletOfObject == BulletOfObjectType.PLAYER)
             {
-                ManagerObject.Instance.RenderParticalEnemy(ObjectType.ENEMY_HIT, transform.position);
+                //ManagerObject.Instance.RenderParticalEnemy(ObjectType.ENEMY_HIT, transform.position);
+                ManagerObject.Instance.RenderParticalEnemy(ObjectType.ENEMY_HIT_3, transform.position);
                 Enemy enemy = col.GetComponent<Enemy>();
                 if (enemy != null)
                     enemy.Hit(damge);

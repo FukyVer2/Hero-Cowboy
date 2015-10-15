@@ -27,6 +27,7 @@ public class Cowboy : MonoBehaviour{
     public Transform posNumberHit;
 
     public GunType gunType;
+    public Health health;
     // Use this for initialization
 
     void Start()
@@ -35,16 +36,20 @@ public class Cowboy : MonoBehaviour{
         Rotation(true);
         //gunType = GunType.SHOOT_GUN;
         GunController.Instance.SetGun(gunType);
+        health.Reset();
+        health.SetHpDefault(hp);
     }
 
     [ContextMenu("GunShoot")]
     public void GunShoot()
     {
+        ManagerObject.Instance.RenderParticalEnemy(ObjectType.ENEMY_HIT, shootPosition.position);
         //GunController.Instance.SetGun(gunType);
         GunController.Instance.ShootSpawn(shootPosition.position,
             (isLeftDirection) ? BulletDirection.LEFT : BulletDirection.RIGHT);
         isShoot = false;
-        ChangeState(CowboyState.IDLE_STATE);
+        //if (gunType != GunType.MACHINE_GUN)
+        //    ChangeState(CowboyState.IDLE_STATE);
         AudioController.Instance.PlaySound(AudioType.SHOT);
     }
 
@@ -54,6 +59,7 @@ public class Cowboy : MonoBehaviour{
         {
             //Sung da het dan, hoac khong co cay sung nay
             gunType = GunType.SHOOT_GUN;
+            GunController.Instance.SetGun(gunType);
         }
         /*
         if (isShoot)
@@ -82,7 +88,7 @@ public class Cowboy : MonoBehaviour{
 
     public void DieState()
     {
-        Destroy(gameObject);
+        //Destroy(gameObject);
     }
 
     public void Rotation(bool isClickDirection)
@@ -101,11 +107,18 @@ public class Cowboy : MonoBehaviour{
     public void Hit(float damge)
     {
         hp -= damge;
+        if(hp <= 0 )
+        {
+            GameController.Instance.GameWin();
+        }
+        health.HP(hp);        
     }
 
 
     public void ShootSpawn()
     {
+        if (gunType != GunType.MACHINE_GUN)
+            ChangeState(CowboyState.IDLE_STATE);
         if (isShoot)
         {
             /*
@@ -129,7 +142,7 @@ public class Cowboy : MonoBehaviour{
             //Tao ra mot vien dan
             //isShoot = false;
              * */
-            GunShoot();
+            //GunShoot();
         }
     }
 
@@ -180,10 +193,12 @@ public class Cowboy : MonoBehaviour{
     {
         if(GunController.Instance.AllowShoot())
         {
-            GameController.Instance.heroCowboy.isShoot = true;
-            GameController.Instance.heroCowboy.ChangeState(CowboyState.ATTACK_STATE);
+            isShoot = true;           
+            ChangeState(CowboyState.ATTACK_STATE);
+            GunShoot();
         }
     }
+
     void OnTriggerEnter2D(Collider2D col)
     {
         if(col.tag == "Bullet")
@@ -203,5 +218,9 @@ public class Cowboy : MonoBehaviour{
     {
         gunType = _gunType;
         GunController.Instance.SetGun(gunType);
+    }
+    public GunType GetGuntype()
+    {
+        return gunType;
     }
 }

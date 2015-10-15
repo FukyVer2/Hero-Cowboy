@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.EventSystems;
 
-public class TestPlayer : MonoSingleton<TestPlayer> {
+public class TestPlayer : MonoBehaviour,IPointerDownHandler
+{
 
     public float Hp = 100;
     public GameObject prefabsNumber;
@@ -30,5 +32,10 @@ public class TestPlayer : MonoSingleton<TestPlayer> {
     void TestParticleSystem()
     {
         
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        throw new System.NotImplementedException();
     }
 }

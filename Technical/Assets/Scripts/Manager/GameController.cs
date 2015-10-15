@@ -11,6 +11,7 @@ public class GameController : MonoSingleton<GameController> {
     public Text txtLuot;
     public SpawnEnemy spaenEnemy;
 
+
 	void Start () {
         AudioController.Instance.PlaySoundRepeat(AudioType.SOUND_BG_INGAME);
 	}
@@ -29,9 +30,24 @@ public class GameController : MonoSingleton<GameController> {
         PoolObject.Instance.DeActivePool("Number");
         PoolObject.Instance.DeActivePool("Particle");
         PoolObject.Instance.DeActivePool("Bullet");
+        heroCowboy.health.HP(300);
         spaenEnemy.Reset();
         StopSpawnEnemy();
         uiController.GameOver();
+    }
+    public void ResetTest()
+    {
+        PoolObject.Instance.DeActivePool("Enemy");
+        PoolObject.Instance.DeActivePool("Number");
+        PoolObject.Instance.DeActivePool("Particle");
+        PoolObject.Instance.DeActivePool("Bullet");
+        spaenEnemy.Reset();
+    }
+    public void InsteadBullet(bool isActive)
+    {
+        ManagerObject.Instance.insteadBullet.Reset();
+        //insteadBullet.gameObject.SetActive(isActive);
+        ManagerObject.Instance.insteadBullet.transform.parent.gameObject.SetActive(isActive);
     }
     void SetText()
     {

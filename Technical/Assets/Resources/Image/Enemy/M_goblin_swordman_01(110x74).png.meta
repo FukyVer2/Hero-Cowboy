@@ -61,9 +61,9 @@ TextureImporter:
         width: 110
         height: 73
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: M_goblin_swordman_01(110x74)_1
+    - name: 
       rect:
         serializedVersion: 2
         x: 110
@@ -71,7 +71,7 @@ TextureImporter:
         width: 110
         height: 73
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: M_goblin_swordman_01(110x74)_2
       rect:
@@ -81,7 +81,7 @@ TextureImporter:
         width: 110
         height: 73
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: M_goblin_swordman_01(110x74)_3
       rect:
@@ -91,7 +91,7 @@ TextureImporter:
         width: 110
         height: 73
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: M_goblin_swordman_01(110x74)_4
       rect:
@@ -101,7 +101,7 @@ TextureImporter:
         width: 110
         height: 73
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: M_goblin_swordman_01(110x74)_5
       rect:
@@ -111,7 +111,7 @@ TextureImporter:
         width: 110
         height: 73
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: M_goblin_swordman_01(110x74)_6
       rect:
@@ -121,7 +121,7 @@ TextureImporter:
         width: 110
         height: 73
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: M_goblin_swordman_01(110x74)_7
       rect:
@@ -131,7 +131,7 @@ TextureImporter:
         width: 110
         height: 73
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: M_goblin_swordman_01(110x74)_8
       rect:
@@ -141,7 +141,7 @@ TextureImporter:
         width: 110
         height: 73
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: M_goblin_swordman_01(110x74)_9
       rect:
@@ -151,7 +151,7 @@ TextureImporter:
         width: 110
         height: 73
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

@@ -6,23 +6,30 @@ public class Enemy : BaseGameObject
     //di chuyen
     public float speed;
     public float timeDelayAttack;
+    public float hpDefault;
 	// Use this for initialization
-	void Start () {
-        animator = GetComponent<Animator>();
+	void Start () {        
 	}
 	
 	// Update is called once per frame
 	void Update () {
         
 	}
-    public virtual void Init()
+    public void SetHP()
     {
+        hp = hpDefault;
+    }
+    public virtual void Init()
+    {        
+        animator = GetComponent<Animator>();        
         health.Reset();
         health.SetHpDefault(hp);
+        
     }
     public virtual void Hit(float _damge)
     {        
         hp -= _damge;
+        Delay();
         //TestPlayer.Instance.RenderNumber(_damge);
         ManagerObject.Instance.RenderNumber(ObjectType.NUMBER, posNumberHit.position, _damge);        
         health.HP(hp);        
@@ -30,6 +37,30 @@ public class Enemy : BaseGameObject
         {
             Die();
         }
+    }
+    private Color c = Color.red; 
+    private float timeDelayStun = 0.2f;
+    void Delay()
+    {
+        if (status != 1)
+        {
+            int rand = Random.Range(0, 100);
+            if (rand > 10 && rand < 30)
+            {
+                SpriteRenderer sprite = GetComponent<SpriteRenderer>();
+                sprite.color = c;
+                pause = true;
+                animator.speed = 0;
+                Invoke("AllowDelay", timeDelayStun);
+            }
+        }
+    }
+    void AllowDelay()
+    {
+        SpriteRenderer sprite = GetComponent<SpriteRenderer>();
+        sprite.color = Color.white;
+        pause = false;
+        animator.speed = 1;
     }
     public virtual void SetSpeed(int isRight)
     {
@@ -64,8 +95,15 @@ public class Enemy : BaseGameObject
     }
     public virtual void Die()
     {
-        
-        ManagerObject.Instance.RenderParticalEnemy(ObjectType.ENEMY_DIE, transform.position);
+        int rand = Random.Range(0, 2);
+        if (rand == 0)
+        {
+            ManagerObject.Instance.RenderParticalEnemy(ObjectType.ENEMY_DIE, transform.position);
+        }
+        else
+        {
+            ManagerObject.Instance.RenderParticalEnemy(ObjectType.ENEMY_HIT_2, transform.position);
+        }
         //kiem tra xe co Respawn ENmey lan tiep theo k
         
 

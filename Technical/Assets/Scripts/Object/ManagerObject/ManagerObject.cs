@@ -6,7 +6,10 @@ public enum ObjectType
 {  
     NUMBER = 0,
     ENEMY_DIE = 1,
-    ENEMY_HIT = 2
+    ENEMY_HIT = 2,
+    ENEMY_HIT_2 = 3,
+    ENEMY_HIT_3 = 4,
+    ENEMY_STUN = 5
 }
 public enum EnemyType
 {
@@ -32,6 +35,7 @@ public class ManagerObject : MonoSingleton<ManagerObject> {
 
     public List<EnemyObject> listEnemy;
     public List<Effect> listEffect;
+    public InsteadBullet insteadBullet;
 	// Use this for initialization
 	void Start () {
 	
@@ -72,6 +76,7 @@ public class ManagerObject : MonoSingleton<ManagerObject> {
         Enemy enemy = enemyObj.GetComponent<Enemy>();
         if (enemy != null)
         {
+            enemy.SetHP();
             enemy.SetSpeed(isRight);
             enemy.Init();
             if (!l.Contains(enemy))

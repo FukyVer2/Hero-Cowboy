@@ -145,14 +145,15 @@ public class SpawnEnemy : MonoSingleton<SpawnEnemy> {
     [ContextMenu("Test")]
     void RenderEnemyver2()
     {
-        if (soluot < 10)
+        if (soluot < luot.Length)
             RenderEnemy(typeEnemy, luot[soluot].countEnemyRun);
         else
         {
+            soluot = 0;
             if (listEnemy.Count == 0)
             {
                 Debug.Log("WIN CMNR");
-                GameController.Instance.GameWin();
+                //GameController.Instance.GameWin();
             }
         }
     }
@@ -175,7 +176,7 @@ public class SpawnEnemy : MonoSingleton<SpawnEnemy> {
         type = typeEnemy;
         if(n < countE)
         {
-            if (t > 0.5f)
+            if (t > 0.8f)
             {
                 int isRight = Random.Range(0, 2);                
                 if (isRight == 0)
@@ -204,15 +205,12 @@ public class SpawnEnemy : MonoSingleton<SpawnEnemy> {
                     RenderEnemy(type, luot[soluot].countEnemyTank);
                     break;
                 case 2:
-                    Debug.Log("Type Boom = " + typeEnemy);
                     RenderEnemy(type, luot[soluot].countEnemyBoom);
                     break;
                 case 3:
-                    Debug.Log("Type Weak = " + typeEnemy);
                     RenderEnemy(type, luot[soluot].countEnemyWeak);
                     break;
                 case 4:
-                    Debug.Log("Type Fly = " + typeEnemy);
                     RenderEnemy(type, luot[soluot].countEnemyFly);
                     break;
             }                

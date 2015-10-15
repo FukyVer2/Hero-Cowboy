@@ -40,7 +40,7 @@ public class MachineGunBullet : Bullet
 
         posY += vy * Time.deltaTime;
 
-        gameObject.transform.parent.position = new Vector3(posX, posY, 0);
+        gameObject.transform.position = new Vector3(posX, posY, 0);
     }
 
     public virtual void KillEnemies()
@@ -103,7 +103,8 @@ public class MachineGunBullet : Bullet
     {
         if (col.tag == "Enemy")
         {
-            ManagerObject.Instance.RenderParticalEnemy(ObjectType.ENEMY_HIT, transform.position);
+            //ManagerObject.Instance.RenderParticalEnemy(ObjectType.ENEMY_HIT, transform.position);
+            ManagerObject.Instance.RenderParticalEnemy(ObjectType.ENEMY_HIT_3, transform.position);
             Enemy enemy = col.GetComponent<Enemy>();
             if (enemy != null)
                 enemy.Hit(damge);

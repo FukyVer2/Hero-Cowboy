@@ -5,8 +5,7 @@ public class EnemyRun : Enemy {
 
 	// Use this for initialization
 	void Start () {
-        animator = GetComponent<Animator>();
-
+        hpDefault = hp; 
 	}
 	
 	// Update is called once per frame
@@ -29,7 +28,7 @@ public class EnemyRun : Enemy {
     public override void SetSpeed(int isRight)
     {
         health.SetHpDefault(hp);
-        speed = Random.Range(0.5f, 1.0f);
+        speed = Random.Range(0.4f, 0.6f);
         base.SetSpeed(isRight);
             
     }
@@ -37,7 +36,7 @@ public class EnemyRun : Enemy {
     public override void Move()
     {
         base.Move();
-        gameObject.transform.position += new Vector3(speed,0,0) * Time.deltaTime;
+        gameObject.transform.position += new Vector3(speed, 0, 0) * Time.deltaTime;
     }
     //chuyen sang trang thai danh
     public override void Attack()

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class Gun : MonoBehaviour
 {
@@ -22,6 +23,9 @@ public class Gun : MonoBehaviour
     public bool isShoot = true;
     public bool isInsteadOfBullet = false;
     public bool enableGun;
+
+    public Text txtCountBullet;
+    public Text txtCountCartridge;
 
     void Start()
     {
@@ -62,18 +66,22 @@ public class Gun : MonoBehaviour
             //Doi sang sung khac
         }
         else */
+        SetTextCountBullet();
         if (!enableGun) //Het dan roi, thay dan di
             return;
         if (numberBulletCurrent <= 0 && !this.isInsteadOfBullet && this.numberBulletMax > 0)
         {
+            GameController.Instance.heroCowboy.ChangeState(CowboyState.IDLE_STATE);
+            GameController.Instance.InsteadBullet(true);
+            GameController.Instance.heroCowboy.GunChange(GunType.SHOOT_GUN);
             this.isInsteadOfBullet = true;
-            Debug.Log("Vao 2");
             Invoke("InsteadOfBullets", timeInsteadOfBullets);
         }
         else if (numberBulletCurrent <= 0 && numberBulletMax <= 0)
         {
             enableGun = false;
         }
+       
     }
 
     public virtual void CreateBullet(Vector3 _positionStart, BulletDirection _direction)
@@ -121,7 +129,7 @@ public class Gun : MonoBehaviour
                 default:
                     break;
             }
-            
+
             this.isShoot = false;
             this.numberBulletCurrent -= 1;
             Invoke("AllowShoot", timeRespawnShoot);
@@ -141,6 +149,7 @@ public class Gun : MonoBehaviour
         }
         numberBulletMax -= numberBulletCurrent;
         this.isInsteadOfBullet = false;
+        GameController.Instance.InsteadBullet(false);
     }
 
     public virtual void AllowShoot()
@@ -156,6 +165,21 @@ public class Gun : MonoBehaviour
     public virtual void GunUpdate()
     {
         //Update bullet tại đây
+    }
+    void SetTextCountBullet()
+    {
+        txtCountBullet.text = numberBulletCurrent.ToString();
+        txtCountCartridge.text = (numberBulletMax / numberBulletsOfCartridge).ToString();
+    }
+    float addCountGun = 0;
+    void UpdateCountGun()
+    {
+        if(addCountGun > 0.5)
+        {
+            numberBulletMax += 1;
+            addCountGun = 0;
+        }
+        addCountGun += Time.deltaTime;
     }
 }
 
