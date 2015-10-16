@@ -30,6 +30,7 @@ public class GameController : MonoSingleton<GameController> {
         PoolObject.Instance.DeActivePool("Number");
         PoolObject.Instance.DeActivePool("Particle");
         PoolObject.Instance.DeActivePool("Bullet");
+        PoolObject.Instance.DeActivePool("Coin");
         heroCowboy.health.HP(300);
         spaenEnemy.Reset();
         StopSpawnEnemy();

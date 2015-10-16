@@ -38,7 +38,8 @@ public class Coin : MonoBehaviour {
     public void AddForce(Vector2 _force)
     {
         rigid.AddForce(_force);
-        Invoke("MoveCoin", 3.0f);
+        float rand = Random.Range(2.5f, 3.5f);
+        Invoke("MoveCoin", rand);
     }
     void Finish()
     {
