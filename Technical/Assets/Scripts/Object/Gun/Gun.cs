@@ -26,7 +26,7 @@ public class Gun : MonoBehaviour
 
     public Text txtCountBullet;
     public Text txtCountCartridge;
-
+    public float critDamge = 50.0f;//phan tram crit damge
     void Start()
     {
         //dicBulletResources = new Dictionary<GunType, GameObject>();
@@ -67,6 +67,7 @@ public class Gun : MonoBehaviour
         }
         else */
         SetTextCountBullet();
+
         if (!enableGun) //Het dan roi, thay dan di
             return;
         if (numberBulletCurrent <= 0 && !this.isInsteadOfBullet && this.numberBulletMax > 0)
@@ -83,7 +84,17 @@ public class Gun : MonoBehaviour
         }
        
     }
-
+    float RandomCritDamge(Bullet bullet)
+    {
+        float _damge = damge;
+        int rand = Random.Range(0, 100);
+        if(rand < 20)
+        {            
+            _damge = damge + damge * critDamge / 100.0f;
+            bullet.isCritDamge = true;
+        }
+        return _damge;
+    }
     public virtual void CreateBullet(Vector3 _positionStart, BulletDirection _direction)
     {
         //Kiem tra sung con dan khong
@@ -105,12 +116,14 @@ public class Gun : MonoBehaviour
         else */
         if(this.isShoot && this.enableGun)
         {
-            Debug.Log("ban - ban - ban");
             GameObject bulletObject = PoolObject.Instance.SpawnObject(bulletPrefab, "Bullet");
-            Bullet bullet = bulletObject.GetComponentInChildren<Bullet>();
+            Bullet bullet = bulletObject.GetComponent<Bullet>();
             bullet.InitBullet(_positionStart, _direction);
             bullet.ResetProperties();
-            bullet.SetDamge(this.damge);
+            //bullet.SetDamge(this.damge);
+            float _damge = RandomCritDamge(bullet);
+            bullet.SetDamge(_damge);
+            
             switch (gunOfObjectType)
             {
                 case GunOfObjectType.PLAYER:

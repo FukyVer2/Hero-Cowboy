@@ -16,13 +16,14 @@ public abstract class Bullet : MonoBehaviour {
     public BulletDirection direction; //Hướng di chuyển của đạn
     public float angle; //Góc quay của viên đạn
     public BulletOfObjectType bulletOfObject; //Đạn của đối tượng nào
-
+    public bool isCritDamge = false;
     public virtual void InitBullet()
     {
         //Khởi tạo ban đầu của đạn gồm một số thông số:
         // + Hướng di chuyển của đạn
         // + Rotate hình
         // + Thay đổi giá trị tốc độ di chuyển của đạn
+        isCritDamge = false;
         direction = BulletDirection.LEFT;
         gameObject.transform.localPosition = Vector3.zero;
         switch (direction)
@@ -56,6 +57,7 @@ public abstract class Bullet : MonoBehaviour {
         // + Thay đổi giá trị tốc độ di chuyển của đạn
         gameObject.transform.localPosition = _positionStart;
         direction = _direction;
+        isCritDamge = false;
         switch (direction)
         {
             case BulletDirection.LEFT:
@@ -76,17 +78,18 @@ public abstract class Bullet : MonoBehaviour {
                     FlipHorizontal(0);
                     break;
                 }
-        }
+        }        
     }
 
     public virtual void ResetProperties()
     {
         //dothing
+        isCritDamge = false;
     }
 
     public void SetDamge(float _damge)
     {
-        this.damge = _damge;
+        this.damge = _damge;        
     }
 
     public void SetBulletOfObjectType(BulletOfObjectType _bulletOfObjectType)
@@ -140,6 +143,10 @@ public abstract class Bullet : MonoBehaviour {
     {
         //Lat theo chieu doc
         gameObject.transform.localRotation = Quaternion.Euler(new Vector3(angle, gameObject.transform.rotation.y, gameObject.transform.rotation.z));
+    }
+    public virtual void Reset()
+    {
+        isCritDamge = false;
     }
 }
 

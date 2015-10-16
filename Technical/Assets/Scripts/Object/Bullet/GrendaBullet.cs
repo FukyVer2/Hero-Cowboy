@@ -84,7 +84,7 @@ public class GrendaBullet : Bullet
 
         foreach (var enemyObj in rangeBullet.enemyInBoxs)
         {
-            enemyObj.Hit(damge);
+            enemyObj.Hit(damge, false);
             //rangeBullet.enemyInBoxs.Remove(enemyObj);            
         }
         PoolObject.Instance.DespawnObject(gameObject.transform.parent, "Bullet");

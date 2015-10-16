@@ -7,6 +7,7 @@ public class UIController : MonoBehaviour {
     public GameObject gamePlayPanel;
     public GameObject gameOverPanel;
     public GameObject playObject;
+    public GameObject overObject;
 	// Use this for initialization
 	void Start () {
 	
@@ -29,11 +30,13 @@ public class UIController : MonoBehaviour {
         gamePlayPanel.SetActive(false);
         gameOverPanel.SetActive(true);
         playObject.SetActive(false);
+        overObject.SetActive(true);
     }
     public void GameRelay()
     {
         gameStartPanel.SetActive(true);
-        gameOverPanel.SetActive(false);        
+        gameOverPanel.SetActive(false);
+        overObject.SetActive(false);
         //Application.LoadLevel(Application.loadedLevel);
        
     }

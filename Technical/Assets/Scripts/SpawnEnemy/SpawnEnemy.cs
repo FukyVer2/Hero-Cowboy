@@ -149,13 +149,17 @@ public class SpawnEnemy : MonoSingleton<SpawnEnemy> {
             RenderEnemy(typeEnemy, luot[soluot].countEnemyRun);
         else
         {
-            soluot = 0;
+            //soluot = 0;
             if (listEnemy.Count == 0)
             {
                 Debug.Log("WIN CMNR");
-                //GameController.Instance.GameWin();
+                Invoke("Win", 3.0f);
             }
         }
+    }
+    void Win()
+    {
+        GameController.Instance.GameWin();
     }
     float t = 0;//thoi gian giua 2 lan random Enemy trong 1 luot
     int count = 0;//so luong Enemy loai nao trong 1 luot Render

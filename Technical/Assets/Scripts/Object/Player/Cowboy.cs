@@ -106,7 +106,7 @@ public class Cowboy : MonoBehaviour{
 
     public void Hit(float damge)
     {
-        hp -= damge;
+        //hp -= damge;
         if(hp <= 0 )
         {
             GameController.Instance.GameWin();

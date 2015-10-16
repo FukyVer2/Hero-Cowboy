@@ -40,9 +40,9 @@ public class EnemyFly : Enemy {
     {
         base.Die();
     }
-    public override void Hit(float _damge)
+    public override void Hit(float _damge, bool isCrit)
     {
-        base.Hit(_damge);
+        base.Hit(_damge,isCrit);
     }
     public override void Move()
     {

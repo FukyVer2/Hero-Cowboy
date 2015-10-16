@@ -183,7 +183,7 @@ public class TowerBullet : Bullet
             ManagerObject.Instance.RenderParticalEnemy(ObjectType.ENEMY_HIT, col.gameObject.transform.position);
             Enemy enemy = col.GetComponent<Enemy>();
             if (enemy != null)
-                enemy.Hit(damge);
+                enemy.Hit(damge, false);
             PoolObject.Instance.DespawnObject(gameObject.transform, "Bullet");
 
         }

@@ -26,7 +26,7 @@ public class BaseGameObject : MonoBehaviour {
     public virtual void Die()
     {
     }
-    public virtual void Hit(float _damge)
+    public virtual void Hit(float _damge, bool isCrit)
     {
     }
 }

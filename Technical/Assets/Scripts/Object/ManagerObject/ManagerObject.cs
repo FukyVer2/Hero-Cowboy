@@ -10,7 +10,9 @@ public enum ObjectType
     ENEMY_HIT_2 = 3,
     ENEMY_HIT_3 = 4,
     ENEMY_STUN = 5,
-    COIN = 6
+    COIN = 6,
+    NUMBER_CRIT = 7
+
 }
 public enum EnemyType
 {
@@ -97,7 +99,7 @@ public class ManagerObject : MonoSingleton<ManagerObject> {
                 Vector2 _force = Vector2.zero;
                 if (isDie)
                 {
-                    _force = new Vector2(Random.Range(-200, 200), Random.Range(200, 350));
+                    _force = new Vector2(Random.Range(-200, 200), Random.Range(-100, 800));
                 }
                 else
                 {

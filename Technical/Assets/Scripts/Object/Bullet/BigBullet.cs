@@ -92,7 +92,7 @@ public class BigBullet : Bullet {
         for (int i = 0; i < enemyCount; ++i)
         {
             
-            rangeBullet.enemyInBoxs[i].Hit(damge);
+            rangeBullet.enemyInBoxs[i].Hit(damge, false);
             
         }
         

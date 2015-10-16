@@ -26,12 +26,19 @@ public class Enemy : BaseGameObject
         health.SetHpDefault(hp);
         
     }
-    public virtual void Hit(float _damge)
+    public virtual void Hit(float _damge, bool isCrit)
     {        
-        hp -= _damge;
-        Delay();
+        hp -= _damge;        
         //TestPlayer.Instance.RenderNumber(_damge);
-        ManagerObject.Instance.RenderNumber(ObjectType.NUMBER, posNumberHit.position, _damge);        
+        if (!isCrit)
+        {
+            ManagerObject.Instance.RenderNumber(ObjectType.NUMBER, posNumberHit.position, _damge);
+        }
+        if(isCrit)
+        {
+            ManagerObject.Instance.RenderNumber(ObjectType.NUMBER_CRIT, posNumberHit.position, _damge);
+        }
+        Delay();
         health.HP(hp);        
         if(hp <=0 )
         {

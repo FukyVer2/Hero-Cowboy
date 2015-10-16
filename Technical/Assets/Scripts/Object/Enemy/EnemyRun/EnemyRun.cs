@@ -22,9 +22,9 @@ public class EnemyRun : Enemy {
     {
         base.Init();
     }
-    public override void Hit(float _damge)
+    public override void Hit(float _damge, bool isCrit)
     {
-        base.Hit(_damge);
+        base.Hit(_damge, isCrit);
     }
     //set ben huong quay
     //isRight = 0 ben trai, isRight = 1 ben phai
@@ -54,6 +54,6 @@ public class EnemyRun : Enemy {
     [ContextMenu("Hit")]
     void TestHit()
     {
-        Hit(50);
+        Hit(50,false);
     }
 }

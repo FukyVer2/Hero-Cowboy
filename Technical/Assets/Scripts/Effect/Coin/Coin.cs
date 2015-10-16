@@ -43,7 +43,7 @@ public class Coin : MonoBehaviour {
     }
     void Finish()
     {
-        Destroy(gameObject);
+        PoolObject.Instance.DespawnObject(transform, "Coin");
     }
     [ContextMenu("Test Scale")]
     void TestScale()
