@@ -11,7 +11,8 @@ public enum ObjectType
     ENEMY_HIT_3 = 4,
     ENEMY_STUN = 5,
     COIN = 6,
-    NUMBER_CRIT = 7
+    NUMBER_CRIT = 7,
+    LEVELUP = 8
 
 }
 public enum EnemyType
@@ -92,7 +93,7 @@ public class ManagerObject : MonoSingleton<ManagerObject> {
         for (int i = 0; i < countCoin; i++)
         {
             //GameObject coinObject = Instantiate(coinPrefabs, Vector3.zero, Quaternion.identity) as GameObject;
-            GameObject coinObject = PoolObject.Instance.SpawnObjectPos(listEffect[(int)objectType].prefabs, "Coin", pos);
+            GameObject coinObject = PoolObject.Instance.SpawnObjectPos(listEffect[(int)objectType].prefabs, "Effect", pos);
             Coin coin = coinObject.GetComponent<Coin>();
             if (coin != null)
             {
@@ -109,6 +110,13 @@ public class ManagerObject : MonoSingleton<ManagerObject> {
                 //listCoin.Add(coin);
             }
         }
+    }
+    public void RenderLevelUp(ObjectType objectType, Vector3 pos)
+    {
+        GameObject levelObj = PoolObject.Instance.SpawnObjectPos(listEffect[(int)objectType].prefabs, "Effect", pos);
+        //numberObj.transform.position = pos;
+        LevelUp level = levelObj.GetComponent<LevelUp>();
+        level.Init();        
     }
     [ContextMenu("TestCoin")]
     void TestCoin()

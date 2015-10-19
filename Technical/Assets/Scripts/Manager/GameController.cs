@@ -60,11 +60,12 @@ public class GameController : MonoSingleton<GameController> {
     }
     public float Gold()
     {
-        return gold / 1000.0f;
+        return gold / 100.0f;
     }
     public void AddGold(float _gold)
     {
         gold += _gold;
+        SaveGold();
     }
     public void SaveGold()
     {

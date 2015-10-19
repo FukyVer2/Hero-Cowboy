@@ -44,7 +44,7 @@ public class Coin : MonoBehaviour {
     void Finish()
     {
         GameController.Instance.AddGold(coin);
-        PoolObject.Instance.DespawnObject(transform, "Coin");
+        PoolObject.Instance.DespawnObject(transform, "Effect");
     }
     [ContextMenu("Test Scale")]
     void TestScale()
