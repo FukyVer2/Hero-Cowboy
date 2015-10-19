@@ -153,7 +153,7 @@ public class SpawnEnemy : MonoSingleton<SpawnEnemy> {
             if (listEnemy.Count == 0)
             {
                 Debug.Log("WIN CMNR");
-                Invoke("Win", 3.0f);
+                Invoke("Win", 3.5f);
             }
         }
     }
@@ -219,6 +219,23 @@ public class SpawnEnemy : MonoSingleton<SpawnEnemy> {
                     break;
             }                
         }
+    }
+
+    void RenderBoss()
+    {
+        int isRight = Random.Range(0, 2);
+        if (isRight == 0)
+        {
+            ManagerObject.Instance.RenderEnemy((EnemyType)typeEnemy, transfLeft.position, "Enemy", isRight, ref listEnemy);
+        }
+        else
+        {
+            ManagerObject.Instance.RenderEnemy((EnemyType)typeEnemy, transfRight.position, "Enemy", isRight, ref listEnemy);
+        }
+    }
+    void ShowBoss()
+    {
+        
     }
     [ContextMenu("Update Luot")]
     //update thong so cua cac luot    

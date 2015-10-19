@@ -21,7 +21,8 @@ public enum EnemyType
     ENEMY_TANK = 1,
     ENEMY_BOOM = 2,
     ENEMY_WEAK = 3,
-    ENEMY_FLY = 4
+    ENEMY_FLY = 4,
+    BOSS_LV1 =5,
 }
 [System.Serializable]
 public class EnemyObject
