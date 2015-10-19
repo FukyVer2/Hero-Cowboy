@@ -18,6 +18,20 @@ public class EnemyRun : Enemy {
             Move();
         }
 	}
+    public override void SetHP()
+    {
+        base.SetHP();
+        switch(typeEnemy)
+        {
+            case Type.ENEMY_RUN:
+                hp = HeroCowboyConfigs.HP_ENEMY_RUN;
+                break;
+            case Type.ENEMY_TANK:
+                hp = HeroCowboyConfigs.HP_ENEMY_TANK;
+                break;
+        }
+        
+    }
     public override void Init()
     {
         base.Init();

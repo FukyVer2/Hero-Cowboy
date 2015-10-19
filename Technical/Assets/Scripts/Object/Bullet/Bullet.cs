@@ -1,6 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+public enum BulletType
+{
+    NONE = 0,
+    BULLET_FIRE = 1,
+    BULLET_MACHINEGUN =2
+}
 public abstract class Bullet : MonoBehaviour {
 
     public float speed; //Tốc độ di chuyển thực
@@ -17,6 +23,19 @@ public abstract class Bullet : MonoBehaviour {
     public float angle; //Góc quay của viên đạn
     public BulletOfObjectType bulletOfObject; //Đạn của đối tượng nào
     public bool isCritDamge = false;
+
+    public BulletType type = BulletType.NONE;
+    public virtual void SetDamge()
+    {
+        switch(type)
+        {
+            case BulletType.BULLET_FIRE:                
+                break;
+            case BulletType.BULLET_MACHINEGUN:
+                break;
+
+        }
+    }
     public virtual void InitBullet()
     {
         //Khởi tạo ban đầu của đạn gồm một số thông số:

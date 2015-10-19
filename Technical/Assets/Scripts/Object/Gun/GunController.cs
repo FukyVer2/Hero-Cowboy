@@ -7,11 +7,11 @@ public class GunController : MonoSingleton<GunController> {
     public List<GunConfig> listGunConfig;
     public GameObject gunCurrent;
     private Gun gun;
-    private Dictionary<GunType, GameObject> dicGunResources; // loại đạn theo súng
+    private Dictionary<GunType, Gun> dicGunResources; // loại đạn theo súng
 
     void Awake()
     {
-        dicGunResources = new Dictionary<GunType, GameObject>();
+        dicGunResources = new Dictionary<GunType, Gun>();
         InitGun();
     }
 
@@ -60,7 +60,7 @@ public class GunController : MonoSingleton<GunController> {
     private GameObject GetGunOfGunType(GunType _gunType)
     {
         if (dicGunResources.ContainsKey(_gunType))
-            return dicGunResources[_gunType];
+            return dicGunResources[_gunType].gameObject;
 #if UNITY_EDITOR
         Debug.Log("Chưa có viên đạn loại này");
 #endif
@@ -72,5 +72,5 @@ public class GunController : MonoSingleton<GunController> {
 public class GunConfig
 {
     public GunType gunType;
-    public GameObject gunObject;
+    public Gun gunObject;
 }

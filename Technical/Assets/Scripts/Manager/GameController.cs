@@ -10,7 +10,7 @@ public class GameController : MonoSingleton<GameController> {
     public UIController uiController;
     public Text txtLuot;
     public SpawnEnemy spaenEnemy;
-
+    public float gold = 0;
 
 	void Start () {
         AudioController.Instance.PlaySoundRepeat(AudioType.SOUND_BG_INGAME);
@@ -57,5 +57,18 @@ public class GameController : MonoSingleton<GameController> {
             string luot = spaenEnemy.GetSoLuot().ToString();
             txtLuot.text = luot + "/10";
         }
+    }
+    public float Gold()
+    {
+        return gold / 1000.0f;
+    }
+    public void AddGold(float _gold)
+    {
+        gold += _gold;
+    }
+    public void SaveGold()
+    {
+        PlayerPrefs.SetFloat("Gold", Gold());
+        PlayerPrefs.Save();
     }
 }

@@ -25,6 +25,10 @@ public class FireBallBullet : Bullet {
         vx = velocityX;
         vy = velocityY;
     }
+    public override void SetDamge()
+    {
+        base.SetDamge();
+    }
 
     public override void InitBullet(Vector3 _positionStart, BulletDirection _direction)
     {
@@ -142,12 +146,14 @@ public class FireBallBullet : Bullet {
             if (bulletOfObject == BulletOfObjectType.PLAYER)
             {
                 //ManagerObject.Instance.RenderParticalEnemy(ObjectType.ENEMY_HIT, transform.position);
-                ManagerObject.Instance.RenderParticalEnemy(ObjectType.ENEMY_HIT_3, transform.position);
+                //ManagerObject.Instance.RenderParticalEnemy(ObjectType.ENEMY_HIT_3, transform.position);
+                Particle.Instance.EnemyHit(transform.position);
                 Enemy enemy = col.GetComponent<Enemy>();
                 if (enemy != null)
                 {
                     if (isCritDamge)
-                    {                        
+                    {
+                        Particle.Instance.EnemyHitCrit(enemy.transform.position);
                         enemy.Hit(damge, true);
                     }
                     else

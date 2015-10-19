@@ -32,12 +32,15 @@ public class Cowboy : MonoBehaviour{
 
     void Start()
     {
+
         MakeState();
         Rotation(true);
         //gunType = GunType.SHOOT_GUN;
         GunController.Instance.SetGun(gunType);
+        hp = HeroCowboyConfigs.HP_PLAYER;
         health.Reset();
         health.SetHpDefault(hp);
+
     }
 
     [ContextMenu("GunShoot")]
@@ -222,5 +225,9 @@ public class Cowboy : MonoBehaviour{
     public GunType GetGuntype()
     {
         return gunType;
+    }
+    public void Reset(float _hp)
+    {
+        hp = _hp;
     }
 }

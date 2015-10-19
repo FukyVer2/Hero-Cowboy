@@ -74,12 +74,13 @@ public class Gun : MonoBehaviour
         {
             GameController.Instance.heroCowboy.ChangeState(CowboyState.IDLE_STATE);
             GameController.Instance.InsteadBullet(true);
-            GameController.Instance.heroCowboy.GunChange(GunType.SHOOT_GUN);
+
             this.isInsteadOfBullet = true;
             Invoke("InsteadOfBullets", timeInsteadOfBullets);
         }
         else if (numberBulletCurrent <= 0 && numberBulletMax <= 0)
         {
+            GameController.Instance.heroCowboy.GunChange(GunType.SHOOT_GUN);
             enableGun = false;
         }
        
@@ -193,6 +194,12 @@ public class Gun : MonoBehaviour
             addCountGun = 0;
         }
         addCountGun += Time.deltaTime;
+    }
+    public void Reset(int _numberBulletMax, int _numberBulletsOfCartridge)
+    {
+        numberBulletMax = _numberBulletMax;
+        numberBulletsOfCartridge = _numberBulletsOfCartridge;        
+        SetTextCountBullet();
     }
 }
 

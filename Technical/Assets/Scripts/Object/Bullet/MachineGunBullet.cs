@@ -104,12 +104,16 @@ public class MachineGunBullet : Bullet
         if (col.tag == "Enemy")
         {
             //ManagerObject.Instance.RenderParticalEnemy(ObjectType.ENEMY_HIT, transform.position);
-            ManagerObject.Instance.RenderParticalEnemy(ObjectType.ENEMY_HIT_3, transform.position);
+            //ManagerObject.Instance.RenderParticalEnemy(ObjectType.ENEMY_HIT_3, transform.position);
+            Particle.Instance.EnemyHit(transform.position);
             Enemy enemy = col.GetComponent<Enemy>();
             if (enemy != null)
             {
                 if (isCritDamge)
+                {
+                    Particle.Instance.EnemyHitCrit(enemy.transform.position);
                     enemy.Hit(damge, true);
+                }
                 else
                 {
                     enemy.Hit(damge, false);

@@ -1,12 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class ManagerCoin : MonoBehaviour {
-
-    public GameObject coinPrefabs;
-    public List<Coin> listCoin;
-    public int countCoin;
+    
+    public Text txtCoin;
+    public float coin;
+    public float timeUp = 0.5f;
+    private float t = 0;
+    
 	// Use this for initialization
 	void Start () {
 	
@@ -14,36 +17,15 @@ public class ManagerCoin : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
-	}
-    [ContextMenu("Render")]
-    void RenderCoin()
-    {
-
-        for (int i = 0; i < countCoin; i++)
+        if (t <= coin)
         {
-            GameObject coinObject = Instantiate(coinPrefabs, Vector3.zero, Quaternion.identity) as GameObject;
-            Coin coin = coinObject.GetComponent<Coin>();
-            if (coin != null)
-            {
-                Vector2 force = new Vector2(Random.Range(-200, 200), Random.Range(200, 350));
-                coin.AddForce(force);
-                listCoin.Add(coin);
-            }
+            t += timeUp * Time.deltaTime;
+            txtCoin.text = Round(t, 2).ToString();
         }
     }
-    void RenderCoin(int _countCoin, Vector3 _force)
+    public static float Round(float value, int digits)
     {
-        for (int i = 0; i < _countCoin; i++)
-        {
-            GameObject coinObject = Instantiate(coinPrefabs, Vector3.zero, Quaternion.identity) as GameObject;
-            Coin coin = coinObject.GetComponent<Coin>();
-            if (coin != null)
-            {
-                //Vector2 force = new Vector2(Random.Range(-200, 200), Random.Range(200, 350));
-                coin.AddForce(_force);
-                //listCoin.Add(coin);
-            }
-        }
+        float mult = Mathf.Pow(10.0f, (float)digits);
+        return Mathf.Round(value * mult) / mult;
     }
 }

@@ -1,5 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+public enum Type
+{
+    NONE = 0,
+    ENEMY_RUN = 1,
+    ENEMY_TANK = 2,
+    ENEMY_BOOM = 3,
+    BOSS_LV1 = 4
+}
 
 public class Enemy : BaseGameObject
 {
@@ -7,6 +15,7 @@ public class Enemy : BaseGameObject
     public float speed;
     public float timeDelayAttack;
     public float hpDefault;
+    public Type typeEnemy = Type.NONE;
 	// Use this for initialization
 	void Start () {        
 	}
@@ -15,9 +24,9 @@ public class Enemy : BaseGameObject
 	void Update () {
         
 	}
-    public void SetHP()
+    public virtual void SetHP()
     {
-        hp = hpDefault;
+        
     }
     public virtual void Init()
     {        
@@ -102,18 +111,9 @@ public class Enemy : BaseGameObject
     }
     public virtual void Die()
     {
-        int rand = Random.Range(0, 2);
-        if (rand == 0)
-        {
-            ManagerObject.Instance.RenderParticalEnemy(ObjectType.ENEMY_DIE, transform.position);
-        }
-        else
-        {
-            ManagerObject.Instance.RenderParticalEnemy(ObjectType.ENEMY_HIT_2, transform.position);
-        }
+        Particle.Instance.EnemyDie(transform.position);
         //render ra Coin
         ManagerObject.Instance.RenderCoin(ObjectType.COIN, transform.position, 4, false);
-
         //kiem tra xe co Respawn ENmey lan tiep theo k     
 
         //remove Enemy ra khoi List Spawn

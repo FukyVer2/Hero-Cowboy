@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Coin : MonoBehaviour {
 
-    
+    public float coin = 2.5f;
     public Vector2 force;
     public Rigidbody2D rigid;
     private Vector3 transfFinish = new Vector3(-2.49f, 4.69f, 0);
@@ -43,6 +43,7 @@ public class Coin : MonoBehaviour {
     }
     void Finish()
     {
+        GameController.Instance.AddGold(coin);
         PoolObject.Instance.DespawnObject(transform, "Coin");
     }
     [ContextMenu("Test Scale")]
