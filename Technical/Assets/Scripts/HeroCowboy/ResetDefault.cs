@@ -28,9 +28,5 @@ public class ResetDefault : MonoSingleton<ResetDefault> {
             }
         }
     }
-    public void ResetSpawnEnemy()
-    {
-        SpawnEnemy.Instance.Reset();
-    }
-    
+
 }

@@ -33,7 +33,6 @@ public class TestPlayer : MonoBehaviour,IPointerDownHandler
     {
         
     }
-
     public void OnPointerDown(PointerEventData eventData)
     {
         throw new System.NotImplementedException();

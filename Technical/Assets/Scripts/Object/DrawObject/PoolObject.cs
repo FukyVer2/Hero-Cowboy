@@ -15,6 +15,22 @@ public class PoolObject : MonoSingleton<PoolObject>
 	void Update () {
 	
 	}
+    void Test()
+    {
+        
+    }
+    public GameObject prefabsDemo;
+    public GameObject Demo()
+    {
+        SpawnPool demo = PoolManager.Pools["Demo"];
+        Transform transf = demo.Spawn(prefabsDemo);
+        return transf.gameObject;
+    }
+    public void DeDemo()
+    {
+        SpawnPool objectPool = PoolManager.Pools["Demo"];        
+        objectPool.Despawn(prefabsDemo.transform);
+    }
     public GameObject SpawnObject(GameObject obj, string nameSpawnPool)
     {
         SpawnPool objectPool = PoolManager.Pools[nameSpawnPool];

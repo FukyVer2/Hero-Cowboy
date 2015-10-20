@@ -32,7 +32,6 @@ public class GameController : MonoSingleton<GameController> {
         PoolObject.Instance.DeActivePool("Bullet");
         PoolObject.Instance.DeActivePool("Coin");
         heroCowboy.health.HP(300);
-        spaenEnemy.Reset();
         StopSpawnEnemy();
         uiController.GameOver();
     }
@@ -42,7 +41,6 @@ public class GameController : MonoSingleton<GameController> {
         PoolObject.Instance.DeActivePool("Number");
         PoolObject.Instance.DeActivePool("Particle");
         PoolObject.Instance.DeActivePool("Bullet");
-        spaenEnemy.Reset();
     }
     public void InsteadBullet(bool isActive)
     {
@@ -54,8 +52,8 @@ public class GameController : MonoSingleton<GameController> {
     {
         if (spaenEnemy != null && spaenEnemy.active == true)
         {
-            string luot = spaenEnemy.GetSoLuot().ToString();
-            txtLuot.text = luot + "/10";
+            //string luot = spaenEnemy.GetSoLuot().ToString();
+            //txtLuot.text = luot + "/10";
         }
     }
     public float Gold()

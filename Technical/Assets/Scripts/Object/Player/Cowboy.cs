@@ -109,7 +109,8 @@ public class Cowboy : MonoBehaviour{
 
     public void Hit(float damge)
     {
-        //hp -= damge;
+        hp -= damge;
+        ManagerObject.Instance.RenderNumber(ObjectType.NUMBER, posNumberHit.position, damge);
         if(hp <= 0 )
         {
             GameController.Instance.GameWin();

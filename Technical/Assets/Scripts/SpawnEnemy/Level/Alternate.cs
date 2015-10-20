@@ -11,6 +11,9 @@ public class Alternate  {
     public int countEnemyWeak = 0;
     public int countEnemyFly = 0;
 
+    public string left = "";
+    public string right = "";
+
     public Alternate()
     {
 

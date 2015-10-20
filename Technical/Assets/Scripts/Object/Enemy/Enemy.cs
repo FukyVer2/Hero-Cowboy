@@ -107,7 +107,7 @@ public class Enemy : BaseGameObject
         //TestPlayer.Instance.Hit(damge);
         //TestPlayer.Instance.RenderNumber(damge);
         GameController.Instance.heroCowboy.Hit(damge);
-        ManagerObject.Instance.RenderNumber(ObjectType.NUMBER, GameController.Instance.heroCowboy.posNumberHit.position, damge);
+        
     }
     public virtual void Die()
     {
@@ -117,9 +117,8 @@ public class Enemy : BaseGameObject
         //kiem tra xe co Respawn ENmey lan tiep theo k     
 
         //remove Enemy ra khoi List Spawn
-        Enemy e = gameObject.GetComponent<Enemy>();        
-        SpawnEnemy.Instance.RemoveListEnemy(e);
-        SpawnEnemy.Instance.SpawnEnemyAlternate();
+        Enemy e = gameObject.GetComponent<Enemy>();
+        Level.Instance.RemoveListEnemy(e);
 
         PoolObject.Instance.DespawnObject(transform, "Enemy");
         

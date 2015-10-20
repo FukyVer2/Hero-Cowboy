@@ -46,8 +46,7 @@ public class EnemyBoom : Enemy {
         GameController.Instance.heroCowboy.Hit(damge);
         ManagerObject.Instance.RenderNumber(ObjectType.NUMBER, GameController.Instance.heroCowboy.posNumberHit.position, damge);
         Enemy e = gameObject.GetComponent<Enemy>();
-        SpawnEnemy.Instance.RemoveListEnemy(e);
-        SpawnEnemy.Instance.SpawnEnemyAlternate();
+
 
         PoolObject.Instance.DespawnObject(transform, "Enemy");
     }
