@@ -24,7 +24,7 @@ public class SpawnEnemy : MonoBehaviour {
         {
             if (isRIght)
             {
-                string[] str = GetListEnemy(Level.Instance.luot[soluot].right);
+                string[] str = GetListEnemy(Level.Instance.listLuot.luot[soluot].right);
                 if (i < str.Length)
                 {
                     int type = int.Parse(str[i].ToString());
@@ -48,7 +48,7 @@ public class SpawnEnemy : MonoBehaviour {
             }
             else
             {
-                string[] str = GetListEnemy(Level.Instance.luot[soluot].left);
+                string[] str = GetListEnemy(Level.Instance.listLuot.luot[soluot].left);
                 if (i < str.Length)
                 {
                     int type = int.Parse(str[i].ToString());

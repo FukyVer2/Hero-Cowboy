@@ -8,7 +8,6 @@ public class GameController : MonoSingleton<GameController> {
     public Cowboy heroCowboy;
     public bool isStopSpawnEnemy;
     public UIController uiController;
-    public Text txtLuot;
     public SpawnEnemy spaenEnemy;
     public float gold = 0;
 
@@ -18,7 +17,6 @@ public class GameController : MonoSingleton<GameController> {
 	
 	// Update is called once per frame
 	void Update () {
-        SetText();
 	}
     void StopSpawnEnemy()
     {
@@ -48,14 +46,7 @@ public class GameController : MonoSingleton<GameController> {
         //insteadBullet.gameObject.SetActive(isActive);
         ManagerObject.Instance.insteadBullet.transform.parent.gameObject.SetActive(isActive);
     }
-    void SetText()
-    {
-        if (spaenEnemy != null && spaenEnemy.active == true)
-        {
-            //string luot = spaenEnemy.GetSoLuot().ToString();
-            //txtLuot.text = luot + "/10";
-        }
-    }
+
     public float Gold()
     {
         return gold / 100.0f;

@@ -4,9 +4,6 @@ using UnityEngine.UI;
 
 public class Gold : MonoBehaviour {
 
-    public Text txtCoin;
-    public Text txtDiamond;//kim cuong
-
     private float gold = 0;
     private float timeUp = 0.5f;
     private float t = 0;
@@ -31,7 +28,8 @@ public class Gold : MonoBehaviour {
         if(t <= gold)
         {
             t += timeUp * Time.deltaTime;
-            txtCoin.text = Round(t, 2).ToString() + "K";
+            string str = Round(t, 2).ToString() + "K";
+            UIGamePlay.Instance.SetTextGold(str);
         }
     }
 }

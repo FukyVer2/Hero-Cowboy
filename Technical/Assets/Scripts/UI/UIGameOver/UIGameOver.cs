@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class GameOver : MonoBehaviour {
+public class UIGameOver : MonoBehaviour {
 
     public Text txtGold;
     public Text txtDiamond;

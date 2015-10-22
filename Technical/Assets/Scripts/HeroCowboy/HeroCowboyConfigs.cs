@@ -3,7 +3,7 @@ using System.Collections;
 
 public class HeroCowboyConfigs
 {
-    public const float HP_PLAYER = 600;
+    public const float HP_PLAYER = 60000;
 
 
     public const float SPEED_ENEMY_RUN = 0.5f;
@@ -17,6 +17,7 @@ public class HeroCowboyConfigs
 
     public const float DAMGE_FIRE_BULLET = 75;
     public const float DAMGE_MACHINE_BULLET = 100;
+    public const float DAMGE_BOSS_LV1 = 200;
 
     public const int NUMBER_BULLET_MAX_SHOTGUN = 9999;
     //public const int numberBulletsOfCartridge;

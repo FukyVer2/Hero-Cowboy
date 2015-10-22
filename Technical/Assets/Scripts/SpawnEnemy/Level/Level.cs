@@ -8,9 +8,15 @@ public enum StageSpawn
     BOSS = 2,
     WIN = 3
 }
+[System.Serializable]
+public class Luot
+{
+    public Alternate[] luot;
+    public GameObject boss;
+}
 public class Level : MonoSingleton<Level> {
 
-    public Alternate[] luot;
+    public Luot listLuot;
     public List<Enemy> listEnemy;
     public int soluot = 0;
     public List<SpawnEnemy> listSpawn;
@@ -19,12 +25,9 @@ public class Level : MonoSingleton<Level> {
 	// Use this for initialization
 	void Start () {
         stage = StageSpawn.ENEMY;
+        UIGamePlay.Instance.SetLuot(soluot.ToString() + "/10");
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
     public void RemoveListEnemy(Enemy enemy)
     {
         if(listEnemy.Contains(enemy))
@@ -33,15 +36,17 @@ public class Level : MonoSingleton<Level> {
 
             if (listEnemy.Count <= 0  )
             {
-                if (soluot < luot.Length - 1)
+                if (soluot < listLuot.luot.Length - 1)
                 {
                     soluot++;
+                    UIGamePlay.Instance.SetLuot(soluot.ToString() + "/10");
                     UpdateSpawn();
                 }
                 else
                 {
-                    Debug.Log("Win Cmnr");
+                    Debug.Log("Boss Ra nao");
                     stage = StageSpawn.BOSS;
+                    Invoke("Boss", 2.0f);
                 }
             }          
         }        
@@ -55,6 +60,11 @@ public class Level : MonoSingleton<Level> {
     }
     void Boss()
     {
-
+        Instantiate(listLuot.boss, new Vector3(-3.5f, 0.5f, 0), Quaternion.identity);
+    }
+    
+    public void SetStage()
+    {
+        stage = StageSpawn.WIN;
     }
 }

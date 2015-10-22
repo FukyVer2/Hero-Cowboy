@@ -37,4 +37,10 @@ public class TestPlayer : MonoBehaviour,IPointerDownHandler
     {
         throw new System.NotImplementedException();
     }
+    [ContextMenu("Test Flicker")]
+    void TestFlicker()
+    {
+        Flicker f = gameObject.AddComponent<Flicker>();
+        f.FlickerTo(gameObject, 2, 0.1f);
+    }
 }
