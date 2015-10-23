@@ -6,6 +6,12 @@ using System.Collections.Generic;
 
 public class SpawnEnemy : MonoBehaviour {
     public bool isRIght;
+    private int level;
+    void Start()
+    {
+        level = Level.Instance.level;
+        Debug.Log("level = " + level);
+    }
     void Update()
     {
         Spawn();
@@ -17,6 +23,10 @@ public class SpawnEnemy : MonoBehaviour {
     {
         i = 0;
     }
+    public void SetLevel(int _level)
+    {
+        level = _level;
+    }
     void Spawn()
     {
         int soluot = Level.Instance.soluot;
@@ -24,7 +34,7 @@ public class SpawnEnemy : MonoBehaviour {
         {
             if (isRIght)
             {
-                string[] str = GetListEnemy(Level.Instance.listLuot.luot[soluot].right);
+                string[] str = GetListEnemy(Level.Instance.listLevel[level].luot[soluot].right);
                 if (i < str.Length)
                 {
                     int type = int.Parse(str[i].ToString());
@@ -48,7 +58,7 @@ public class SpawnEnemy : MonoBehaviour {
             }
             else
             {
-                string[] str = GetListEnemy(Level.Instance.listLuot.luot[soluot].left);
+                string[] str = GetListEnemy(Level.Instance.listLevel[level].luot[soluot].left);
                 if (i < str.Length)
                 {
                     int type = int.Parse(str[i].ToString());

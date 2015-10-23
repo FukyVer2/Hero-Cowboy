@@ -112,6 +112,24 @@ public class ManagerObject : MonoSingleton<ManagerObject> {
             }
         }
     }
+    public void RenderCoinUpGrade(ObjectType objectType, Vector3 pos, int countCoin)
+    {
+        for (int i = 0; i < countCoin; i++)
+        {
+            //GameObject coinObject = Instantiate(coinPrefabs, Vector3.zero, Quaternion.identity) as GameObject;
+            GameObject coinObject = PoolObject.Instance.SpawnObjectPos(listEffect[(int)objectType].prefabs, "Effect", pos);
+            Coin coin = coinObject.GetComponent<Coin>();
+            if (coin != null)
+            {
+                Vector2 _force = Vector2.zero;
+
+                _force = new Vector2(Random.Range(-50, 50), Random.Range(100, 200));
+                
+                coin.AddForceUpGrade(_force);
+                //listCoin.Add(coin);
+            }
+        }
+    }
     public void RenderLevelUp(ObjectType objectType, Vector3 pos)
     {
         GameObject levelObj = PoolObject.Instance.SpawnObjectPos(listEffect[(int)objectType].prefabs, "Effect", pos);

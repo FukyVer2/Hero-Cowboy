@@ -17,7 +17,7 @@ public class UpGrade : MonoBehaviour {
 	}
     void EffectCoin()
     {
-        ManagerObject.Instance.RenderCoin(ObjectType.COIN, transfCoinPlayer.position, 4, false);
+        ManagerObject.Instance.RenderCoinUpGrade(ObjectType.COIN, transfCoinPlayer.position, 4);
     }
     [ContextMenu("Up Grade")]
     public void UpGradePlayer()

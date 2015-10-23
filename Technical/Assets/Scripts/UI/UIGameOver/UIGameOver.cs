@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class UIGameOver : MonoBehaviour {
+public class UIGameOver : MonoSingleton<UIGameOver> {
 
     public Text txtGold;
     public Text txtDiamond;
@@ -16,9 +16,10 @@ public class UIGameOver : MonoBehaviour {
 	
 	}
     [ContextMenu("Gold")]
-    public void SetText()
+    public void SetTextGold()
     {
-        float gold = PlayerPrefs.GetFloat("Gold");
-        txtGold.text = gold.ToString() + "K";
+        float gold = PlayerPrefs.GetFloat("Gold") / 100.0f;
+        string str = Gold.Round(gold, 2).ToString() + "K";
+        txtGold.text = str;
     }
 }

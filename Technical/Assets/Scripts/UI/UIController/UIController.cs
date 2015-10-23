@@ -34,9 +34,12 @@ public class UIController : MonoBehaviour {
     }
     public void GameRelay()
     {
-        gameStartPanel.SetActive(true);
+        gameStartPanel.SetActive(false);
         gameOverPanel.SetActive(false);
         overObject.SetActive(false);
+        gamePlayPanel.SetActive(true);
+        GameController.Instance.GameReplay();
+        playObject.SetActive(true);
         //Application.LoadLevel(Application.loadedLevel);
        
     }

@@ -16,16 +16,17 @@ public class Luot
 }
 public class Level : MonoSingleton<Level> {
 
-    public Luot listLuot;
+    public List<Luot> listLevel;
     public List<Enemy> listEnemy;
     public int soluot = 0;
     public List<SpawnEnemy> listSpawn;
     public StageSpawn stage = StageSpawn.NONE;
-
+    public int level;
 	// Use this for initialization
 	void Start () {
         stage = StageSpawn.ENEMY;
         UIGamePlay.Instance.SetLuot(soluot.ToString() + "/10");
+        level = GameController.Instance.level;
 	}
 
     public void RemoveListEnemy(Enemy enemy)
@@ -36,7 +37,7 @@ public class Level : MonoSingleton<Level> {
 
             if (listEnemy.Count <= 0  )
             {
-                if (soluot < listLuot.luot.Length - 1)
+                if (soluot < listLevel[level].luot.Length - 1)
                 {
                     soluot++;
                     UIGamePlay.Instance.SetLuot(soluot.ToString() + "/10");
@@ -44,8 +45,8 @@ public class Level : MonoSingleton<Level> {
                 }
                 else
                 {
-                    Debug.Log("Boss Ra nao");
                     stage = StageSpawn.BOSS;
+                    UIGamePlay.Instance.SetLuot("BOSS");
                     Invoke("Boss", 2.0f);
                 }
             }          
@@ -60,11 +61,31 @@ public class Level : MonoSingleton<Level> {
     }
     void Boss()
     {
-        Instantiate(listLuot.boss, new Vector3(-3.5f, 0.5f, 0), Quaternion.identity);
+        Instantiate(listLevel[level].boss, new Vector3(-3.5f, 0.5f, 0), Quaternion.identity);
     }
     
     public void SetStage()
     {
         stage = StageSpawn.WIN;
+        Win();
+        //Invoke("Win", 7.0f);
+    }
+    void Win()
+    {
+        GameController.Instance.GameWin();
+        if (level < listLevel.Count - 1)
+            GameController.Instance.LevelUp();
+    }
+    public void LevelUp()
+    {
+        level = GameController.Instance.level; 
+        stage = StageSpawn.NONE;
+        soluot = 0;
+        UpdateSpawn();
+        for (int i = 0; i < listSpawn.Count; i++)
+        {
+            listSpawn[i].SetLevel(level);
+        }
+        listEnemy.Clear();
     }
 }

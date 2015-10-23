@@ -41,6 +41,16 @@ public class Coin : MonoBehaviour {
         float rand = Random.Range(2.5f, 3.5f);
         Invoke("MoveCoin", rand);
     }
+    public void AddForceUpGrade(Vector2 _force)
+    {
+        rigid.AddForce(_force);
+        float rand = Random.Range(2.5f, 3.5f);
+        Invoke("DeCoin", rand);
+    }
+    void DeCoin()
+    {
+        PoolObject.Instance.DespawnObject(transform, "Effect");
+    }
     void Finish()
     {
         GameController.Instance.AddGold(coin);

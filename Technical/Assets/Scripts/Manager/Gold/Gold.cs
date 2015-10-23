@@ -4,13 +4,12 @@ using UnityEngine.UI;
 
 public class Gold : MonoBehaviour {
 
-    private float gold = 0;
     private float timeUp = 0.5f;
     private float t = 0;
 
 	// Use this for initialization
 	void Start () {
-	
+        t = GameController.Instance.Gold();
 	}
 	
 	// Update is called once per frame
@@ -24,7 +23,7 @@ public class Gold : MonoBehaviour {
     }
     void AddGold()
     {
-        gold = GameController.Instance.Gold();
+        float gold = GameController.Instance.Gold();
         if(t <= gold)
         {
             t += timeUp * Time.deltaTime;

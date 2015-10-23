@@ -10,7 +10,17 @@ public class GameController : MonoSingleton<GameController> {
     public UIController uiController;
     public SpawnEnemy spaenEnemy;
     public float gold = 0;
-
+    public int level = 0;
+    void Awake()
+    {
+        gold = PlayerPrefs.GetFloat("Gold");
+    }
+    [ContextMenu("Reset Gold")]
+    void ResetGold()
+    {
+        gold = 0;
+        SaveGold();
+    }
 	void Start () {
         AudioController.Instance.PlaySoundRepeat(AudioType.SOUND_BG_INGAME);
 	}
@@ -24,21 +34,24 @@ public class GameController : MonoSingleton<GameController> {
     }
     public void GameWin()
     {
-        PoolObject.Instance.DeActivePool("Enemy");
-        PoolObject.Instance.DeActivePool("Number");
-        PoolObject.Instance.DeActivePool("Particle");
-        PoolObject.Instance.DeActivePool("Bullet");
-        PoolObject.Instance.DeActivePool("Coin");
-        heroCowboy.health.HP(300);
+        ResetTest();
+
+        Invoke("DelayGameWin", 7.0f);
+    }
+    void DelayGameWin()
+    {
+        heroCowboy.health.HP(HeroCowboyConfigs.HP_PLAYER);
         StopSpawnEnemy();
         uiController.GameOver();
+        UIGameOver.Instance.SetTextGold();
     }
     public void ResetTest()
     {
         PoolObject.Instance.DeActivePool("Enemy");
         PoolObject.Instance.DeActivePool("Number");
         PoolObject.Instance.DeActivePool("Particle");
-        PoolObject.Instance.DeActivePool("Bullet");
+        //PoolObject.Instance.DeActivePool("Bullet");
+        //PoolObject.Instance.DeActivePool("Effect");
     }
     public void InsteadBullet(bool isActive)
     {
@@ -58,7 +71,15 @@ public class GameController : MonoSingleton<GameController> {
     }
     public void SaveGold()
     {
-        PlayerPrefs.SetFloat("Gold", Gold());
+        PlayerPrefs.SetFloat("Gold", gold);
         PlayerPrefs.Save();
+    }
+    public void LevelUp()
+    {
+        level += 1;
+    }
+    public void GameReplay()
+    {
+        Level.Instance.LevelUp();
     }
 }

@@ -4,12 +4,14 @@ using UnityEngine.EventSystems;
 
 public class InputController : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
-    public bool isRightClick = true;
+    private bool isRightClick = true;
     public bool isDown = false;
-    public bool isLeftClick = true;
-
     private GunType gunType;
-
+    private float right = 0;
+    void Start()
+    {
+        right = Screen.width / 2.0f;
+    }
     public void LeftClickEvent()
     {
         if (GameController.Instance.heroCowboy != null)
@@ -57,27 +59,45 @@ public class InputController : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     }
     public void OnPointerDown(PointerEventData eventData)
     {
-        
-        if (gunType == GunType.MACHINE_GUN)
+        if (GameController.Instance.heroCowboy != null)
         {
-            isDown = true;
-        }
-        else
-        {
-            if (GameController.Instance.heroCowboy != null)
+            if (gunType == GunType.MACHINE_GUN)
             {
-                if (isRightClick)
-                {
-                    GameController.Instance.heroCowboy.Rotation(false);
-                    GameController.Instance.heroCowboy.AllowCowboyShoot();
-                }
-                else
-                {
-                    GameController.Instance.heroCowboy.Rotation(true);
-                    GameController.Instance.heroCowboy.AllowCowboyShoot();
-                }
+                isDown = true;
+            }
+            if (eventData.position.x > right)
+            {
+                isRightClick = true;
+                GameController.Instance.heroCowboy.Rotation(false);
+                GameController.Instance.heroCowboy.AllowCowboyShoot();
+            }
+            else
+            {
+                isRightClick = false;
+                GameController.Instance.heroCowboy.Rotation(true);
+                GameController.Instance.heroCowboy.AllowCowboyShoot();
             }
         }
+        //if (gunType == GunType.MACHINE_GUN)
+        //{
+        //    isDown = true;
+        //}
+        //else
+        //{
+        //    if (GameController.Instance.heroCowboy != null)
+        //    {
+        //        if (isRightClick)
+        //        {
+        //            GameController.Instance.heroCowboy.Rotation(false);
+        //            GameController.Instance.heroCowboy.AllowCowboyShoot();
+        //        }
+        //        else
+        //        {
+        //            GameController.Instance.heroCowboy.Rotation(true);
+        //            GameController.Instance.heroCowboy.AllowCowboyShoot();
+        //        }
+        //    }
+        //}
     }
     public void OnPointerUp(PointerEventData eventData)
     {

@@ -29,9 +29,7 @@ public class BossLv1 : Boss {
     void Idle()
     {
         bossStage = BossStage.IDLE;
-        animator.SetBool("isAttack", false);
-
-        
+        animator.SetBool("isAttack", false);        
     }
     void BossStart()
     {
@@ -48,7 +46,6 @@ public class BossLv1 : Boss {
     }
     void ChangePosition()
     {
-
         isPause = false;
         speed = Mathf.Abs(speed);
         float scaleX = Mathf.Abs(transform.localScale.x);
@@ -119,7 +116,7 @@ public class BossLv1 : Boss {
     {
         if (col.tag == "Player")
         {
-            Idle();
+            //Idle();
         }
     }
 }

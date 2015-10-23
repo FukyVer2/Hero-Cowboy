@@ -8,6 +8,11 @@ public class UIGamePlay : MonoSingleton<UIGamePlay> {
     public Text txtDiamond;
     public Text txtLuot;
     public Text txtLive;
+    void Start()
+    {
+        Debug.Log("gold UI = " + GameController.Instance.gold.ToString());
+        SetTextGold(GameController.Instance.gold.ToString());
+    }
 
     public void SetTextGold(string txt)
     {

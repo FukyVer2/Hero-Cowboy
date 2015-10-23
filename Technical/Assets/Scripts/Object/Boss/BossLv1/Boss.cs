@@ -64,8 +64,8 @@ public class Boss : MonoBehaviour {
 
     public virtual void Attack()
     {
-        bossStage = BossStage.ATTACK;
         isPause = true;
+        bossStage = BossStage.ATTACK;        
     }
     public virtual void Die()
     {
