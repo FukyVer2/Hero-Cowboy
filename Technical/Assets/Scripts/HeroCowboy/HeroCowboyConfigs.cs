@@ -3,7 +3,7 @@ using System.Collections;
 
 public class HeroCowboyConfigs
 {
-    public const float HP_PLAYER = 900;
+    public const float HP_PLAYER = 750;
 
 
     public const float SPEED_ENEMY_RUN = 0.5f;

@@ -91,7 +91,7 @@ public class Gun : MonoBehaviour
         int rand = Random.Range(0, 100);
         if(rand < 20)
         {            
-            _damge = damge + damge * critDamge / 100.0f;
+            _damge = damge * critDamge / 100.0f;
             bullet.isCritDamge = true;
         }
         return _damge;
