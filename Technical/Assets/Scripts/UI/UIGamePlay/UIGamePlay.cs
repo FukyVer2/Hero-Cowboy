@@ -10,7 +10,6 @@ public class UIGamePlay : MonoSingleton<UIGamePlay> {
     public Text txtLive;
     void Start()
     {
-        Debug.Log("gold UI = " + GameController.Instance.gold.ToString());
         SetTextGold(GameController.Instance.gold.ToString());
     }
 

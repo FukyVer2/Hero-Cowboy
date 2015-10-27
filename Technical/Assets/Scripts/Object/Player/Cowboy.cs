@@ -42,6 +42,12 @@ public class Cowboy : MonoBehaviour{
         health.SetHpDefault(hp);
 
     }
+    public void Init(float _hp)
+    {
+        this.hp = _hp;
+        health.Reset();
+        health.SetHpDefault(hp);
+    }
 
     [ContextMenu("GunShoot")]
     public void GunShoot()

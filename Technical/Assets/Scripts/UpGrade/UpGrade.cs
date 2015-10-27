@@ -20,10 +20,14 @@ public class UpGrade : MonoBehaviour {
         ManagerObject.Instance.RenderCoinUpGrade(ObjectType.COIN, transfCoinPlayer.position, 4);
     }
     [ContextMenu("Up Grade")]
-    public void UpGradePlayer()
+    public void btUpGradePlayer()
     {
         ManagerObject.Instance.RenderLevelUp(ObjectType.LEVELUP, transfPlayer.position);
         Particle.Instance.PlayerLevelUp(transfPlayer.position);
         EffectCoin();
+        UpGradePlayer.Instance.UpdateLevel();
+        UIGameOver.Instance.SetTextLevelPlayer(UpGradePlayer.Instance.GetLevel().ToString());
     }
+    public void btUpGradeTower()
+    { }
 }

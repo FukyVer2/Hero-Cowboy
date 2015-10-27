@@ -11,7 +11,7 @@ public enum StageSpawn
 [System.Serializable]
 public class Luot
 {
-    public Alternate[] luot;
+    public Alternate[] luot = new Alternate[10];
     public GameObject boss;
 }
 public class Level : MonoSingleton<Level> {
@@ -87,5 +87,6 @@ public class Level : MonoSingleton<Level> {
             listSpawn[i].SetLevel(level);
         }
         listEnemy.Clear();
+        UIGamePlay.Instance.SetLuot(soluot.ToString() + "/10");
     }
 }

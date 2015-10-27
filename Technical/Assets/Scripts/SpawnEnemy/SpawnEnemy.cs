@@ -10,7 +10,6 @@ public class SpawnEnemy : MonoBehaviour {
     void Start()
     {
         level = Level.Instance.level;
-        Debug.Log("level = " + level);
     }
     void Update()
     {

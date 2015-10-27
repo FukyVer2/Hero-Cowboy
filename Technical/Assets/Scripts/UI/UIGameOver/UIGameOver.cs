@@ -6,6 +6,10 @@ public class UIGameOver : MonoSingleton<UIGameOver> {
 
     public Text txtGold;
     public Text txtDiamond;
+
+    public Text txtLevelPlayer;
+    public Text txtLevelTower;
+    public Text txtLevelSuprort;
 	// Use this for initialization
 	void Start () {
 	
@@ -21,5 +25,9 @@ public class UIGameOver : MonoSingleton<UIGameOver> {
         float gold = PlayerPrefs.GetFloat("Gold") / 100.0f;
         string str = Gold.Round(gold, 2).ToString() + "K";
         txtGold.text = str;
+    }
+    public void SetTextLevelPlayer(string txt)
+    {
+        txtLevelPlayer.text = txt;
     }
 }
