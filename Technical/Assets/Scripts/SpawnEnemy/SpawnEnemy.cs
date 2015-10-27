@@ -29,7 +29,7 @@ public class SpawnEnemy : MonoBehaviour {
     void Spawn()
     {
         int soluot = Level.Instance.soluot;
-        if (t > 2f)
+        if (t > 2.0f)
         {
             if (isRIght)
             {
@@ -39,6 +39,8 @@ public class SpawnEnemy : MonoBehaviour {
                     int type = int.Parse(str[i].ToString());
                     switch (type)
                     {
+                        case 0:
+                            break;
                         case 1:
                             ManagerObject.Instance.RenderEnemy(EnemyType.ENEMY_RUN, transform.position, "Enemy", 1, ref Level.Instance.listEnemy);
                             break;
@@ -63,6 +65,8 @@ public class SpawnEnemy : MonoBehaviour {
                     int type = int.Parse(str[i].ToString());
                     switch (type)
                     {
+                        case 0:
+                            break;
                         case 1:
                             ManagerObject.Instance.RenderEnemy(EnemyType.ENEMY_RUN, transform.position, "Enemy", 0, ref Level.Instance.listEnemy);
                             break;
