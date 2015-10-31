@@ -36,4 +36,11 @@ public class UpGradePlayer : MonoSingleton<UpGradePlayer>
         PlayerPrefs.SetInt("HpPlayer", levelPlayer);
         PlayerPrefs.Save();
     }
+    //luu thong so Player xuong File
+    void SavePlayer()
+    {
+ 
+    }
+    void SavePlayerToFile()
+    { }
 }

@@ -25,10 +25,6 @@ public class EnemyWear : Enemy {
             gun.CreateBullet(transBullet.position, bulletDirection);
         }
 	}
-    public override void Init()
-    {
-        base.Init();
-    }
     public override void SetSpeed(int isRight)
     {
         base.SetSpeed(isRight);

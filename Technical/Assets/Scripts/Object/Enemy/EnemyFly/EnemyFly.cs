@@ -17,18 +17,13 @@ public class EnemyFly : Enemy {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-        if(!pause && status != 1)
+    void Update()
+    {
+        if (!pause && status != 1)
         {
             Move();
-            
+
         }
-	}
-    public override void Init()
-    {
-        base.Init();
-        //x = transform.position.x;
-        //y = transform.position.y;
     }
     public override void Attack()
     {

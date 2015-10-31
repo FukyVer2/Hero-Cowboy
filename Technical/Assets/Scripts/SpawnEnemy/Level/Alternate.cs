@@ -5,13 +5,15 @@ using System.Collections;
 [System.Serializable]
 public class Alternate  {
 
-    //public int countEnemyRun = 0;
-    //public int countEnemyTank = 0;
-    //public int countEnemyBoom = 0;
-    //public int countEnemyWeak = 0;
-    //public int countEnemyFly = 0;
-
     public string left = "";
     public string right = "";
+
+    public Alternate()
+    { }
+    public Alternate(string _left, string _right)
+    {
+        this.left = _left;
+        this.right = _right;
+    }
 
 }

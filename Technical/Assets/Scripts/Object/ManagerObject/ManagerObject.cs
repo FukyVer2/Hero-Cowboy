@@ -40,7 +40,10 @@ public class ManagerObject : MonoSingleton<ManagerObject> {
 
     public List<EnemyObject> listEnemy;
     public List<Effect> listEffect;
-    public InsteadBullet insteadBullet;
+
+    public InsteadBullet insteadBullet;//thay dan
+
+    public List<GameObject> listBoss;
 	// Use this for initialization
 	void Start () {
 	
@@ -82,9 +85,8 @@ public class ManagerObject : MonoSingleton<ManagerObject> {
         Enemy enemy = enemyObj.GetComponent<Enemy>();
         if (enemy != null)
         {
-            enemy.SetHP();
+            GameController.Instance.LoadEnemy(enemy);
             enemy.SetSpeed(isRight);
-            enemy.Init();
             if (!l.Contains(enemy))
                 l.Add(enemy);
         }

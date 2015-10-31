@@ -128,9 +128,10 @@ public class EnemyIndex : MonoBehaviour
         this.id = int.Parse(data[0]);
         this.type = data[1];
         this.typeEnemy = GetPlayerTypeByString(type);
-        this.level = int.Parse(data[2]);
-        this.hp = float.Parse(data[3]);
-        this.damge = float.Parse(data[4]);
+        this.speed = float.Parse(data[2]);
+        this.level = int.Parse(data[3]);
+        this.hp = float.Parse(data[4]);
+        this.damge = float.Parse(data[5]);
     }
     TypeEnemy GetPlayerTypeByString(string _type)
     {

@@ -29,63 +29,66 @@ public class SpawnEnemy : MonoBehaviour {
     void Spawn()
     {
         int soluot = Level.Instance.soluot;
-        if (t > 2.0f)
+        if (Level.Instance.stage == StageSpawn.ENEMY)
         {
-            if (isRIght)
+            if (t > 2.0f)
             {
-                string[] str = GetListEnemy(Level.Instance.listLevel[level].luot[soluot].right);
-                if (i < str.Length)
+                if (isRIght)
                 {
-                    int type = int.Parse(str[i].ToString());
-                    switch (type)
+                    string[] str = GetListEnemy(Level.Instance.listLevel[level].luot[soluot].right);
+                    if (i < str.Length)
                     {
-                        case 0:
-                            break;
-                        case 1:
-                            ManagerObject.Instance.RenderEnemy(EnemyType.ENEMY_RUN, transform.position, "Enemy", 1, ref Level.Instance.listEnemy);
-                            break;
-                        case 2:
-                            ManagerObject.Instance.RenderEnemy(EnemyType.ENEMY_TANK, transform.position, "Enemy", 1, ref Level.Instance.listEnemy);
-                            break;
-                        case 3:
-                            break;
-                        case 4:
-                            break;
-                        case 5:
-                            break;
+                        int type = int.Parse(str[i].ToString());
+                        switch (type)
+                        {
+                            case 0:
+                                break;
+                            case 1:
+                                ManagerObject.Instance.RenderEnemy(EnemyType.ENEMY_RUN, transform.position, "Enemy", 1, ref Level.Instance.listEnemy);
+                                break;
+                            case 2:
+                                ManagerObject.Instance.RenderEnemy(EnemyType.ENEMY_TANK, transform.position, "Enemy", 1, ref Level.Instance.listEnemy);
+                                break;
+                            case 3:
+                                break;
+                            case 4:
+                                break;
+                            case 5:
+                                break;
+                        }
+                        i++;
                     }
-                    i++;
                 }
-            }
-            else
-            {
-                string[] str = GetListEnemy(Level.Instance.listLevel[level].luot[soluot].left);
-                if (i < str.Length)
+                else
                 {
-                    int type = int.Parse(str[i].ToString());
-                    switch (type)
+                    string[] str = GetListEnemy(Level.Instance.listLevel[level].luot[soluot].left);
+                    if (i < str.Length)
                     {
-                        case 0:
-                            break;
-                        case 1:
-                            ManagerObject.Instance.RenderEnemy(EnemyType.ENEMY_RUN, transform.position, "Enemy", 0, ref Level.Instance.listEnemy);
-                            break;
-                        case 2:
-                            ManagerObject.Instance.RenderEnemy(EnemyType.ENEMY_TANK, transform.position, "Enemy", 0, ref Level.Instance.listEnemy);
-                            break;
-                        case 3:
-                            break;
-                        case 4:
-                            break;
-                        case 5:
-                            break;
+                        int type = int.Parse(str[i].ToString());
+                        switch (type)
+                        {
+                            case 0:
+                                break;
+                            case 1:
+                                ManagerObject.Instance.RenderEnemy(EnemyType.ENEMY_RUN, transform.position, "Enemy", 0, ref Level.Instance.listEnemy);
+                                break;
+                            case 2:
+                                ManagerObject.Instance.RenderEnemy(EnemyType.ENEMY_TANK, transform.position, "Enemy", 0, ref Level.Instance.listEnemy);
+                                break;
+                            case 3:
+                                break;
+                            case 4:
+                                break;
+                            case 5:
+                                break;
+                        }
+                        i++;
                     }
-                    i++;
-                }                
+                }
+                t = 0;
             }
-            t = 0;
+            t += Time.deltaTime;
         }
-        t += Time.deltaTime;
     }
     string[] GetListEnemy(string _str)
     {

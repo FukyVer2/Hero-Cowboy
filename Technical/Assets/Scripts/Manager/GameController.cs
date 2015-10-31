@@ -8,9 +8,9 @@ public class GameController : MonoSingleton<GameController> {
     public Cowboy heroCowboy;
     public bool isStopSpawnEnemy;
     public UIController uiController;
-    public SpawnEnemy spaenEnemy;
     public float gold = 0;
     public int level = 0;
+    public LevelInfo levelInfo;
     void Awake()
     {
         gold = PlayerPrefs.GetFloat("Gold");
@@ -23,6 +23,7 @@ public class GameController : MonoSingleton<GameController> {
     }
 	void Start () {
         AudioController.Instance.PlaySoundRepeat(AudioType.SOUND_BG_INGAME);
+        LoadLevel();
 	}
 	
 	// Update is called once per frame
@@ -81,5 +82,75 @@ public class GameController : MonoSingleton<GameController> {
     public void GameReplay()
     {
         Level.Instance.LevelUp();
+    }
+    [ContextMenu("Load Info")]
+    public void LoadLevel()
+    {
+        //load thong tin player
+        levelInfo.LoadLevelFromFile("Player/Player", LevelType.PLAYER);
+
+        //load thong tin Enemy
+        levelInfo.LoadLevelFromFile("Enemy/Enemy", LevelType.ENEMY);
+
+        //load thong tin Gun
+        levelInfo.LoadLevelFromFile("Gun/Gun", LevelType.GUN);
+    }
+    [ContextMenu("Player Index")]
+    public void LoadPlayer()
+    {
+        PlayerIndex playerIndex = levelInfo.listPlayer[0].playerIndex;
+        int l = playerIndex.level;
+        float hp = playerIndex.hp;
+        heroCowboy.Init(hp, l);
+    }
+    public void LoadTower()
+    {
+        PlayerIndex playerIndex = levelInfo.listPlayer[1].playerIndex;
+        int level = playerIndex.level;
+        float hp = playerIndex.hp;
+        float damge = playerIndex.damge;
+        heroCowboy.Init(hp, level);
+    }
+    public void LoadSupporter()
+    { }
+    public void LoadEnemy(Enemy enemy)
+    {
+        EnemyIndex enemyIndex = new EnemyIndex();
+        Type type = enemy.typeEnemy;
+        
+        switch(type)
+        {
+                
+            case Type.ENEMY_RUN:
+                enemyIndex = levelInfo.listEnemy[0].enemyIndex;
+                break;
+            case Type.ENEMY_TANK:
+                enemyIndex = levelInfo.listEnemy[1].enemyIndex;
+                break;
+            case Type.ENEMY_FLY:
+                enemyIndex = levelInfo.listEnemy[2].enemyIndex;
+                break;
+            case Type.ENEMY_TELE:
+                enemyIndex = levelInfo.listEnemy[3].enemyIndex;
+                break;
+        }
+        enemy.Init(enemyIndex.level, enemyIndex.speed, enemyIndex.hp, enemyIndex.damge);
+        
+    }
+    public void LoadGun(Gun gun)
+    {
+        GunIndex gunIndex = new GunIndex();
+        GunType type = gun.gunType;
+        switch(type)
+        {
+            case GunType.SHOOT_GUN:
+                gunIndex = levelInfo.listGun[0].gunIndex;
+                break;
+            case GunType.MACHINE_GUN:
+                gunIndex = levelInfo.listGun[1].gunIndex;
+                break;
+        }
+        if (gunIndex != null)
+            gun.InitGun(gunIndex.level, gunIndex.numberBulletMax, gunIndex.numberBulletsOfCartridge, gunIndex.damge, gunIndex.ratioCrit, gunIndex.valueCrit);
     }
 }

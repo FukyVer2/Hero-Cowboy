@@ -5,8 +5,9 @@ public enum Type
     NONE = 0,
     ENEMY_RUN = 1,
     ENEMY_TANK = 2,
-    ENEMY_BOOM = 3,
-    BOSS_LV1 = 4
+    ENEMY_FLY = 3,
+    ENEMY_TELE = 4,
+    BOSS_LV1 = 5
 }
 
 public class Enemy : BaseGameObject
@@ -14,8 +15,8 @@ public class Enemy : BaseGameObject
     //di chuyen
     public float speed;
     public float timeDelayAttack;
-    public float hpDefault;
     public Type typeEnemy = Type.NONE;
+    public int level;
 	// Use this for initialization
 	void Start () {        
 	}
@@ -24,16 +25,16 @@ public class Enemy : BaseGameObject
 	void Update () {
         
 	}
-    public virtual void SetHP()
+    public virtual void Init(int _level, float _speed, float _hp, float _damge)
     {
-        
-    }
-    public virtual void Init()
-    {        
-        animator = GetComponent<Animator>();        
+        this.level = _level;
+        this.speed = _speed;
+        this.hp = _hp;
+        this.damge = _damge;
+
+        animator = GetComponent<Animator>();
         health.Reset();
         health.SetHpDefault(hp);
-        
     }
     public virtual void Hit(float _damge, bool isCrit)
     {        

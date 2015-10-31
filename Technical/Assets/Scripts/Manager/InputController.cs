@@ -12,6 +12,17 @@ public class InputController : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     {
         right = Screen.width / 2.0f;
     }
+    void UpdateInput()
+    {
+        if(Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            LeftClickEvent();
+        }
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            RightClickEvent();
+        }
+    }
     public void LeftClickEvent()
     {
         if (GameController.Instance.heroCowboy != null)
@@ -36,6 +47,9 @@ public class InputController : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     }
     void Update()
     {
+#if UNITY_EDITOR
+        UpdateInput();
+#endif
         gunType = GetGuntype();
         if (gunType == GunType.MACHINE_GUN)
         {

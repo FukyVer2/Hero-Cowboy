@@ -17,10 +17,6 @@ public class EnemyBoom : Enemy {
             Move();
         }
 	}
-    public override void Init()
-    {
-        base.Init();
-    }
     public override void Attack()
     {
         base.Attack();

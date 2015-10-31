@@ -5,10 +5,10 @@ public class EnemyRun : Enemy {
 
 	// Use this for initialization
 	void Start () {
-        hpDefault = hp;
-        health.Reset();
-        health.SetHpDefault(hp);
-        animator = GetComponent<Animator>();  
+        //hpDefault = hp;
+        //health.Reset();
+        //health.SetHpDefault(hp);
+        //animator = GetComponent<Animator>();  
 	}
 	
 	// Update is called once per frame
@@ -18,24 +18,11 @@ public class EnemyRun : Enemy {
             Move();
         }
 	}
-    public override void SetHP()
+    public override void Init(int _level, float _speed, float _hp, float _damge)
     {
-        base.SetHP();
-        switch(typeEnemy)
-        {
-            case Type.ENEMY_RUN:
-                hp = HeroCowboyConfigs.HP_ENEMY_RUN;
-                break;
-            case Type.ENEMY_TANK:
-                hp = HeroCowboyConfigs.HP_ENEMY_TANK;
-                break;
-        }
-        
+        base.Init(_level, _speed, _hp, _damge);
     }
-    public override void Init()
-    {
-        base.Init();
-    }
+
     public override void Hit(float _damge, bool isCrit)
     {
         base.Hit(_damge, isCrit);

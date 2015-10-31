@@ -7,7 +7,7 @@ public class LevelInfo {
 
 
     public string filePath;
-    public List<LevelIndex> listLevelIndex = new List<LevelIndex>();
+    private List<LevelIndex> listLevelIndex = new List<LevelIndex>();
     public List<LevelIndex> listPlayer;
     public List<LevelIndex> listEnemy;
     public List<LevelIndex> listGun;

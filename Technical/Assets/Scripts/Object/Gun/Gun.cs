@@ -26,11 +26,22 @@ public class Gun : MonoBehaviour
 
     public Text txtCountBullet;
     public Text txtCountCartridge;
-    public float critDamge = 50.0f;//phan tram crit damge
+    public float critDamge = 230.0f;//phan tram crit damge
+    public float ratioCrit = 0;
+    public float level = 0;
     void Start()
     {
         //dicBulletResources = new Dictionary<GunType, GameObject>();
         InitGun();
+    }
+    public virtual void InitGun(int _level, int _numberBulletMax, int _numberBulletsOfCartridge, float _damge, float _ratioCrit, float _critDamge)
+    {
+        this.level = _level;
+        this.numberBulletMax = _numberBulletMax;
+        this.numberBulletsOfCartridge = _numberBulletsOfCartridge;
+        this.damge = _damge;
+        this.ratioCrit = _ratioCrit;
+        this.critDamge = _critDamge;
     }
 
     public virtual void InitGun()
@@ -89,7 +100,7 @@ public class Gun : MonoBehaviour
     {
         float _damge = damge;
         int rand = Random.Range(0, 100);
-        if(rand < 20)
+        if (rand < ratioCrit)
         {            
             _damge = damge * critDamge / 100.0f;
             bullet.isCritDamge = true;
