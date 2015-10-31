@@ -38,7 +38,7 @@ public class Cowboy : MonoBehaviour{
         Rotation(true);
         //gunType = GunType.SHOOT_GUN;
         GunController.Instance.SetGun(gunType);
-        hp = HeroCowboyConfigs.HP_PLAYER;
+        //hp = HeroCowboyConfigs.HP_PLAYER;
         health.Reset();
         health.SetHpDefault(hp);
 

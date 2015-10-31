@@ -1,2 +1,2 @@
 id;type;level;hp;damge
-1;PLAYER;1;600;0
+1;PLAYER;46;2190;0;

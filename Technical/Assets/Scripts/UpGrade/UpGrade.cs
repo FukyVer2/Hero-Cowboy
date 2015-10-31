@@ -28,6 +28,11 @@ public class UpGrade : MonoBehaviour {
         UpGradePlayer.Instance.UpdateLevel();
         UIGameOver.Instance.SetTextLevelPlayer(UpGradePlayer.Instance.GetLevel().ToString());
     }
+    [ContextMenu("Save Player")]
+    void TestSaveFilePlayer()
+    {
+        UpGradePlayer.Instance.SavePlayer();
+    }
     public void btUpGradeTower()
     { }
 }

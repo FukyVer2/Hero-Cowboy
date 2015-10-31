@@ -29,7 +29,8 @@ public class LevelInfo {
         if(textAsset != null)
         {
             string[] temp = textAsset.text.Split(new char[] { '\n' }, System.StringSplitOptions.RemoveEmptyEntries);
-            for(int i = 1; i < temp.Length; i++)
+            
+            for(int i = 1; i < temp.Length; i++)//bo dong dau tien
             {
                 string[] context = temp[i].Split(new char[] { ';' }, System.StringSplitOptions.RemoveEmptyEntries);
                 

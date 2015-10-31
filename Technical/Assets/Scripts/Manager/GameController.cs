@@ -24,6 +24,7 @@ public class GameController : MonoSingleton<GameController> {
 	void Start () {
         AudioController.Instance.PlaySoundRepeat(AudioType.SOUND_BG_INGAME);
         LoadLevel();
+        LoadPlayer();
 	}
 	
 	// Update is called once per frame
@@ -87,7 +88,7 @@ public class GameController : MonoSingleton<GameController> {
     public void LoadLevel()
     {
         //load thong tin player
-        levelInfo.LoadLevelFromFile("Player/Player", LevelType.PLAYER);
+        levelInfo.LoadLevelFromFile("Player/Player", LevelType.PLAYER);        
 
         //load thong tin Enemy
         levelInfo.LoadLevelFromFile("Enemy/Enemy", LevelType.ENEMY);
@@ -99,8 +100,9 @@ public class GameController : MonoSingleton<GameController> {
     public void LoadPlayer()
     {
         PlayerIndex playerIndex = levelInfo.listPlayer[0].playerIndex;
-        int l = playerIndex.level;
         float hp = playerIndex.hp;
+        int l = playerIndex.level;
+
         heroCowboy.Init(hp, l);
     }
     public void LoadTower()
