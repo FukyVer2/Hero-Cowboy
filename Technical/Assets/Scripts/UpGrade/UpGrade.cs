@@ -21,18 +21,14 @@ public class UpGrade : MonoBehaviour {
     }
     [ContextMenu("Up Grade")]
     public void btUpGradePlayer()
-    {
+    {      
+                        
         ManagerObject.Instance.RenderLevelUp(ObjectType.LEVELUP, transfPlayer.position);
         Particle.Instance.PlayerLevelUp(transfPlayer.position);
-        EffectCoin();
-        UpGradePlayer.Instance.UpdateLevel();
-        UIGameOver.Instance.SetTextLevelPlayer(UpGradePlayer.Instance.GetLevel().ToString());
-    }
-    [ContextMenu("Save Player")]
-    void TestSaveFilePlayer()
-    {
-        UpGradePlayer.Instance.SavePlayer();
-    }
+        EffectCoin();       
+        UIGameOver.Instance.SetTextGold();
+        
+    }   
     public void btUpGradeTower()
     { }
 }

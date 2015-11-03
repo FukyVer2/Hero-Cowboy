@@ -10,6 +10,8 @@ public class UIGameOver : MonoSingleton<UIGameOver> {
     public Text txtLevelPlayer;
     public Text txtLevelTower;
     public Text txtLevelSuprort;
+
+    public Text txtGoldUpgrade;
 	// Use this for initialization
 	void Start () {
 	
@@ -30,4 +32,9 @@ public class UIGameOver : MonoSingleton<UIGameOver> {
     {
         txtLevelPlayer.text = txt;
     }
+    public void SetTextGoldPlayer(string txt)
+    {
+        txtGoldUpgrade.text = txt;
+    }
+
 }

@@ -12,6 +12,7 @@ public class GameController : MonoSingleton<GameController> {
     public int level = 0;
     public LevelInfo levelInfo;
     public GunController gunController;
+    public UpGradePlayer upgradePlayer;
 
     void Awake()
     {
@@ -64,11 +65,10 @@ public class GameController : MonoSingleton<GameController> {
         Level.Instance.InitLevel();
     }
     void DelayGameWin()
-    {
-        heroCowboy.health.HP(HeroCowboyConfigs.HP_PLAYER);
+    {       
         StopSpawnEnemy();
         uiController.GameOver();
-        UIGameOver.Instance.SetTextGold();
+        upgradePlayer.Init();
     }
     public void ResetTest()
     {
