@@ -6,7 +6,8 @@ public enum StageSpawn
     NONE = 0,
     ENEMY = 1,
     BOSS = 2,
-    WIN = 3
+    WIN = 3,
+    VICTORY = 4
 }
 [System.Serializable]
 public class Luot
@@ -26,18 +27,23 @@ public class Level : MonoSingleton<Level> {
 
     public List<Luot> listLevel = new List<Luot>();
     public List<Enemy> listEnemy;
-    public int soluot = 8;
+    public int soluot = 0;
     public List<SpawnEnemy> listSpawn;
     public StageSpawn stage = StageSpawn.NONE;
     public int level;
 
 	// Use this for initialization
 	void Start () {
-        stage = StageSpawn.ENEMY;
-        UIGamePlay.Instance.SetLuot((soluot +1).ToString() + "/10");
+        //InitLevel();
+	}
+    public void InitLevel()
+    {
+        stage = StageSpawn.ENEMY;       
         level = GameController.Instance.level;
         LoadAllLevelFromFile("Level");
-	}
+        //string l = (soluot + 1).ToString() + "/10";
+        UIGamePlay.Instance.SetLuot((soluot + 1).ToString() + "/10");
+    }
     [ContextMenu("Load Level")]
     void Test2()
     {
@@ -69,7 +75,7 @@ public class Level : MonoSingleton<Level> {
         {
             Debug.Log("Chua load dc file : " + filePath);
         }
-        for(int i = 0;i<listLevel.Count;i++)
+        for(int i = 0; i < listLevel.Count;i++)
         {
             listLevel[i].boss = ManagerObject.Instance.listBoss[i];
         }
@@ -80,21 +86,25 @@ public class Level : MonoSingleton<Level> {
         {
             listEnemy.Remove(enemy);
 
-            if (listEnemy.Count <= 0  )
+            if (stage != StageSpawn.VICTORY)
             {
-                if (soluot < listLevel[level].luot.Count - 1 && stage != StageSpawn.BOSS)
+                if (listEnemy.Count <= 0)
                 {
-                    soluot++;
-                    UIGamePlay.Instance.SetLuot((soluot + 1).ToString() + "/10");
-                    UpdateSpawn();
+                    //if (soluot < listLevel[level].luot.Count - 1 && stage != StageSpawn.BOSS)
+                    if (soluot < 9 && stage != StageSpawn.BOSS)
+                    {
+                        soluot++;
+                        UIGamePlay.Instance.SetLuot((soluot + 1).ToString() + "/10");
+                        UpdateSpawn();
+                    }
+                    else
+                    {
+                        stage = StageSpawn.BOSS;
+                        UIGamePlay.Instance.SetLuot("BOSS");
+                        Invoke("Boss", 2.0f);
+                    }
                 }
-                else
-                {
-                    stage = StageSpawn.BOSS;
-                    UIGamePlay.Instance.SetLuot("BOSS");
-                    Invoke("Boss", 2.0f);
-                }
-            }          
+            }
         }        
     }
     void UpdateSpawn()
@@ -117,20 +127,35 @@ public class Level : MonoSingleton<Level> {
     void Win()
     {
         GameController.Instance.GameWin();
-        if (level < listLevel.Count - 1)
+        if (level <= listLevel.Count - 1)
             GameController.Instance.LevelUp();
-    }
-    public void LevelUp()
-    {
-        level = GameController.Instance.level;
-        stage = StageSpawn.ENEMY;
-        soluot = 0;
-        UpdateSpawn();
-        for (int i = 0; i < listSpawn.Count; i++)
+        else
         {
-            listSpawn[i].SetLevel(level);
+            stage = StageSpawn.VICTORY;
+            GameController.Instance.isStopSpawnEnemy = false;
+            Debug.Log("Game Win CMNR Ver 1");
         }
-        listEnemy.Clear();
-        UIGamePlay.Instance.SetLuot((soluot + 1).ToString() + "/10");
+    }
+    public void LevelUp(int _level)
+    {
+        if (level < listLevel.Count - 1)
+        {
+            level = _level;
+            stage = StageSpawn.ENEMY;
+            soluot = 0;
+            UpdateSpawn();
+            for (int i = 0; i < listSpawn.Count; i++)
+            {
+                listSpawn[i].SetLevel(level);
+            }
+            listEnemy.Clear();
+            UIGamePlay.Instance.SetLuot((soluot + 1).ToString() + "/10");
+        }
+        else
+        {
+            stage = StageSpawn.VICTORY;
+            GameController.Instance.isStopSpawnEnemy = false;
+            Debug.Log("Game Win CMNR");
+        }
     }
 }

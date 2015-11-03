@@ -14,7 +14,7 @@ public class UIGamePlay : MonoSingleton<UIGamePlay> {
     }
 
     public void SetTextGold(string txt)
-    {
+    {        
         txtGold.text = txt;
     }
     public void SetTextDiamond(string txt)
@@ -27,6 +27,6 @@ public class UIGamePlay : MonoSingleton<UIGamePlay> {
     }
     public void SetLuot(string txt)
     {
-        txtLuot.text = txt;
+        txtLuot.text = txt;    
     }
 }

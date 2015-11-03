@@ -11,6 +11,8 @@ public class GameController : MonoSingleton<GameController> {
     public float gold = 0;
     public int level = 0;
     public LevelInfo levelInfo;
+    public GunController gunController;
+
     void Awake()
     {
         gold = PlayerPrefs.GetFloat("Gold");
@@ -23,8 +25,6 @@ public class GameController : MonoSingleton<GameController> {
     }
 	void Start () {
         AudioController.Instance.PlaySoundRepeat(AudioType.SOUND_BG_INGAME);
-        LoadLevel();
-        LoadPlayer();
 	}
 	
 	// Update is called once per frame
@@ -34,11 +34,34 @@ public class GameController : MonoSingleton<GameController> {
     {
         isStopSpawnEnemy = true;
     }
+    public void GamePlay()
+    {
+        //load du lieu
+        //load du lieu tu Resources:Player, Gun , Enemy;
+        LoadLevel();
+        //load player
+        LoadPlayer();
+
+        //load thong tin Gun
+        for (int i = 0; i < gunController.listGunConfig.Count; i++)
+        {
+            if (gunController.listGunConfig[i] != null)
+                LoadGun(gunController.listGunConfig[i].gunObject);
+        }
+
+        Level.Instance.InitLevel();
+    }
     public void GameWin()
     {
         ResetTest();
 
         Invoke("DelayGameWin", 7.0f);
+    }
+    public void GameReplay()
+    {
+        Level.Instance.LevelUp(level);
+        GamePlay();
+        Level.Instance.InitLevel();
     }
     void DelayGameWin()
     {
@@ -61,7 +84,7 @@ public class GameController : MonoSingleton<GameController> {
         //insteadBullet.gameObject.SetActive(isActive);
         ManagerObject.Instance.insteadBullet.transform.parent.gameObject.SetActive(isActive);
     }
-
+    #region GOLD
     public float Gold()
     {
         return gold / 100.0f;
@@ -76,15 +99,14 @@ public class GameController : MonoSingleton<GameController> {
         PlayerPrefs.SetFloat("Gold", gold);
         PlayerPrefs.Save();
     }
+    #endregion
     public void LevelUp()
     {
         level += 1;
     }
-    public void GameReplay()
-    {
-        Level.Instance.LevelUp();
-    }
+
     [ContextMenu("Load Info")]
+    #region LEVEL_INDEX
     public void LoadLevel()
     {
         //load thong tin player
@@ -100,18 +122,22 @@ public class GameController : MonoSingleton<GameController> {
     public void LoadPlayer()
     {
         PlayerIndex playerIndex = levelInfo.listPlayer[0].playerIndex;
+        
         float hp = playerIndex.hp;
         int l = playerIndex.level;
 
         heroCowboy.Init(hp, l);
+
     }
     public void LoadTower()
     {
         PlayerIndex playerIndex = levelInfo.listPlayer[1].playerIndex;
+
         int level = playerIndex.level;
         float hp = playerIndex.hp;
         float damge = playerIndex.damge;
         heroCowboy.Init(hp, level);
+
     }
     public void LoadSupporter()
     { }
@@ -137,7 +163,6 @@ public class GameController : MonoSingleton<GameController> {
                 break;
         }
         enemy.Init(enemyIndex.level, enemyIndex.speed, enemyIndex.hp, enemyIndex.damge);
-        
     }
     public void LoadGun(Gun gun)
     {
@@ -152,7 +177,16 @@ public class GameController : MonoSingleton<GameController> {
                 gunIndex = levelInfo.listGun[1].gunIndex;
                 break;
         }
-        if (gunIndex != null)
-            gun.InitGun(gunIndex.level, gunIndex.numberBulletMax, gunIndex.numberBulletsOfCartridge, gunIndex.damge, gunIndex.ratioCrit, gunIndex.valueCrit);
+
+        gun.InitGun(gunIndex.level, gunIndex.numberBulletMax, gunIndex.numberBulletsOfCartridge, gunIndex.damge, gunIndex.ratioCrit, gunIndex.valueCrit);
+
     }
+    #endregion
+
+    //load tat ca cac thong so cua 1 man choi
+    //thong tin player
+    //thong tin Sung
+    //Enemy
+    //Boss
+
 }

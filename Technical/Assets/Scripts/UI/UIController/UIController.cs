@@ -10,19 +10,28 @@ public class UIController : MonoBehaviour {
     public GameObject overObject;
 	// Use this for initialization
 	void Start () {
-	
+        Init();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+       
 	}
+    public void Init()
+    {
+        gameStartPanel.SetActive(true);
+        gamePlayPanel.SetActive(false);
+        gameOverPanel.SetActive(false);
+        playObject.SetActive(false);
+        overObject.SetActive(false);
+    }
     public void Play()
     {
         gameStartPanel.SetActive(false);
         gamePlayPanel.SetActive(true);
         playObject.SetActive(true);
         GameController.Instance.isStopSpawnEnemy = false;
+        GameController.Instance.GamePlay();
     }
     public void GameOver()
     {

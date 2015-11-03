@@ -75,6 +75,7 @@ public class InputController : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     {
         if (GameController.Instance.heroCowboy != null)
         {
+            isDown = false;
             if (gunType == GunType.MACHINE_GUN)
             {
                 isDown = true;
@@ -115,7 +116,8 @@ public class InputController : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     }
     public void OnPointerUp(PointerEventData eventData)
     {
-        isDown = false;
+        if ((isRightClick == true && eventData.position.x > right) || (isRightClick == false && eventData.position.x < right))
+            isDown = false;
         if (gunType == GunType.MACHINE_GUN)
             GameController.Instance.heroCowboy.ChangeState(CowboyState.IDLE_STATE);
         //throw new System.NotImplementedException();
