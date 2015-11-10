@@ -42,6 +42,7 @@ public class Gun : MonoBehaviour
         this.damge = _damge;
         this.ratioCrit = _ratioCrit;
         this.critDamge = _critDamge;
+
     }
 
     public virtual void InitGun()

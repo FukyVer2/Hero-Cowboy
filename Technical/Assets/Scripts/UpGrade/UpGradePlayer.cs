@@ -6,12 +6,13 @@ using UnityEngine.UI;
 
 public class UpGradePlayer :MonoBehaviour
 {
+    public UIInfoItem txtInfoItem;
     public Transform transfPlayer;
     public Transform transfCoinPlayer;
     private float hpPlayer = 1500;
     private int levelPlayer;// = PlayerPrefs.GetInt("LevelPlayer");
     private float trongSoHp = 1;
-    private float[] goldLevel = {1200, 1800, 2375, 3400, 4150, 5575, 6775, 8125, 10250, 12750, 14200, 16500, 19795};
+    private float[] goldLevel = {950, 1275, 1800, 2375, 3425, 4150, 5575, 6775, 8125, 10250, 12750, 14200, 16500, 19795};
     void Start()
     {
         levelPlayer = PlayerPrefs.GetInt("LevelPlayer");
@@ -19,8 +20,9 @@ public class UpGradePlayer :MonoBehaviour
     public void Init()
     {
         UIGameOver.Instance.SetTextGold();
-        UIGameOver.Instance.SetTextLevelPlayer(GetLevel().ToString());
-        UIGameOver.Instance.SetTextGoldPlayer((goldLevel[levelPlayer] / 100.0f).ToString());
+        //UIGameOver.Instance.SetTextLevelPlayer("Level " + GetLevel().ToString());
+        //UIGameOver.Instance.SetTextGoldPlayer((goldLevel[GetLevel()] / 100.0f).ToString() + "K");
+        SetText();
     }
     void EffectCoin()
     {
@@ -39,8 +41,10 @@ public class UpGradePlayer :MonoBehaviour
             UpdateLevel();
            
             UIGameOver.Instance.SetTextGold();
-            UIGameOver.Instance.SetTextLevelPlayer(GetLevel().ToString());
-            UIGameOver.Instance.SetTextGoldPlayer((goldLevel[levelPlayer] / 100.0f).ToString());
+            //UIGameOver.Instance.SetTextLevelPlayer("Level " +GetLevel().ToString());
+            //UIGameOver.Instance.SetTextGoldPlayer((goldLevel[levelPlayer] / 100.0f).ToString() + "K");
+
+            SetText();
         }
     }    
     public void UpdateLevel()
@@ -51,16 +55,17 @@ public class UpGradePlayer :MonoBehaviour
         SavePlayer();
         
     }
+    [ContextMenu("reset level")]
     public void ResetLevelPlayer()
     {
         levelPlayer = 1;
         SaveLevel();
         SetHp();
+        SavePlayer();
     }
     public void txtGetLevel()
     {
         int l = GetLevel();
-        Debug.Log("Level = " + l);
     }
     public int GetLevel()
     {
@@ -79,8 +84,12 @@ public class UpGradePlayer :MonoBehaviour
     }
     void SetHp()
     {
-        this.hpPlayer = this.hpPlayer + (this.levelPlayer * this.hpPlayer) * trongSoHp / 100.0f;
+        this.hpPlayer = this.hpPlayer + ((GetLevel() - 1) * this.hpPlayer) * 10 / 100.0f;
         PlayerPrefs.Save();
+    }
+    void SetText()
+    {
+        txtInfoItem.Show("Lv: " + GetLevel().ToString(), "", GetHpPlayer().ToString() + "Hp", "", (goldLevel[levelPlayer] / 100.0f).ToString() + "K", "+250 Hp");
     }
     //luu thong so Player xuong File
     [ContextMenu("Luu File xuong")]

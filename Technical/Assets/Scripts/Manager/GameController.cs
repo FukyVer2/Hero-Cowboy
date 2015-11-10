@@ -17,6 +17,16 @@ public class GameController : MonoSingleton<GameController> {
     void Awake()
     {
         gold = PlayerPrefs.GetFloat("Gold");
+        //if (PlayerPrefs.GetInt("Level_Game") == 0)
+        //{
+        //    level = 0;
+        //    PlayerPrefs.Save();
+        //    PlayerPrefs.SetInt("Level_Game", level);
+        //}
+        //else
+        //{
+        //    level = PlayerPrefs.GetInt("Level_Game");
+        //}
     }
     [ContextMenu("Reset Gold")]
     void ResetGold()
@@ -25,6 +35,7 @@ public class GameController : MonoSingleton<GameController> {
         SaveGold();
     }
 	void Start () {
+        level = 0;
         AudioController.Instance.PlaySoundRepeat(AudioType.SOUND_BG_INGAME);
 	}
 	
@@ -47,7 +58,9 @@ public class GameController : MonoSingleton<GameController> {
         for (int i = 0; i < gunController.listGunConfig.Count; i++)
         {
             if (gunController.listGunConfig[i] != null)
+            {
                 LoadGun(gunController.listGunConfig[i].gunObject);
+            }
         }
 
         Level.Instance.InitLevel();
@@ -103,6 +116,8 @@ public class GameController : MonoSingleton<GameController> {
     public void LevelUp()
     {
         level += 1;
+        PlayerPrefs.SetInt("Level_Game", level);
+        PlayerPrefs.Save();
     }
 
     [ContextMenu("Load Info")]

@@ -40,7 +40,7 @@ public class Level : MonoSingleton<Level> {
     {
         stage = StageSpawn.ENEMY;       
         level = GameController.Instance.level;
-        LoadAllLevelFromFile("Level");
+        //LoadAllLevelFromFile("Level");
         //string l = (soluot + 1).ToString() + "/10";
         UIGamePlay.Instance.SetLuot((soluot + 1).ToString() + "/10");
     }
