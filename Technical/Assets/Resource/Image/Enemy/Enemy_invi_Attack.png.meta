@@ -1,15 +1,18 @@
 fileFormatVersion: 2
-guid: f4e1acbc5a95a9e438b696a9571adb1c
+guid: d91237d3e645c254489b809e0437dc3e
 TextureImporter:
   fileIDToRecycleName:
-    21300000: enemy_8_move_0
-    21300002: enemy_8_move_1
-    21300004: enemy_8_move_2
-    21300006: enemy_8_move_3
-    21300008: enemy_8_move_4
-    21300010: enemy_8_move_5
-    21300012: enemy_8_move_6
-    21300014: enemy_8_move_7
+    21300000: Enemy_invi_Attack_0
+    21300002: Enemy_invi_Attack_1
+    21300004: Enemy_invi_Attack_2
+    21300006: Enemy_invi_Attack_3
+    21300008: Enemy_invi_Attack_4
+    21300010: Enemy_invi_Attack_5
+    21300012: Enemy_invi_Attack_6
+    21300014: Enemy_invi_Attack_7
+    21300016: Enemy_invi_Attack_8
+    21300018: Enemy_invi_Attack_9
+    21300020: Enemy_invi_Attack_10
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -51,83 +54,113 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: enemy_8_move_0
+    - name: Enemy_invi_Attack_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 81
-        height: 52
+        width: 77
+        height: 62
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: enemy_8_move_1
+    - name: Enemy_invi_Attack_1
       rect:
         serializedVersion: 2
-        x: 81
+        x: 77
         y: 0
-        width: 81
-        height: 52
+        width: 77
+        height: 62
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: enemy_8_move_2
+    - name: Enemy_invi_Attack_2
       rect:
         serializedVersion: 2
-        x: 162
+        x: 154
         y: 0
-        width: 81
-        height: 52
+        width: 77
+        height: 62
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: enemy_8_move_3
+    - name: Enemy_invi_Attack_3
       rect:
         serializedVersion: 2
-        x: 243
+        x: 231
         y: 0
-        width: 81
-        height: 52
+        width: 77
+        height: 62
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: enemy_8_move_4
+    - name: Enemy_invi_Attack_4
       rect:
         serializedVersion: 2
-        x: 324
+        x: 308
         y: 0
-        width: 81
-        height: 52
+        width: 77
+        height: 62
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: enemy_8_move_5
+    - name: Enemy_invi_Attack_5
       rect:
         serializedVersion: 2
-        x: 405
+        x: 385
         y: 0
-        width: 81
-        height: 52
+        width: 77
+        height: 62
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: enemy_8_move_6
+    - name: Enemy_invi_Attack_6
       rect:
         serializedVersion: 2
-        x: 486
+        x: 462
         y: 0
-        width: 81
-        height: 52
+        width: 77
+        height: 62
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: enemy_8_move_7
+    - name: Enemy_invi_Attack_7
       rect:
         serializedVersion: 2
-        x: 567
+        x: 539
         y: 0
-        width: 81
-        height: 52
+        width: 77
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Enemy_invi_Attack_8
+      rect:
+        serializedVersion: 2
+        x: 616
+        y: 0
+        width: 77
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Enemy_invi_Attack_9
+      rect:
+        serializedVersion: 2
+        x: 693
+        y: 0
+        width: 77
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Enemy_invi_Attack_10
+      rect:
+        serializedVersion: 2
+        x: 770
+        y: 0
+        width: 77
+        height: 62
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

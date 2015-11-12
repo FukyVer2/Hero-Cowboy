@@ -5,7 +5,8 @@ public enum Direction
 {
     NONE = 0,
     LEFT = 1,
-    RIGHT = 2
+    RIGHT = 2,
+    MOVE = 3
 }
 public class EnemyFly : Enemy {
 
@@ -16,7 +17,13 @@ public class EnemyFly : Enemy {
     private float y = 0;
     private float posXPlayer = 0;
     private float posStart;
-    public Direction dir; 
+    public Direction dir;
+
+    private Vector3 posLeft;
+    private Vector3 posRight;
+    public float dis = 2.15f;
+    private bool isTop = false;
+    private float yy = -5.0f;
     public override void Init(int _level, float _speed, float _hp, float _damge)
     {
         base.Init(_level, _speed, _hp, _damge);
@@ -24,6 +31,9 @@ public class EnemyFly : Enemy {
 	// Use this for initialization
 	void Start () {
         posStart = transform.position.x;
+
+        posLeft = new Vector3(-dis, transform.position.y, 0);
+        posRight = new Vector3(dis, transform.position.y, 0);
     }
 	
 	// Update is called once per frame
@@ -37,6 +47,7 @@ public class EnemyFly : Enemy {
     public override void Attack()
     {
         base.Attack();
+        Damge();
     }
     public override void Die()
     {
@@ -49,59 +60,96 @@ public class EnemyFly : Enemy {
     public override void Move()
     {
         base.Move();
-
-        if(transform.position.x > posXPlayer)
+        if(dir == Direction.MOVE)
         {
-            dir = Direction.RIGHT;
+
+            if (transform.position.x < posLeft.x || transform.position.x > posRight.x)
+            {
+                transform.position += new Vector3(speed, 0) * Time.deltaTime;
+            }
+            else
+            {
+                Invoke("isAttack", 1);
+            }
+
         }
         else
         {
-            dir = Direction.LEFT;
-        }
-        Idle();
+            if (isTop)
+            {
+                if (transform.position.x >= posRight.x)
+                {
+                    dir = Direction.RIGHT;
+                    isTop = false;
+                    speedX = -Mathf.Abs(speedX);
+                    yy = -Mathf.Abs(yy);
+                    transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+                    Invoke("isAttack", 2);
+                }
+                if (transform.position.x <= posLeft.x)
+                {
+                    dir = Direction.LEFT;
+                    isTop = false;
+                    speedX = Mathf.Abs(speedX);
+                    yy = Mathf.Abs(yy);
+                    transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+                    Invoke("isAttack", 2);
+                }
 
-        //if (Mathf.Abs(transform.position.x - posXPlayer) > 2)
-        //{
-        //    transform.position += new Vector3(speed, 0, 0) * Time.deltaTime;
-        //}
-        //else
-        //{
-        //    //attack
-        //    Invoke("PhoenixAttack", 2);
-        //}
+            }
+            PhoenixAttack();
+            if (speedY >= 0 && dir == Direction.NONE)
+            {
+                isTop = true;
+            }
+            
+            
+        }
+        
+    }
+    void isAttack()
+    {
+        dir = Direction.NONE;
     }
     void PhoenixAttack()
-    {
-        //speedX = Mathf.Abs(speedX);
-        //switch(dir)
-        //{
-        //    case Direction.NONE:
-        //        break;
-        //    case Direction.LEFT:
-        //        speedX = speedX;
-        //        break;
-        //    case Direction.RIGHT:
-        //        speedX = -speedX;
-        //        break;
-        //}
-        if (dir != Direction.NONE)
+    {        
+        speedY = Mathf.Sin(transform.position.x);
+        if (dir == Direction.NONE)
         {
-            transform.position += new Vector3(speedX, Mathf.Sin(transform.position.x) * -5) * Time.deltaTime;
+            transform.position += new Vector3(speedX, speedY * yy) * Time.deltaTime;
         }
-    }
-    void Idle()
-    {
-        float posTarget = posStart - ((posStart - posXPlayer) * 2);
-        //if(Mathf.Abs(transform.position.x - posTarget) <= 0)
-        if(transform.position.x < -2.15f)
-        {
-            dir = Direction.NONE;
-        }
-        PhoenixAttack();
-    }
+    }   
     public override void SetSpeed(int isRight)
     {
         base.SetSpeed(isRight);
+        if(isRight == 1)
+        {
+            yy = -Mathf.Abs(yy);
+        }
+        else
+        {
+            yy = Mathf.Abs(yy);
+        }
     }
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.tag == "Player")
+        {
+            //Attack();
+            Damge();
+        }
+        if (col.tag == "Bullet")
+        {
 
+            Bullet bullet = col.GetComponentInChildren<Bullet>();
+            if (bullet != null)
+            {
+                if (bullet.bulletOfObject == BulletOfObjectType.PLAYER)
+                {
+                    bullet.KillEnemies();
+                    //Hit(bullet.damge);                    
+                }
+            }
+        }
+    }
 }

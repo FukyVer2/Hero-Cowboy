@@ -1,3 +1,3 @@
 id;type;level;numbermax;numbercartridge;damge;ratiocrit;crit
-1;SHOTGUN;1;9999;99;45;17;230;
+1;SHOTGUN;1;9999;99;52;17;230;
 2;MACHINEGUM;1;270;30;75;17;230;

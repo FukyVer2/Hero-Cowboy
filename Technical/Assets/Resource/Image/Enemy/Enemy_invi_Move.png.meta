@@ -1,15 +1,15 @@
 fileFormatVersion: 2
-guid: f4e1acbc5a95a9e438b696a9571adb1c
+guid: e12a995442fddf0428174da9635ac26f
 TextureImporter:
   fileIDToRecycleName:
-    21300000: enemy_8_move_0
-    21300002: enemy_8_move_1
-    21300004: enemy_8_move_2
-    21300006: enemy_8_move_3
-    21300008: enemy_8_move_4
-    21300010: enemy_8_move_5
-    21300012: enemy_8_move_6
-    21300014: enemy_8_move_7
+    21300000: Enemy_invi_Move_0
+    21300002: Enemy_invi_Move_1
+    21300004: Enemy_invi_Move_2
+    21300006: Enemy_invi_Move_3
+    21300008: Enemy_invi_Move_4
+    21300010: Enemy_invi_Move_5
+    21300012: Enemy_invi_Move_6
+    21300014: Enemy_invi_Move_7
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -51,83 +51,83 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: enemy_8_move_0
+    - name: Enemy_invi_Move_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 81
-        height: 52
+        width: 55
+        height: 60
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: enemy_8_move_1
+    - name: Enemy_invi_Move_1
       rect:
         serializedVersion: 2
-        x: 81
+        x: 55
         y: 0
-        width: 81
-        height: 52
+        width: 55
+        height: 60
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: enemy_8_move_2
+    - name: Enemy_invi_Move_2
       rect:
         serializedVersion: 2
-        x: 162
+        x: 110
         y: 0
-        width: 81
-        height: 52
+        width: 55
+        height: 60
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: enemy_8_move_3
+    - name: Enemy_invi_Move_3
       rect:
         serializedVersion: 2
-        x: 243
+        x: 165
         y: 0
-        width: 81
-        height: 52
+        width: 55
+        height: 60
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: enemy_8_move_4
+    - name: Enemy_invi_Move_4
       rect:
         serializedVersion: 2
-        x: 324
+        x: 220
         y: 0
-        width: 81
-        height: 52
+        width: 55
+        height: 60
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: enemy_8_move_5
+    - name: Enemy_invi_Move_5
       rect:
         serializedVersion: 2
-        x: 405
+        x: 275
         y: 0
-        width: 81
-        height: 52
+        width: 55
+        height: 60
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: enemy_8_move_6
+    - name: Enemy_invi_Move_6
       rect:
         serializedVersion: 2
-        x: 486
+        x: 330
         y: 0
-        width: 81
-        height: 52
+        width: 55
+        height: 60
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: enemy_8_move_7
+    - name: Enemy_invi_Move_7
       rect:
         serializedVersion: 2
-        x: 567
+        x: 385
         y: 0
-        width: 81
-        height: 52
+        width: 55
+        height: 60
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
