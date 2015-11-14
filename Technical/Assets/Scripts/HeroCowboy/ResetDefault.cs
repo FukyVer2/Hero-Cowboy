@@ -20,10 +20,8 @@ public class ResetDefault : MonoSingleton<ResetDefault> {
                 case GunType.GRENADE:
                     break;
                 case GunType.SHOOT_GUN:
-                    gun.Reset(HeroCowboyConfigs.NUMBER_BULLET_MAX_SHOTGUN, HeroCowboyConfigs.NUMBER_BULLET_OF_CARTRIDGE_SHOTGUN);
                     break;
                 case GunType.MACHINE_GUN:
-                    gun.Reset(HeroCowboyConfigs.NUMBER_BULLET_MAX_MACHINEGUN, HeroCowboyConfigs.NUMBER_BULLET_OF_CARTRIDGE_MACHINEGUN);
                     break;
             }
         }

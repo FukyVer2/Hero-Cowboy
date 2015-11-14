@@ -62,8 +62,7 @@ public class GameController : MonoSingleton<GameController> {
         for (int i = 0; i < gunController.listGunConfig.Count; i++)
         {
             if (gunController.listGunConfig[i] != null)
-            {
-               
+            {               
                 LoadGun(gunController.listGunConfig[i].gunObject);
             }
         }

@@ -44,6 +44,8 @@ public class Gun : MonoBehaviour
         this.critDamge = _critDamge;
         this.timeInsteadOfBullets = _timeInsteadOfBullets;
         this.timeRespawnShoot = 1.0f / _timeRespawnShoot;
+        numberBulletCurrent = numberBulletsOfCartridge;
+        numberBulletMax -= numberBulletCurrent;
 
     }
 
@@ -209,12 +211,6 @@ public class Gun : MonoBehaviour
             addCountGun = 0;
         }
         addCountGun += Time.deltaTime;
-    }
-    public void Reset(int _numberBulletMax, int _numberBulletsOfCartridge)
-    {
-        numberBulletMax = _numberBulletMax;
-        numberBulletsOfCartridge = _numberBulletsOfCartridge;        
-        SetTextCountBullet();
     }
 }
 
