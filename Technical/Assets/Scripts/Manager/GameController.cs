@@ -13,7 +13,7 @@ public class GameController : MonoSingleton<GameController> {
     public LevelInfo levelInfo;
     public GunController gunController;
     public UpGradePlayer upgradePlayer;
-
+    public GameData gameData;
     void Awake()
     {
         gold = PlayerPrefs.GetFloat("Gold");
@@ -37,6 +37,7 @@ public class GameController : MonoSingleton<GameController> {
 	void Start () {
         level = 0;
         AudioController.Instance.PlaySoundRepeat(AudioType.SOUND_BG_INGAME);
+        
 	}
 	
 	// Update is called once per frame
@@ -50,15 +51,18 @@ public class GameController : MonoSingleton<GameController> {
     {
         //load du lieu
         //load du lieu tu Resources:Player, Gun , Enemy;
-        LoadLevel();
+        //LoadLevel();
+        GameData.Instance.LoadGameData();
         //load player
         LoadPlayer();
 
         //load thong tin Gun
+        
         for (int i = 0; i < gunController.listGunConfig.Count; i++)
         {
             if (gunController.listGunConfig[i] != null)
             {
+               
                 LoadGun(gunController.listGunConfig[i].gunObject);
             }
         }
@@ -136,13 +140,16 @@ public class GameController : MonoSingleton<GameController> {
     [ContextMenu("Player Index")]
     public void LoadPlayer()
     {
-        PlayerIndex playerIndex = levelInfo.listPlayer[0].playerIndex;
+        //PlayerIndex playerIndex = levelInfo.listPlayer[0].playerIndex;
         
-        float hp = playerIndex.hp;
-        int l = playerIndex.level;
+        //float hp = playerIndex.hp;
+        //int l = playerIndex.level;
 
-        heroCowboy.Init(hp, l);
+        //heroCowboy.Init(hp, l);
 
+        HeroInfo heroInfo = GameData.Instance.GetHeroInfoByLevel(level);
+
+        heroCowboy.Init(heroInfo.HP, heroInfo.Level);
     }
     public void LoadTower()
     {
@@ -151,50 +158,54 @@ public class GameController : MonoSingleton<GameController> {
         int level = playerIndex.level;
         float hp = playerIndex.hp;
         float damge = playerIndex.damge;
-        heroCowboy.Init(hp, level);
+        heroCowboy.Init(hp, 1);
 
     }
     public void LoadSupporter()
     { }
     public void LoadEnemy(Enemy enemy)
     {
-        EnemyIndex enemyIndex = new EnemyIndex();
-        Type type = enemy.typeEnemy;
-        
-        switch(type)
-        {
+        //EnemyIndex enemyIndex = new EnemyIndex();
+        //Type type = enemy.typeEnemy;
+        EnemyTypeConfig typeConfig = enemy.typeEnemyConfig;
+        EnemyConfig enemyInfo = GameData.Instance.GetEnemyConfig(typeConfig);
+
+        //switch(type)
+        //{
                 
-            case Type.ENEMY_RUN:
-                enemyIndex = levelInfo.listEnemy[0].enemyIndex;
-                break;
-            case Type.ENEMY_TANK:
-                enemyIndex = levelInfo.listEnemy[1].enemyIndex;
-                break;
-            case Type.ENEMY_FLY:
-                enemyIndex = levelInfo.listEnemy[2].enemyIndex;
-                break;
-            case Type.ENEMY_TELE:
-                enemyIndex = levelInfo.listEnemy[3].enemyIndex;
-                break;
-        }
-        enemy.Init(enemyIndex.level, enemyIndex.speed, enemyIndex.hp, enemyIndex.damge);
+        //    case Type.ENEMY_RUN:
+        //        enemyIndex = levelInfo.listEnemy[0].enemyIndex;
+        //        break;
+        //    case Type.ENEMY_TANK:
+        //        enemyIndex = levelInfo.listEnemy[1].enemyIndex;
+        //        break;
+        //    case Type.ENEMY_FLY:
+        //        enemyIndex = levelInfo.listEnemy[2].enemyIndex;
+        //        break;
+        //    case Type.ENEMY_TELE:
+        //        enemyIndex = levelInfo.listEnemy[3].enemyIndex;
+        //        break;
+        //}
+        //enemy.Init(enemyIndex.level, enemyIndex.speed, enemyIndex.hp, enemyIndex.damge);
+        enemy.Init(1, enemyInfo.Vellocity, enemyInfo.HP, enemyInfo.Damage);
     }
     public void LoadGun(Gun gun)
     {
-        GunIndex gunIndex = new GunIndex();
+        //GunIndex gunIndex = new GunIndex();
         GunType type = gun.gunType;
-        switch(type)
-        {
-            case GunType.SHOOT_GUN:
-                gunIndex = levelInfo.listGun[0].gunIndex;
-                break;
-            case GunType.MACHINE_GUN:
-                gunIndex = levelInfo.listGun[1].gunIndex;
-                break;
-        }
+        GunInfo gunInfo = GameData.Instance.GetGunInfoByLevel(type, 1);
+        //switch(type)
+        //{
+        //    case GunType.SHOOT_GUN:
+        //        gunIndex = levelInfo.listGun[0].gunIndex;
+        //        break;
+        //    case GunType.MACHINE_GUN:
+        //        gunIndex = levelInfo.listGun[1].gunIndex;
+        //        break;
+        //}
 
-        gun.InitGun(gunIndex.level, gunIndex.numberBulletMax, gunIndex.numberBulletsOfCartridge, gunIndex.damge, gunIndex.ratioCrit, gunIndex.valueCrit);
-
+        //gun.InitGun(gunIndex.level, gunIndex.numberBulletMax, gunIndex.numberBulletsOfCartridge, gunIndex.damge, gunIndex.ratioCrit, gunIndex.valueCrit);
+        gun.InitGun(gunInfo.Level, gunInfo.MaxBullet, gunInfo.CountBullet, gunInfo.Damage, gunInfo.Ratico, gunInfo.Crit);
     }
     #endregion
 

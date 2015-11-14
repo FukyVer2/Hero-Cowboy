@@ -33,6 +33,7 @@ public class Enemy : BaseGameObject
     public float speed;
     public float timeDelayAttack;
     public Type typeEnemy = Type.NONE;
+    public EnemyTypeConfig typeEnemyConfig = EnemyTypeConfig.NONE;
     public int level;
 	// Use this for initialization
 	void Start () {        

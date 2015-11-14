@@ -33,7 +33,9 @@ public class GameData : Singleton<GameData> {
 	public HeroInfo GetHeroInfoByLevel(int level) 
 	{
 		HeroConfig heroConfig = mHeroConfig.Find(x => x.HeroID == 1);
-		HeroLevelConfig heroLevel = mHeroLevelConfig.Find (x => x.HeroLevel == level);
+        Debug.Log("hero Name = " + heroConfig.HeroName);
+		HeroLevelConfig heroLevel = mHeroLevelConfig.Find (x => x.HeroLevel == 1);
+        Debug.Log("hero level = " + heroLevel.HeroLevel);
 
 		HeroInfo heroInfo = new HeroInfo (heroConfig, heroLevel);
 		return heroInfo;

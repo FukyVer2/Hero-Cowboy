@@ -31,6 +31,12 @@ public class EnemyObject
     public GameObject prefabs;
 }
 [System.Serializable]
+public class EnemyObjectConfig
+{
+    public EnemyTypeConfig typeEnemy;
+    public GameObject prefabs;
+}
+[System.Serializable]
 public class Effect
 {
     public ObjectType objectType;
@@ -40,7 +46,7 @@ public class ManagerObject : MonoSingleton<ManagerObject> {
 
     public List<EnemyObject> listEnemy;
     public List<Effect> listEffect;
-
+    public List<EnemyObjectConfig> listEnemyConfig;
     public InsteadBullet insteadBullet;//thay dan
 
     public List<GameObject> listBoss;
@@ -81,6 +87,22 @@ public class ManagerObject : MonoSingleton<ManagerObject> {
         Vector3 p = RandomPosition(pos, 0.5f);
         //GameObject enemyObj = PoolObject.Instance.SpawnObjectPos(listEnemy[(int)objectType], "Enemy", p);
         GameObject enemyObj = PoolObject.Instance.SpawnObjectPos(listEnemy[(int)objectType].prefabs, "Enemy", p);
+        //enemyObj.transform.position = RandomPosition(pos, 0.5f);
+        Enemy enemy = enemyObj.GetComponent<Enemy>();
+        if (enemy != null)
+        {
+            GameController.Instance.LoadEnemy(enemy);
+            enemy.SetSpeed(isRight);
+            if (!l.Contains(enemy))
+                l.Add(enemy);
+        }
+    }
+    public void RenderEnemyConfig(EnemyTypeConfig objectType, Vector3 pos, string strPrefabs, int isRight, ref List<Enemy> l)
+    {
+
+        Vector3 p = RandomPosition(pos, 0.5f);
+        //GameObject enemyObj = PoolObject.Instance.SpawnObjectPos(listEnemy[(int)objectType], "Enemy", p);
+        GameObject enemyObj = PoolObject.Instance.SpawnObjectPos(listEnemyConfig.Find(x=>x.typeEnemy == objectType).prefabs, "Enemy", p);
         //enemyObj.transform.position = RandomPosition(pos, 0.5f);
         Enemy enemy = enemyObj.GetComponent<Enemy>();
         if (enemy != null)
