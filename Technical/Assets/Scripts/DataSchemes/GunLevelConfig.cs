@@ -1,6 +1,4 @@
 using System;
-
-[System.Serializable]
 public class GunLevelConfig : ICloneable
 {
 	public GunLevelConfig(){}
