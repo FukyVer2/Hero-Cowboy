@@ -22,7 +22,7 @@ public class GunInfo {
 
 	public GunInfo(GunDataConfig gunConfig, GunLevelConfig gunLevel) 
 	{
-		this.GunID = gunConfig.GunID;
+        this.GunID = gunConfig.GunID;
 		this.Level = gunLevel.Level;
 		this.Damage = gunConfig.Damage * gunLevel.Damage;
 		this.FireRate = gunConfig.FireRate * gunLevel.FireRate;
