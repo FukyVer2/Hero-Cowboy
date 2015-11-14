@@ -17,6 +17,7 @@ public class GameController : MonoSingleton<GameController> {
     void Awake()
     {
         gold = PlayerPrefs.GetFloat("Gold");
+        GameData.Instance.LoadGameData();
         //if (PlayerPrefs.GetInt("Level_Game") == 0)
         //{
         //    level = 0;
@@ -52,7 +53,7 @@ public class GameController : MonoSingleton<GameController> {
         //load du lieu
         //load du lieu tu Resources:Player, Gun , Enemy;
         //LoadLevel();
-        GameData.Instance.LoadGameData();
+        
         //load player
         LoadPlayer();
 
@@ -147,8 +148,7 @@ public class GameController : MonoSingleton<GameController> {
 
         //heroCowboy.Init(hp, l);
 
-        HeroInfo heroInfo = GameData.Instance.GetHeroInfoByLevel(level);
-
+        HeroInfo heroInfo = GameData.Instance.GetHeroInfoByLevel(1);
         heroCowboy.Init(heroInfo.HP, heroInfo.Level);
     }
     public void LoadTower()
@@ -169,7 +169,7 @@ public class GameController : MonoSingleton<GameController> {
         //Type type = enemy.typeEnemy;
         EnemyTypeConfig typeConfig = enemy.typeEnemyConfig;
         EnemyConfig enemyInfo = GameData.Instance.GetEnemyConfig(typeConfig);
-
+        Debug.Log("Hp = " + enemyInfo.HP);
         //switch(type)
         //{
                 
