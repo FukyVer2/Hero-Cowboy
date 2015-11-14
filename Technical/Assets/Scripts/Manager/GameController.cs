@@ -205,7 +205,7 @@ public class GameController : MonoSingleton<GameController> {
         //}
 
         //gun.InitGun(gunIndex.level, gunIndex.numberBulletMax, gunIndex.numberBulletsOfCartridge, gunIndex.damge, gunIndex.ratioCrit, gunIndex.valueCrit);
-        gun.InitGun(gunInfo.Level, gunInfo.MaxBullet, gunInfo.CountBullet, gunInfo.Damage, gunInfo.Ratico, gunInfo.Crit);
+        gun.InitGun(gunInfo.Level, gunInfo.MaxBullet, gunInfo.CountBullet, gunInfo.Damage, gunInfo.Ratico, gunInfo.Crit, gunInfo.CountDown, gunInfo.FireRate);
     }
     #endregion
 

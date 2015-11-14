@@ -34,7 +34,7 @@ public class Gun : MonoBehaviour
         //dicBulletResources = new Dictionary<GunType, GameObject>();
         InitGun();
     }
-    public virtual void InitGun(int _level, int _numberBulletMax, int _numberBulletsOfCartridge, float _damge, float _ratioCrit, float _critDamge)
+    public virtual void InitGun(int _level, int _numberBulletMax, int _numberBulletsOfCartridge, float _damge, float _ratioCrit, float _critDamge, float _timeInsteadOfBullets, float _timeRespawnShoot)
     {
         this.level = _level;
         this.numberBulletMax = _numberBulletMax;
@@ -42,6 +42,8 @@ public class Gun : MonoBehaviour
         this.damge = _damge;
         this.ratioCrit = _ratioCrit;
         this.critDamge = _critDamge;
+        this.timeInsteadOfBullets = _timeInsteadOfBullets;
+        this.timeRespawnShoot = 1.0f / _timeRespawnShoot;
 
     }
 
