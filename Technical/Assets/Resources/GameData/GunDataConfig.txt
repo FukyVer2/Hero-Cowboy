@@ -1,5 +1,3 @@
-"GunID";"GunName";"Damage";"FireRate";"CountBullet";"MaxBullet";"Ratico";"Crit";"CountDown";"GoldUpgrade";
-0;"ShotGun";1;1.0;15;9999;1.5;1;1.0;1;
-1;"AK47";1;2.0;30;30;1.0;1;2.0;1;
-2;"GRENADE";5;0.5;4;1;0.0;0;4.0;1;
-3;"MACHINE_GUN";2;5.0;30;20;0.0;0;5.0;2;
+"GunID";"GunName";"Damage";"FireRate";"CountBullet";"CountDown";"MaxBullet";"Ratico";"Crit";"GoldUpgrade";"LevelUnLock";
+0;"ShotGun";1;5.0;15;0.5;9999;1.5;1;1;1;
+3;"MACHINE_GUN";1;10.0;30;2.0;20;0.0;0;2;2;

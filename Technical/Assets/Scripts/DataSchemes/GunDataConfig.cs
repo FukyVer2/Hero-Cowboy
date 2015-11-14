@@ -12,9 +12,10 @@ public class GunDataConfig : ICloneable
 	public int Damage;
 	public float FireRate;
 	public int CountBullet;
+	public float CountDown;
 	public int MaxBullet;
 	public float Ratico;
 	public int Crit;
-	public float CountDown;
 	public int GoldUpgrade;
+	public int LevelUnLock;
 }
