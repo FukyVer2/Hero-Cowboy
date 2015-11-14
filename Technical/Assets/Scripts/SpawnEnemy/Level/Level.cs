@@ -35,7 +35,21 @@ public class Level : MonoSingleton<Level> {
 	// Use this for initialization
 	void Start () {
         //InitLevel();
+		CalculateCountEnemy ();
 	}
+
+	public void CalculateCountEnemy() 
+	{
+		foreach (Luot l in listLevel) {
+			//Moi luot co 10 luot
+			if(l.luot.Count > 5) {
+				foreach(Alternate alter in l.luot) {
+					alter.CalculateCountEnemy();
+				}
+			}
+		}
+	}
+
     public void InitLevel()
     {
         stage = StageSpawn.ENEMY;       
@@ -88,7 +102,13 @@ public class Level : MonoSingleton<Level> {
 
             if (stage != StageSpawn.VICTORY)
             {
-                if (listEnemy.Count <= 0)
+				int countSpawnedEnemy = 0;
+				for(int i = 0; i < listSpawn.Count;i++) {
+					countSpawnedEnemy += listSpawn[i].countSpawnedEnemy;
+				}
+				int countEnemyDefault = listLevel[this.level].luot[this.soluot].countEnemy;
+
+				if (listEnemy.Count <= 0 && countSpawnedEnemy >= countEnemyDefault)
                 {
                     //if (soluot < listLevel[level].luot.Count - 1 && stage != StageSpawn.BOSS)
                     if (soluot < 9 && stage != StageSpawn.BOSS)

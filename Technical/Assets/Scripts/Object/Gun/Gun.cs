@@ -166,15 +166,16 @@ public class Gun : MonoBehaviour
 
     public virtual void InsteadOfBullets()
     {
-        if (numberBulletMax > numberBulletsOfCartridge)
-        {
-            numberBulletCurrent = numberBulletsOfCartridge;
-            
-        }
-        else
-        {
-            numberBulletCurrent = numberBulletMax;
-        }
+		numberBulletCurrent = numberBulletsOfCartridge;
+//        if (numberBulletMax > numberBulletsOfCartridge)
+//        {
+//            numberBulletCurrent = numberBulletsOfCartridge;
+//            
+//        }
+//        else
+//        {
+//            numberBulletCurrent = numberBulletMax;
+//        }
         numberBulletMax -= numberBulletCurrent;
         this.isInsteadOfBullet = false;
         GameController.Instance.InsteadBullet(false);

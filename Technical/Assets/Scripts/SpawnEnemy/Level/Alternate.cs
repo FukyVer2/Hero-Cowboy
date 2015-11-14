@@ -7,6 +7,7 @@ public class Alternate  {
 
     public string left = "";
     public string right = "";
+	public int countEnemy;
 
     public Alternate()
     { }
@@ -14,6 +15,15 @@ public class Alternate  {
     {
         this.left = _left;
         this.right = _right;
+		string[] strLeft = left.Split(new char[] { ' ' }, System.StringSplitOptions.RemoveEmptyEntries);
+		string[] strRight = right.Split(new char[] { ' ' }, System.StringSplitOptions.RemoveEmptyEntries);
+		this.countEnemy = strLeft.Length + strRight.Length;
     }
 
+	public void CalculateCountEnemy() 
+	{
+		string[] strLeft = left.Split(new char[] { ' ' }, System.StringSplitOptions.RemoveEmptyEntries);
+		string[] strRight = right.Split(new char[] { ' ' }, System.StringSplitOptions.RemoveEmptyEntries);
+		this.countEnemy = strLeft.Length + strRight.Length;
+	}
 }

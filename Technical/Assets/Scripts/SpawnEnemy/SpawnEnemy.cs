@@ -7,6 +7,7 @@ using System.Collections.Generic;
 public class SpawnEnemy : MonoBehaviour {
     public bool isRIght;
     private int level;
+	public float timeSpawnEnemy;
     void Start()
     {
         level = Level.Instance.level;
@@ -15,12 +16,12 @@ public class SpawnEnemy : MonoBehaviour {
     {
         Spawn();
     }
-    int i = 0;
+    public int countSpawnedEnemy = 0;//so luong enemy da spawned
     float t = 0;
     [ContextMenu("Reset")]
     public void Reset()
     {
-        i = 0;
+		countSpawnedEnemy = 0;
     }
     public void SetLevel(int _level)
     {
@@ -31,14 +32,14 @@ public class SpawnEnemy : MonoBehaviour {
         int soluot = Level.Instance.soluot;
         if (Level.Instance.stage == StageSpawn.ENEMY)
         {
-            if (t > 2.0f)
+			if (t > timeSpawnEnemy)
             {
                 if (isRIght)
                 {
                     string[] str = GetListEnemy(Level.Instance.listLevel[level].luot[soluot].right);
-                    if (i < str.Length)
+					if (countSpawnedEnemy < str.Length)
                     {
-                        int type = int.Parse(str[i].ToString());
+						int type = int.Parse(str[countSpawnedEnemy].ToString());
                         //switch (type)
                         //{
                         //    case 0:
@@ -98,15 +99,15 @@ public class SpawnEnemy : MonoBehaviour {
                                 ManagerObject.Instance.RenderEnemyConfig(EnemyTypeConfig.ENEMY_FLY_3, new Vector3(3.0f, 1.6f, 0), "Enemy", 1, ref Level.Instance.listEnemy);
                                 break;
                         }
-                        i++;
+						countSpawnedEnemy++;
                     }
                 }
                 else
                 {
                     string[] str = GetListEnemy(Level.Instance.listLevel[level].luot[soluot].left);
-                    if (i < str.Length)
+					if (countSpawnedEnemy < str.Length)
                     {
-                        int type = int.Parse(str[i].ToString());
+						int type = int.Parse(str[countSpawnedEnemy].ToString());
                         //switch (type)
                         //{
                         //    case 0:
@@ -167,7 +168,7 @@ public class SpawnEnemy : MonoBehaviour {
                                 ManagerObject.Instance.RenderEnemyConfig(EnemyTypeConfig.ENEMY_FLY_3, new Vector3(-3.0f, 1.6f, 0), "Enemy", 0, ref Level.Instance.listEnemy);
                                 break;
                         }
-                        i++;
+						countSpawnedEnemy++;
                     }
                 }
                 t = 0;
