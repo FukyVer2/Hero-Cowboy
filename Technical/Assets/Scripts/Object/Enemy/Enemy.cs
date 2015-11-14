@@ -10,6 +10,23 @@ public enum Type
     BOSS_LV1 = 5
 }
 
+public enum EnemyTypeConfig 
+{
+	NONE = 0,
+	ENEMY_RUN_1 = 11,
+	ENEMY_RUN_2 = 12,
+	ENEMY_RUN_3 = 13,
+	ENEMY_TANK_1 = 21,
+	ENEMY_TANK_2 = 22,
+	ENEMY_TANK_3 = 23,
+	ENEMY_TELE_1 = 31,
+	ENEMY_TELE_2 = 32,
+	ENEMY_TELE_3 = 33,
+	ENEMY_FLY_1 = 41,
+	ENEMY_FLY_2 = 42,
+	ENEMY_FLY_3 = 43
+}
+
 public class Enemy : BaseGameObject
 {
     //di chuyen

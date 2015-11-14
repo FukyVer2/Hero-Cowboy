@@ -10,9 +10,9 @@ public class GunLevelConfig : ICloneable
 	public int Level;
 	public int Damage;
 	public float FireRate;
-	public float CountDown;
 	public int MaxBullet;
 	public int Ratico;
 	public int Crit;
+	public float CountDown;
 	public int GoldUpgrade;
 }
