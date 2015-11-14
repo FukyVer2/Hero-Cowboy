@@ -10,21 +10,21 @@ public enum Type
     BOSS_LV1 = 5
 }
 
-public enum EnemyTypeConfig 
+public enum EnemyTypeConfig
 {
-	NONE = 0,
-	ENEMY_RUN_1 = 11,
-	ENEMY_RUN_2 = 12,
-	ENEMY_RUN_3 = 13,
-	ENEMY_TANK_1 = 21,
-	ENEMY_TANK_2 = 22,
-	ENEMY_TANK_3 = 23,
-	ENEMY_TELE_1 = 31,
-	ENEMY_TELE_2 = 32,
-	ENEMY_TELE_3 = 33,
-	ENEMY_FLY_1 = 41,
-	ENEMY_FLY_2 = 42,
-	ENEMY_FLY_3 = 43
+    NONE = 0,
+    ENEMY_RUN_1 = 11,
+    ENEMY_RUN_2 = 12,
+    ENEMY_RUN_3 = 13,
+    ENEMY_TANK_1 = 21,
+    ENEMY_TANK_2 = 22,
+    ENEMY_TANK_3 = 23,
+    ENEMY_TELE_1 = 31,
+    ENEMY_TELE_2 = 32,
+    ENEMY_TELE_3 = 33,
+    ENEMY_FLY_1 = 41,
+    ENEMY_FLY_2 = 42,
+    ENEMY_FLY_3 = 43
 }
 
 public class Enemy : BaseGameObject
@@ -35,14 +35,16 @@ public class Enemy : BaseGameObject
     public Type typeEnemy = Type.NONE;
     public EnemyTypeConfig typeEnemyConfig = EnemyTypeConfig.NONE;
     public int level;
-	// Use this for initialization
-	void Start () {        
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        
-	}
+    // Use this for initialization
+    void Start()
+    {
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
     public virtual void Init(int _level, float _speed, float _hp, float _damge)
     {
         this.level = _level;
@@ -55,25 +57,25 @@ public class Enemy : BaseGameObject
         health.SetHpDefault(hp);
     }
     public virtual void Hit(float _damge, bool isCrit)
-    {        
-        hp -= _damge;        
+    {
+        hp -= _damge;
         //TestPlayer.Instance.RenderNumber(_damge);
         if (!isCrit)
         {
             ManagerObject.Instance.RenderNumber(ObjectType.NUMBER, posNumberHit.position, _damge);
         }
-        if(isCrit)
+        if (isCrit)
         {
             ManagerObject.Instance.RenderNumber(ObjectType.NUMBER_CRIT, posNumberHit.position, _damge);
         }
         Delay();
-        health.HP(hp);        
-        if(hp <=0 )
+        health.HP(hp);
+        if (hp <= 0)
         {
             Die();
         }
     }
-    private Color c = Color.red; 
+    private Color c = Color.red;
     private float timeDelayStun = 0.2f;
     void Delay()
     {
@@ -121,12 +123,12 @@ public class Enemy : BaseGameObject
         status = 1;
     }
     public void Damge()
-    {        
+    {
         //player Mat mau o day
         //TestPlayer.Instance.Hit(damge);
         //TestPlayer.Instance.RenderNumber(damge);
         GameController.Instance.heroCowboy.Hit(damge);
-        
+
     }
     public virtual void Die()
     {
@@ -140,31 +142,31 @@ public class Enemy : BaseGameObject
         Level.Instance.RemoveListEnemy(e);
 
         PoolObject.Instance.DespawnObject(transform, "Enemy");
-        
-       
+
+
         //PoolObject.Instance.DespawnEnemy(transform, "Enemy", ref SpawnEnemy.Instance.listEnemy);
     }
     //xet va cham voi Enemy
     //khi toi gan Player no se dung lai
     void OnTriggerEnter2D(Collider2D col)
     {
-        if(col.tag == "Player")
+        if (col.tag == "Player")
         {
             Attack();
         }
-        if(col.tag == "Bullet")
+        if (col.tag == "Bullet")
         {
-            
+
             Bullet bullet = col.GetComponentInChildren<Bullet>();
-            if(bullet != null)
+            if (bullet != null)
             {
-                if(bullet.bulletOfObject == BulletOfObjectType.PLAYER)
+                if (bullet.bulletOfObject == BulletOfObjectType.PLAYER)
                 {
-                    bullet.KillEnemies();                    
+                    bullet.KillEnemies();
                     //Hit(bullet.damge);                    
                 }
             }
         }
     }
-    
+
 }
