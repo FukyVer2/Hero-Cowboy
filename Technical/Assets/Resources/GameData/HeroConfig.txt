@@ -1,2 +1,2 @@
-"HeroID";"HeroName";"HP";
-1;"Hero";1;
+"HeroID";"HeroName";"HP";"GoldUpgrade";
+1;"Hero";1;1;

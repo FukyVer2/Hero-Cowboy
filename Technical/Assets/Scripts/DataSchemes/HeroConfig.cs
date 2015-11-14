@@ -10,4 +10,5 @@ public class HeroConfig : ICloneable
 	public int HeroID;
 	public string HeroName;
 	public int HP;
+	public int GoldUpgrade;
 }

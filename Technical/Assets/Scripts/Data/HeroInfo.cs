@@ -7,6 +7,7 @@ public class HeroInfo {
 	public int Level;
 	public string PlayerName;
 	public int HP;
+	public int GoldUpgrade;
 
 	public HeroInfo() {
 
@@ -17,5 +18,6 @@ public class HeroInfo {
 		this.HeroID = heroConfig.HeroID;
 		this.Level = heroLevel.HeroLevel;
 		this.HP = heroLevel.HP * heroConfig.HP;
+		this.GoldUpgrade = heroLevel.GoldUprade * heroConfig.GoldUpgrade;
 	}
 }

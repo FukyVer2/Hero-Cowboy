@@ -13,4 +13,5 @@ public class EnemyConfig : ICloneable
 	public int Damage;
 	public float FireRate;
 	public float Vellocity;
+	public int Gold;
 }

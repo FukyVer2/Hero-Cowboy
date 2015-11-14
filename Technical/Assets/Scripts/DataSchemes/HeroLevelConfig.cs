@@ -9,4 +9,5 @@ public class HeroLevelConfig : ICloneable
 
 	public int HeroLevel;
 	public int HP;
+	public int GoldUprade;
 }
