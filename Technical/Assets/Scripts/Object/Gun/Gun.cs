@@ -28,7 +28,7 @@ public class Gun : MonoBehaviour
     public Text txtCountCartridge;
     public float critDamge = 230.0f;//phan tram crit damge
     public float ratioCrit = 0;
-    public float level = 0;
+    public int level = 0;
     void Start()
     {
         //dicBulletResources = new Dictionary<GunType, GameObject>();

@@ -148,7 +148,7 @@ public class GameController : MonoSingleton<GameController> {
 
         //heroCowboy.Init(hp, l);
 
-        HeroInfo heroInfo = GameData.Instance.GetHeroInfoByLevel(1);
+        HeroInfo heroInfo = GameData.Instance.GetHeroInfoByLevel(heroCowboy.level);
         heroCowboy.Init(heroInfo.HP, heroInfo.Level);
     }
     public void LoadTower()
@@ -193,7 +193,7 @@ public class GameController : MonoSingleton<GameController> {
     {
         //GunIndex gunIndex = new GunIndex();
         GunType type = gun.gunType;
-        GunInfo gunInfo = GameData.Instance.GetGunInfoByLevel(type, 1);
+        GunInfo gunInfo = GameData.Instance.GetGunInfoByLevel(type, gun.level);
         //switch(type)
         //{
         //    case GunType.SHOOT_GUN:

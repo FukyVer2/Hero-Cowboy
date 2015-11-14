@@ -7,7 +7,7 @@ public class Cowboy : MonoBehaviour{
     public CowboyState stateCurrent = CowboyState.IDLE_STATE;
     public float hp = 300;
     public float damge = 0;
-    public float level = 0;
+    public int level = 0;
 
     //di chuyen
     //public float speed;
@@ -46,7 +46,7 @@ public class Cowboy : MonoBehaviour{
     public void Init(float _hp, int _level)
     {
         this.hp = _hp;
-        this.level = _level;
+        //this.level = _level;
         health.Reset();
         health.SetHpDefault(hp);
     }
