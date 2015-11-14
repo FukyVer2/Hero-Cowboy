@@ -85,11 +85,11 @@ public class Enemy : BaseGameObject
         if (isRight == 1)
         {
             speed *= -1;
-            gameObject.transform.localScale = new Vector3(-1, 1, 1);
+            transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
         }
         else
         {
-            gameObject.transform.localScale = new Vector3(1, 1, 1);
+            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
         }
     }
     public virtual void Move()

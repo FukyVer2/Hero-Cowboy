@@ -23,17 +23,19 @@ public class EnemyFly : Enemy {
     private Vector3 posRight;
     public float dis = 2.15f;
     private bool isTop = false;
-    private float yy = -5.0f;
+    private float yy = -4.0f;
     public override void Init(int _level, float _speed, float _hp, float _damge)
     {
         base.Init(_level, _speed, _hp, _damge);
+        posLeft = new Vector3(-dis, transform.position.y, 0);
+        posRight = new Vector3(dis, transform.position.y, 0);
     }
 	// Use this for initialization
 	void Start () {
         posStart = transform.position.x;
-
-        posLeft = new Vector3(-dis, transform.position.y, 0);
-        posRight = new Vector3(dis, transform.position.y, 0);
+        animator = GetComponent<Animator>();
+        health.Reset();
+        health.SetHpDefault(hp);
     }
 	
 	// Update is called once per frame
@@ -102,8 +104,6 @@ public class EnemyFly : Enemy {
             {
                 isTop = true;
             }
-            
-            
         }
         
     }
@@ -121,15 +121,22 @@ public class EnemyFly : Enemy {
     }   
     public override void SetSpeed(int isRight)
     {
-        base.SetSpeed(isRight);
-        if(isRight == 1)
+
+        speed = Mathf.Abs(speed);
+        if (isRight == 1)
         {
             yy = -Mathf.Abs(yy);
+            speed *= -1;
+            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+        
         }
         else
         {
             yy = Mathf.Abs(yy);
+            transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+
         }
+        dir = Direction.MOVE;
     }
     void OnTriggerEnter2D(Collider2D col)
     {

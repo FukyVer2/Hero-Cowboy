@@ -111,12 +111,5 @@ public class BossLv1 : Boss {
             }
         }
     }
-    
-    void OnTriggerExit2D(Collider2D col)
-    {
-        if (col.tag == "Player")
-        {
-            //Idle();
-        }
-    }
+
 }

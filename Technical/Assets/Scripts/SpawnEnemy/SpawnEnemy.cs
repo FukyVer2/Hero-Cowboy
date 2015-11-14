@@ -50,6 +50,7 @@ public class SpawnEnemy : MonoBehaviour {
                                 ManagerObject.Instance.RenderEnemy(EnemyType.ENEMY_TANK, transform.position, "Enemy", 1, ref Level.Instance.listEnemy);
                                 break;
                             case 3:
+                                ManagerObject.Instance.RenderEnemy(EnemyType.ENEMY_FLY, new Vector3(3.0f, 1.6f, 0), "Enemy", 1, ref Level.Instance.listEnemy);
                                 break;
                             case 4:
                                 break;
@@ -76,6 +77,8 @@ public class SpawnEnemy : MonoBehaviour {
                                 ManagerObject.Instance.RenderEnemy(EnemyType.ENEMY_TANK, transform.position, "Enemy", 0, ref Level.Instance.listEnemy);
                                 break;
                             case 3:
+                                ManagerObject.Instance.RenderEnemy(EnemyType.ENEMY_FLY, new Vector3(-3.0f, 1.6f, 0), "Enemy", 1, ref Level.Instance.listEnemy);
+
                                 break;
                             case 4:
                                 break;
