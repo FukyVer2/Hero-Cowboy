@@ -1,0 +1,2 @@
+"HeroID";"HeroName";"HP";
+1;"Hero";1;

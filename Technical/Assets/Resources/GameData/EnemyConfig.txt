@@ -1,0 +1,2 @@
+"EmemyID";"Name";"HP";"Damage";"FireRate";"Vellocity";
+1;"Run1";200;50;4.0;0.5;
