@@ -9,7 +9,14 @@ public class UIController : MonoBehaviour {
     public GameObject playObject;
     public GameObject overObject;
 	// Use this for initialization
+
+    void Awake()
+    {
+        GameData.Instance.LoadGameData();
+    }
+
 	void Start () {
+        
         Init();
 	}
 	

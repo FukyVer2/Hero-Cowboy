@@ -17,7 +17,7 @@ public class GameController : MonoSingleton<GameController> {
     void Awake()
     {
         gold = PlayerPrefs.GetFloat("Gold");
-        GameData.Instance.LoadGameData();
+        
         //if (PlayerPrefs.GetInt("Level_Game") == 0)
         //{
         //    level = 0;
