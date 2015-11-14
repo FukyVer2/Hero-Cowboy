@@ -12,7 +12,7 @@ public class UIController : MonoBehaviour {
 
     void Awake()
     {
-        GameData.Instance.LoadGameData();
+        //GameData.Instance.LoadGameData();
     }
 
 	void Start () {

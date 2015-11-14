@@ -5,7 +5,11 @@ using System;
 using System.Reflection;
 
 
-public class GameData : Singleton<GameData> {
+public class GameData : MonoSingleton<GameData> {
+
+	void Awake() {
+		LoadGameData ();
+	}
 
 	public List<GunDataConfig> mGunDataConfig = new List<GunDataConfig>();
 	public List<GunLevelConfig> mGunLevelConfig = new List<GunLevelConfig> ();
@@ -44,8 +48,12 @@ public class GameData : Singleton<GameData> {
 	public GunInfo GetGunInfoByLevel(GunType gunType, int level) 
 	{
 		int gunID = (int)gunType;
+
 		GunDataConfig gunConfig = mGunDataConfig.Find (x => x.GunID == gunID);
 		GunLevelConfig gunLevel = mGunLevelConfig.Find (x => x.Level == level);
+
+		Debug.Log ("Get Gun by Level = " + level);
+		Debug.Log ("Get Gun Load Level = " + gunLevel.Level);
 
 		GunInfo gunInfo = new GunInfo (gunConfig, gunLevel);
 
