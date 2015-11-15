@@ -6,7 +6,7 @@ public class GunInfo {
 	public int GunID;
 	public string GunName;
 	public int Level;
-	public int Damage;
+	public float Damage;
 	public float FireRate;
 	public int CountBullet;
 	public int MaxBullet;

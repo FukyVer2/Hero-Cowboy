@@ -1,5 +1,5 @@
 "GunID";"GunName";"Damage";"FireRate";"CountBullet";"CountDown";"MaxBullet";"Ratico";"Crit";"GoldUpgrade";"LevelUnLock";
-0;"ShotGun";1;10.0;15;0.7;9999;1.0;1;1;1;
-1;"MACHINE_GUN";1;10.0;30;2.0;20;0.0;0;2;2;
-2;"MACHINE_GUN";1;10.0;30;2.0;20;0.0;0;2;2;
-3;"MACHINE_GUN";1;10.0;30;2.0;20;0.0;0;2;2;
+0;"ShotGun";1.0;10.0;15;0.7;9999;1.0;1;1;1;
+1;"MACHINE_GUN";1.5;10.0;30;2.0;20;0.0;0;2;2;
+2;"MACHINE_GUN";1.5;10.0;30;2.0;20;0.0;0;2;2;
+3;"MACHINE_GUN";1.5;10.0;30;2.0;20;0.0;0;2;2;

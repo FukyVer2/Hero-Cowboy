@@ -52,8 +52,8 @@ public class GameData : MonoSingleton<GameData> {
 		GunDataConfig gunConfig = mGunDataConfig.Find (x => x.GunID == gunID);
 		GunLevelConfig gunLevel = mGunLevelConfig.Find (x => x.Level == level);
 
-		Debug.Log ("Get Gun by Level = " + level);
-		Debug.Log ("Get Gun Load Level = " + gunLevel.Level);
+		Debug.Log ("Get Gun with ID = " + gunID + " -- by Level = " + level);
+		Debug.Log ("Get Gun Load Level = " + gunLevel.Level + " - Damage = " + gunConfig.Damage);
 
 		GunInfo gunInfo = new GunInfo (gunConfig, gunLevel);
 

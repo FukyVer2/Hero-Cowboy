@@ -9,7 +9,7 @@ public class GunDataConfig : ICloneable
 
 	public int GunID;
 	public string GunName;
-	public int Damage;
+	public float Damage;
 	public float FireRate;
 	public int CountBullet;
 	public float CountDown;
