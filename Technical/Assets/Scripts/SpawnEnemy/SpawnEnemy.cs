@@ -81,13 +81,13 @@ public class SpawnEnemy : MonoBehaviour {
                                 ManagerObject.Instance.RenderEnemyConfig(EnemyTypeConfig.ENEMY_TANK_3, transform.position, "Enemy", 1, ref Level.Instance.listEnemy);
                                 break;
                             case 31:
-                                ManagerObject.Instance.RenderEnemyConfig(EnemyTypeConfig.ENEMY_TELE_1, transform.position, "Enemy", 1, ref Level.Instance.listEnemy);
+                                //ManagerObject.Instance.RenderEnemyConfig(EnemyTypeConfig.ENEMY_TELE_1, transform.position, "Enemy", 1, ref Level.Instance.listEnemy);
                                 break;
                             case 32:
-                                ManagerObject.Instance.RenderEnemyConfig(EnemyTypeConfig.ENEMY_TELE_2, transform.position, "Enemy", 1, ref Level.Instance.listEnemy);
+                                //ManagerObject.Instance.RenderEnemyConfig(EnemyTypeConfig.ENEMY_TELE_2, transform.position, "Enemy", 1, ref Level.Instance.listEnemy);
                                 break;
                             case 33:
-                                ManagerObject.Instance.RenderEnemyConfig(EnemyTypeConfig.ENEMY_TELE_3, transform.position, "Enemy", 1, ref Level.Instance.listEnemy);
+                                //ManagerObject.Instance.RenderEnemyConfig(EnemyTypeConfig.ENEMY_TELE_3, transform.position, "Enemy", 1, ref Level.Instance.listEnemy);
                                 break;
                             case 41:
                                 ManagerObject.Instance.RenderEnemyConfig(EnemyTypeConfig.ENEMY_FLY_1, new Vector3(3.0f, 1.6f, 0), "Enemy", 1, ref Level.Instance.listEnemy);
@@ -150,13 +150,13 @@ public class SpawnEnemy : MonoBehaviour {
                                 ManagerObject.Instance.RenderEnemyConfig(EnemyTypeConfig.ENEMY_TANK_3, transform.position, "Enemy", 0, ref Level.Instance.listEnemy);
                                 break;
                             case 31:
-                                ManagerObject.Instance.RenderEnemyConfig(EnemyTypeConfig.ENEMY_TELE_1, transform.position, "Enemy", 0, ref Level.Instance.listEnemy);
+                                //ManagerObject.Instance.RenderEnemyConfig(EnemyTypeConfig.ENEMY_TELE_1, transform.position, "Enemy", 0, ref Level.Instance.listEnemy);
                                 break;
                             case 32:
-                                ManagerObject.Instance.RenderEnemyConfig(EnemyTypeConfig.ENEMY_TELE_2, transform.position, "Enemy", 0, ref Level.Instance.listEnemy);
+                                //ManagerObject.Instance.RenderEnemyConfig(EnemyTypeConfig.ENEMY_TELE_2, transform.position, "Enemy", 0, ref Level.Instance.listEnemy);
                                 break;
                             case 33:
-                                ManagerObject.Instance.RenderEnemyConfig(EnemyTypeConfig.ENEMY_TELE_3, transform.position, "Enemy", 0, ref Level.Instance.listEnemy);
+                                //ManagerObject.Instance.RenderEnemyConfig(EnemyTypeConfig.ENEMY_TELE_3, transform.position, "Enemy", 0, ref Level.Instance.listEnemy);
                                 break;
                             case 41:
                                 ManagerObject.Instance.RenderEnemyConfig(EnemyTypeConfig.ENEMY_FLY_1, new Vector3(-3.0f, 1.6f, 0), "Enemy", 0, ref Level.Instance.listEnemy);
